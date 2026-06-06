@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Dashboard | BuySell Africa</title>
+<meta name="description" content="Manage your listings, inquiries, and activity on BuySell Africa dashboard." />
+<link rel="canonical" href="https://buysellafrica.com/dashboard" />
+
+<meta property="og:title" content="Dashboard | BuySell Africa" />
+<meta property="og:description" content="Manage listings and inquiries." />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<style>
+body{font-family:Inter,sans-serif}
+.glass{backdrop-filter:blur(16px);background:rgba(255,255,255,0.75)}
+.card:hover{transform:translateY(-5px);transition:.2s}
+.fade{opacity:0;transform:translateY(20px);transition:.7s}
+.fade.show{opacity:1;transform:translateY(0)}
+.sidebar-active{background:#0B0F19;color:white}
+</style>
+
+<body class="bg-slate-50 text-slate-900">
+
+<!-- TOP NAV -->
+<nav class="fixed top-0 w-full z-50">
+<div class="glass flex justify-between items-center px-6 py-4 shadow-sm">
+<div class="font-extrabold">BuySell Africa Dashboard</div>
+<div class="flex gap-3 text-sm">
+<span class="text-slate-500">Welcome, User</span>
+<button class="bg-yellow-500 text-white px-4 py-2 rounded-xl">List Business</button>
+</div>
+</div>
+</nav>
+
+<!-- LAYOUT -->
+<div class="pt-24 flex">
+
+<!-- SIDEBAR -->
+<aside class="w-64 hidden md:block bg-white h-screen fixed left-0 top-0 pt-28 border-r px-4">
+
+<div class="space-y-2 text-sm">
+
+<button class="w-full text-left px-4 py-3 rounded-xl sidebar-active">Overview</button>
+<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">My Listings</button>
+<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Inquiries</button>
+<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Saved Deals</button>
+<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Analytics</button>
+<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Settings</button>
+
+</div>
+
+</aside>
+
+<!-- MAIN -->
+<main class="flex-1 md:ml-64 p-6">
+
+<!-- STATS -->
+<section class="grid md:grid-cols-4 gap-4 fade">
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="text-slate-500 text-sm">Active Listings</p>
+<h2 class="text-2xl font-bold">3</h2>
+</div>
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="text-slate-500 text-sm">Total Views</p>
+<h2 class="text-2xl font-bold">1,240</h2>
+</div>
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="text-slate-500 text-sm">Inquiries</p>
+<h2 class="text-2xl font-bold">18</h2>
+</div>
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="text-slate-500 text-sm">Saved Deals</p>
+<h2 class="text-2xl font-bold">5</h2>
+</div>
+
+</section>
+
+<!-- LISTINGS -->
+<section class="mt-10 fade">
+<h2 class="text-xl font-bold">My Listings</h2>
+
+<div class="grid md:grid-cols-3 gap-6 mt-4">
+
+<div class="card bg-white p-4 rounded-2xl shadow">
+<h3 class="font-bold">Restaurant Chain</h3>
+<p class="text-sm text-slate-500">Johannesburg • $850K</p>
+
+<div class="flex gap-2 mt-4">
+<button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+<button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+</div>
+</div>
+
+<div class="card bg-white p-4 rounded-2xl shadow">
+<h3 class="font-bold">Logistics Company</h3>
+<p class="text-sm text-slate-500">Nairobi • $1.2M</p>
+
+<div class="flex gap-2 mt-4">
+<button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+<button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+</div>
+</div>
+
+<div class="card bg-white p-4 rounded-2xl shadow">
+<h3 class="font-bold">SaaS Startup</h3>
+<p class="text-sm text-slate-500">Lagos • $450K</p>
+
+<div class="flex gap-2 mt-4">
+<button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
+<button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- INQUIRIES -->
+<section class="mt-10 fade">
+<h2 class="text-xl font-bold">Recent Inquiries</h2>
+
+<div class="space-y-4 mt-4">
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="font-bold">Investor from Cape Town</p>
+<p class="text-sm text-slate-500">Interested in Restaurant Chain listing</p>
+</div>
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="font-bold">Buyer from London</p>
+<p class="text-sm text-slate-500">Requesting financials for SaaS Startup</p>
+</div>
+
+<div class="bg-white p-4 rounded-2xl shadow">
+<p class="font-bold">Private Equity Firm</p>
+<p class="text-sm text-slate-500">Wants due diligence documents</p>
+</div>
+
+</div>
+</section>
+
+</main>
+</div>
+
+<!-- FOOTER -->
+<footer class="text-center text-sm text-slate-500 py-10">
+© 2026 BuySell Africa Dashboard
+</footer>
+
+<script>
+// fade animation
+const obs=new IntersectionObserver(e=>e.forEach(x=>{
+if(x.isIntersecting)x.target.classList.add('show')
+}));
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
