@@ -4,80 +4,114 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>List Business | Deal OS</title>
+<title>List Business | Deal OS v5 Lite</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 body{font-family:Inter,sans-serif}
-.card{box-shadow:0 10px 25px rgba(0,0,0,0.08)}
+
+.card{
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:.2s ease;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.badge{
+font-size:10px;
+padding:4px 8px;
+border-radius:999px;
+}
 </style>
+
 </head>
 
 <body class="bg-slate-100">
 
 <!-- HEADER -->
-<div class="bg-black text-white p-4 font-bold">
-List Your Business
+<div class="bg-black text-white p-4 font-bold text-center">
+Deal OS v5 Listing System (No Backend Payments)
 </div>
 
 <!-- PRICING -->
-<div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-4 p-4">
+<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 p-4">
 
 <!-- STARTER -->
-<div class="bg-white p-4 rounded-2xl card">
+<div class="bg-white p-5 rounded-2xl card">
 
-<h2 class="font-bold">Starter</h2>
+<h2 class="font-bold text-lg">Starter</h2>
 <p class="text-2xl font-bold">$5</p>
 
-<ul class="text-sm text-slate-600 mt-2">
+<ul class="text-sm text-slate-600 mt-3 space-y-1">
 <li>✔ 1 Listing</li>
 <li>✔ 7 Days Visibility</li>
 <li>❌ No Boost</li>
 </ul>
 
-<a href="https://www.paypal.me/PericlesKomey963"
-class="block bg-black text-white text-center mt-3 py-2 rounded-xl">
-Pay & Start
+<a href="https://www.paypal.me/buysellAfrica"
+target="_blank"
+class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-semibold">
+Pay with PayPal
 </a>
+
+<button onclick="markPaid('starter')"
+class="w-full mt-2 bg-green-500 text-black py-2 rounded-xl font-semibold">
+I HAVE PAID
+</button>
 
 </div>
 
 <!-- STANDARD -->
-<div class="bg-white p-4 rounded-2xl card border-2 border-blue-500">
+<div class="bg-white p-5 rounded-2xl card border-2 border-blue-500">
 
-<h2 class="font-bold">Standard</h2>
-<p class="text-2xl font-bold">$15/mo</p>
+<h2 class="font-bold text-lg">Standard</h2>
+<p class="text-2xl font-bold">$15 / month</p>
 
-<ul class="text-sm text-slate-600 mt-2">
+<ul class="text-sm text-slate-600 mt-3 space-y-1">
 <li>✔ 5 Listings</li>
 <li>✔ Analytics</li>
-<li>✔ Boost Eligible</li>
+<li>✔ Eligible for Boost</li>
 </ul>
 
-<a href="https://www.paypal.me/PericlesKomey963"
-class="block bg-blue-500 text-white text-center mt-3 py-2 rounded-xl">
-Subscribe
+<a href="https://www.paypal.me/buysellAfrica"
+target="_blank"
+class="block bg-blue-500 text-white text-center py-3 rounded-xl mt-4 font-semibold">
+Subscribe with PayPal
 </a>
+
+<button onclick="markPaid('standard')"
+class="w-full mt-2 bg-green-500 text-black py-2 rounded-xl font-semibold">
+I HAVE PAID
+</button>
 
 </div>
 
 <!-- PREMIUM -->
-<div class="bg-white p-4 rounded-2xl card">
+<div class="bg-white p-5 rounded-2xl card">
 
-<h2 class="font-bold">Premium</h2>
-<p class="text-2xl font-bold">$30/mo</p>
+<h2 class="font-bold text-lg">Premium</h2>
+<p class="text-2xl font-bold">$30 / month</p>
 
-<ul class="text-sm text-slate-600 mt-2">
+<ul class="text-sm text-slate-600 mt-3 space-y-1">
 <li>✔ Unlimited Listings</li>
 <li>✔ Priority Approval</li>
 <li>✔ Lead Unlock Included</li>
+<li>✔ Boost Priority</li>
 </ul>
 
-<a href="https://www.paypal.me/PericlesKomey963"
-class="block bg-purple-500 text-white text-center mt-3 py-2 rounded-xl">
+<a href="https://www.paypal.me/buysellAfrica"
+target="_blank"
+class="block bg-purple-500 text-white text-center py-3 rounded-xl mt-4 font-semibold">
 Go Premium
 </a>
+
+<button onclick="markPaid('premium')"
+class="w-full mt-2 bg-green-500 text-black py-2 rounded-xl font-semibold">
+I HAVE PAID
+</button>
 
 </div>
 
@@ -86,26 +120,51 @@ Go Premium
 <!-- LISTING FORM -->
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl card mt-6">
 
-<h2 class="font-bold mb-3">Submit Business Details</h2>
+<h2 class="font-bold text-lg mb-4">Submit Business</h2>
 
-<input id="name" placeholder="Business Name" class="w-full p-3 border rounded-xl mb-2"/>
+<input id="name" class="w-full p-3 border rounded-xl mb-3" placeholder="Business Name"/>
 
-<input id="location" placeholder="Location" class="w-full p-3 border rounded-xl mb-2"/>
+<input id="location" class="w-full p-3 border rounded-xl mb-3" placeholder="Location"/>
 
-<input id="price" placeholder="Price (e.g $50K)" class="w-full p-3 border rounded-xl mb-2"/>
+<input id="price" class="w-full p-3 border rounded-xl mb-3" placeholder="Price"/>
 
-<textarea id="desc" placeholder="Business Description" class="w-full p-3 border rounded-xl mb-2"></textarea>
+<textarea id="desc" class="w-full p-3 border rounded-xl mb-3" placeholder="Description"></textarea>
 
 <button onclick="submitListing()"
 class="w-full bg-black text-white py-3 rounded-xl font-bold">
 Submit Listing
 </button>
 
-<p id="msg" class="text-center text-sm mt-2"></p>
+<p id="msg" class="text-center text-sm mt-3"></p>
 
 </div>
 
 <script>
+
+/* -----------------------------
+   PAYMENT STATE SYSTEM
+------------------------------*/
+
+function markPaid(plan){
+
+localStorage.setItem("bsa_payment_status", JSON.stringify({
+paid:true,
+plan:plan,
+time:Date.now()
+}));
+
+alert("Payment marked as complete for " + plan + ". You can now submit listing.");
+}
+
+/* -----------------------------
+   CHECK PAYMENT
+------------------------------*/
+
+function isPaid(){
+
+let status = JSON.parse(localStorage.getItem("bsa_payment_status"));
+return status && status.paid;
+}
 
 /* -----------------------------
    SUBMIT LISTING
@@ -118,12 +177,22 @@ let location = document.getElementById("location").value;
 let price = document.getElementById("price").value;
 let desc = document.getElementById("desc").value;
 
-if(!name || !location || !price){
-document.getElementById("msg").innerText = "Please fill all required fields";
+let msg = document.getElementById("msg");
+
+if(!name || !location || !price || !desc){
+msg.innerText = "Please fill all fields";
+return;
+}
+
+/* PAYMENT GATE */
+if(!isPaid()){
+msg.innerText = "Please complete payment first.";
 return;
 }
 
 let data = JSON.parse(localStorage.getItem("bsa_pipeline")) || [];
+
+let payment = JSON.parse(localStorage.getItem("bsa_payment_status"));
 
 data.push({
 id: Date.now(),
@@ -131,20 +200,25 @@ name,
 location,
 price,
 desc,
+
 status:"pending",
 
 views:0,
 whatsappClicks:0,
 
 boosted:false,
-subscription:"free",
-leadLocked:true
+subscription: payment.plan || "free",
+leadLocked:true,
+
+paid:true
 });
 
 localStorage.setItem("bsa_pipeline", JSON.stringify(data));
 
-document.getElementById("msg").innerText =
-"Submitted! Awaiting approval or payment verification.";
+/* reset payment flag */
+localStorage.removeItem("bsa_payment_status");
+
+msg.innerText = "Listing submitted successfully! Awaiting approval.";
 
 setTimeout(()=>{
 window.location.href = "dashboard.html";
