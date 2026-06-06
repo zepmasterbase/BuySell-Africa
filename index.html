@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>BuySell Africa Terminal</title>
+<title>BuySell Africa Exchange Terminal</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 
 <style>
 body{
@@ -15,185 +15,182 @@ background:#050814;
 color:#e5e7eb;
 }
 
-/* TOP TICKER */
-.ticker{
-background:#0b1220;
-border-bottom:1px solid rgba(255,255,255,0.06);
-overflow:hidden;
-white-space:nowrap;
-}
-
-.ticker span{
-display:inline-block;
-padding-left:100%;
-animation:scroll 22s linear infinite;
-color:#60a5fa;
-font-size:12px;
-letter-spacing:1px;
-}
-
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-100%)}
-}
-
 /* PANELS */
 .panel{
-background:rgba(15,23,42,0.65);
+background:rgba(15,23,42,0.7);
 border:1px solid rgba(255,255,255,0.06);
-backdrop-filter:blur(16px);
+backdrop-filter:blur(14px);
 }
 
 /* CARDS */
 .card{
-background:rgba(2,6,23,0.85);
+background:rgba(2,6,23,0.8);
 border:1px solid rgba(255,255,255,0.06);
-transition:.2s ease;
 }
 
-.card:hover{
-border-color:#3b82f6;
-transform:translateY(-3px);
+/* ORDER BOOK */
+.orderbook{
+font-family:monospace;
+font-size:13px;
 }
+
+.bid{color:#22c55e;}
+.ask{color:#ef4444;}
+.mid{color:#60a5fa;}
 
 /* TERMINAL */
 .terminal{
 background:#020617;
 border:1px solid rgba(59,130,246,0.25);
 font-family:monospace;
-color:#22c55e;
-height:260px;
+height:240px;
 overflow:auto;
-padding:12px;
+padding:10px;
+color:#22c55e;
 }
 
-input,select{
+input{
 background:rgba(255,255,255,0.05);
 border:1px solid rgba(255,255,255,0.08);
 color:#fff;
 }
 
-button{
-font-weight:600;
-}
+button{font-weight:600;}
+
 </style>
 </head>
 
 <body>
 
-<!-- MARKET TICKER -->
-<div class="ticker py-2">
-<span>
-AFRICA DEAL INDEX ▲ 14.2% • PRIVATE EQUITY FLOW ▲ HIGH • ZAR/USD 18.40 ▼ • NAIROBI STARTUPS ▲ ACTIVE • LAGOS TECH ▼ VOLATILE • CAPE TOWN M&A ▲ STRONG • ACCRA GROWTH ▲ STABLE
-</span>
-</div>
-
-<!-- NAV -->
-<div class="flex justify-between items-center px-6 py-4 panel">
-<div class="font-bold text-white">BUYSELL AFRICA TERMINAL</div>
-
-<div class="hidden md:flex gap-6 text-sm text-slate-400">
-<span>Dashboard</span>
-<span>Markets</span>
-<span>Deals</span>
-<span>Analytics</span>
-</div>
-
-<button class="bg-blue-600 px-4 py-2 rounded-lg text-sm">
-ENTER MARKET
-</button>
+<!-- HEADER -->
+<div class="panel flex justify-between items-center px-6 py-4">
+<div class="font-bold">BUYSELL AFRICA EXCHANGE</div>
+<div class="text-sm text-slate-400">LIVE MARKET • AFRICA PRIVATE DEALS</div>
 </div>
 
 <!-- MAIN GRID -->
 <div class="grid md:grid-cols-12 gap-4 p-4">
 
-<!-- LEFT -->
-<div class="md:col-span-8 space-y-4">
+<!-- LEFT: ORDER BOOK -->
+<div class="md:col-span-4 panel p-4 rounded-xl">
 
-<!-- LIVE CHART PANEL -->
-<div class="panel p-4 rounded-xl">
+<h2 class="font-bold mb-3">Order Book</h2>
 
-<h2 class="font-bold text-lg mb-3">Africa Deal Index (Live)</h2>
+<div class="orderbook space-y-1">
 
+<div class="flex justify-between ask">
+<span>ASK 1</span><span>$1.25M</span>
+</div>
+<div class="flex justify-between ask">
+<span>ASK 2</span><span>$1.20M</span>
+</div>
+<div class="flex justify-between ask">
+<span>ASK 3</span><span>$1.15M</span>
+</div>
 
+<div class="text-center text-blue-400 my-2">MID PRICE $1.10M</div>
+
+<div class="flex justify-between bid">
+<span>BID 1</span><span>$1.05M</span>
+</div>
+<div class="flex justify-between bid">
+<span>BID 2</span><span>$1.00M</span>
+</div>
+<div class="flex justify-between bid">
+<span>BID 3</span><span>$950K</span>
+</div>
 
 </div>
 
-<!-- DEAL FLOW -->
-<div class="panel p-4 rounded-xl">
-<h2 class="font-bold text-lg">Live Deal Flow</h2>
+<div class="mt-4 space-y-2">
 
-<div class="space-y-3 mt-3">
+<button class="bg-green-600 w-full py-2 rounded-lg">PLACE BID</button>
+<button class="bg-red-600 w-full py-2 rounded-lg">PLACE ASK</button>
+
+</div>
+
+</div>
+
+<!-- CENTER: DEAL FEED -->
+<div class="md:col-span-5 panel p-4 rounded-xl">
+
+<h2 class="font-bold mb-3">Live Deal Feed</h2>
+
+<div class="space-y-3">
 
 <div class="card p-3 rounded-lg">
-<span class="text-blue-400 text-xs">NEW LISTING</span>
-<p class="font-semibold">Logistics Network — Nairobi</p>
-<p class="text-slate-400 text-sm">$1.2M • High Demand • 3 Investors</p>
+<p class="text-blue-400 text-xs">NEW LISTING</p>
+<p class="font-semibold">Logistics Company — Nairobi</p>
+<p class="text-slate-400 text-sm">$1.2M • 3 Buyers Watching</p>
 </div>
 
 <div class="card p-3 rounded-lg">
-<span class="text-green-400 text-xs">BIDDING ACTIVE</span>
+<p class="text-green-400 text-xs">BID ENTERED</p>
 <p class="font-semibold">Restaurant Chain — Johannesburg</p>
-<p class="text-slate-400 text-sm">$850K • 5 Offers Live</p>
+<p class="text-slate-400 text-sm">$850K • Bid placed at $820K</p>
 </div>
 
 <div class="card p-3 rounded-lg">
-<span class="text-red-400 text-xs">PRICE MOVED</span>
+<p class="text-red-400 text-xs">PRICE MOVEMENT</p>
 <p class="font-semibold">SaaS Startup — Lagos</p>
-<p class="text-slate-400 text-sm">$450K → $410K Negotiation</p>
-</div>
-
-</div>
+<p class="text-slate-400 text-sm">$450K → $410K</p>
 </div>
 
 </div>
 
-<!-- RIGHT -->
-<div class="md:col-span-4 space-y-4">
+</div>
 
-<!-- COMMAND TERMINAL -->
+<!-- RIGHT: AI ANALYST + TERMINAL -->
+<div class="md:col-span-3 space-y-4">
+
+<!-- AI ANALYST -->
 <div class="panel p-4 rounded-xl">
 
-<h2 class="font-bold mb-3">Command Terminal</h2>
+<h2 class="font-bold mb-2">AI Deal Analyst</h2>
 
-<div id="terminal" class="terminal">
-> Welcome to BuySell Africa Terminal<br>
-> type: /help for commands<br>
-</div>
+<div class="card p-3 rounded-lg text-sm">
 
-<input id="cmd" placeholder="/search nigeria startups"
-class="w-full mt-3 p-2 rounded-lg"/>
-
-<button onclick="runCommand()" class="w-full mt-2 bg-blue-600 p-2 rounded-lg">
-EXECUTE
-</button>
-
-</div>
-
-<!-- SIGNALS -->
-<div class="panel p-4 rounded-xl">
-<h2 class="font-bold mb-2">Market Signals</h2>
-
-<p class="text-green-400">● Nigeria — High liquidity</p>
-<p class="text-blue-400">● Kenya — Stable growth</p>
-<p class="text-green-400">● South Africa — Strong M&A</p>
-<p class="text-red-400">● Egypt — Weak inflow</p>
-</div>
-
-<!-- CONVERSION PANEL -->
-<div class="panel p-4 rounded-xl text-center">
-
-<h2 class="font-bold">Unlock Deal Access</h2>
-<p class="text-slate-400 text-sm mt-2">
-Join investors seeing pre-market deals before public listing
+<p class="text-blue-400">Insight:</p>
+<p class="text-slate-300">
+Tech + Logistics deals in Africa are undervalued by ~18% relative to growth trajectory.
 </p>
 
-<button class="bg-blue-600 w-full mt-4 p-2 rounded-lg">
-Become Investor
-</button>
+</div>
 
-<button class="border border-white/10 w-full mt-2 p-2 rounded-lg">
-List Your Asset
+<div class="card p-3 rounded-lg text-sm mt-2">
+
+<p class="text-green-400">Recommendation:</p>
+<p class="text-slate-300">
+High conviction BUY on mid-stage logistics assets in Kenya & Nigeria.
+</p>
+
+</div>
+
+<div class="card p-3 rounded-lg text-sm mt-2">
+
+<p class="text-red-400">Risk:</p>
+<p class="text-slate-300">
+Early-stage SaaS valuations are correcting due to liquidity tightening.
+</p>
+
+</div>
+
+</div>
+
+<!-- TERMINAL -->
+<div class="panel p-4 rounded-xl">
+
+<h2 class="font-bold mb-2">Command Terminal</h2>
+
+<div id="terminal" class="terminal">
+> BuySell Africa Exchange Ready<br>
+> type /help<br>
+</div>
+
+<input id="cmd" class="w-full mt-2 p-2 rounded-lg" placeholder="/analyze nigeria fintech"/>
+
+<button onclick="run()" class="w-full mt-2 bg-blue-600 py-2 rounded-lg">
+EXECUTE
 </button>
 
 </div>
@@ -210,34 +207,36 @@ t.innerHTML += "<br>> " + msg;
 t.scrollTop = t.scrollHeight;
 }
 
-function runCommand(){
-const input=document.getElementById("cmd");
-const cmd=input.value;
-
-if(!cmd) return;
-
+function run(){
+const cmd=document.getElementById("cmd").value;
 log(cmd);
 
 if(cmd.includes("/help")){
-log("Commands: /search, /deal, /markets, /invest");
-}
-else if(cmd.includes("/search")){
-log("Searching African private markets...");
-}
-else if(cmd.includes("/deal")){
-log("Loading live deal pipeline...");
-}
-else if(cmd.includes("/markets")){
-log("Loading market heatmap...");
-}
-else if(cmd.includes("/invest")){
-log("Redirecting to investor onboarding...");
-}
-else{
-log("Unknown command. type /help");
+log("Commands: /analyze /bid /ask /deal /market");
 }
 
-input.value="";
+else if(cmd.includes("/analyze")){
+log("AI: Running macro + sector analysis...");
+log("Result: Strong upside in logistics + fintech sectors.");
+}
+
+else if(cmd.includes("/bid")){
+log("Bid placed successfully (simulated)");
+}
+
+else if(cmd.includes("/ask")){
+log("Ask order registered (simulated)");
+}
+
+else if(cmd.includes("/market")){
+log("Market: ACTIVE — high liquidity detected");
+}
+
+else{
+log("Unknown command");
+}
+
+document.getElementById("cmd").value="";
 }
 
 </script>
