@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuySell Africa | Buy, Sell & Invest in Businesses Across Africa</title>
+
+<!-- SEO -->
+<meta name="description" content="BuySell Africa is Africa's marketplace for buying, selling, and investing in businesses across multiple industries and countries.">
+<meta name="keywords" content="Buy business Africa, Sell business Africa, African startups, Business marketplace, Investment opportunities Africa">
+<meta name="author" content="BuySell Africa">
+
+<!-- Open Graph -->
+<meta property="og:title" content="BuySell Africa">
+<meta property="og:description" content="Buy, Sell & Invest in Businesses Across Africa">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a">
+<meta property="og:url" content="https://buysellafrica.com">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#0F172A',
+secondary: '#10B981',
+accent: '#2563EB'
+}
+}
+}
+}
+</script>
+
+<style>
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+}
+
+.glass{
+backdrop-filter: blur(20px);
+background: rgba(255,255,255,0.7);
+border:1px solid rgba(255,255,255,0.3);
+}
+
+.hero-gradient{
+background:
+radial-gradient(circle at top right,#dbeafe 0%,transparent 40%),
+radial-gradient(circle at left,#d1fae5 0%,transparent 40%),
+#ffffff;
+}
+
+.card-hover{
+transition:all .3s ease;
+}
+
+.card-hover:hover{
+transform:translateY(-8px);
+}
+
+.shadow-premium{
+box-shadow:0 20px 50px rgba(15,23,42,.08);
+}
+</style>
+</head>
+
+<body class="bg-white text-slate-800">
+
+<!-- NAVBAR -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-center py-5">
+
+<a href="#" class="text-2xl font-extrabold text-primary">
+BuySell Africa
+</a>
+
+<nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+<a href="#listings" class="hover:text-accent">Browse Businesses</a>
+<a href="#industries" class="hover:text-accent">Industries</a>
+<a href="#countries" class="hover:text-accent">Countries</a>
+<a href="#how" class="hover:text-accent">How It Works</a>
+<a href="#about" class="hover:text-accent">About</a>
+</nav>
+
+<div class="hidden md:flex gap-3">
+<button class="px-5 py-2 font-medium hover:text-accent">
+Login
+</button>
+
+<button class="px-5 py-2 rounded-xl bg-secondary text-white hover:opacity-90 transition">
+List Your Business
+</button>
+</div>
+
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero-gradient py-24">
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="max-w-4xl mx-auto text-center">
+
+<span class="inline-flex px-4 py-2 rounded-full bg-blue-50 text-accent text-sm font-semibold mb-6">
+Africa's Business Marketplace
+</span>
+
+<h1 class="text-5xl md:text-7xl font-black text-primary leading-tight">
+Buy, Sell & Invest in Businesses Across Africa
+</h1>
+
+<p class="text-xl text-slate-600 mt-8 max-w-3xl mx-auto">
+Discover profitable businesses, startups, franchises and investment opportunities from across Africa.
+</p>
+
+<div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition">
+Browse Businesses
+</button>
+
+<button class="border border-slate-300 px-8 py-4 rounded-xl font-semibold hover:bg-slate-50 transition">
+List Your Business
+</button>
+</div>
+
+<!-- SEARCH -->
+<div class="glass shadow-premium rounded-3xl p-6 mt-16 max-w-6xl mx-auto">
+<div class="grid md:grid-cols-4 gap-4">
+
+<input
+type="text"
+placeholder="Search businesses..."
+class="w-full p-4 rounded-xl border border-slate-200 outline-none">
+
+<select class="p-4 rounded-xl border border-slate-200">
+<option>All Countries</option>
+<option>South Africa</option>
+<option>Nigeria</option>
+<option>Kenya</option>
+<option>Ghana</option>
+</select>
+
+<select class="p-4 rounded-xl border border-slate-200">
+<option>All Industries</option>
+<option>Technology</option>
+<option>Retail</option>
+<option>Agriculture</option>
+<option>Manufacturing</option>
+</select>
+
+<button class="bg-accent text-white rounded-xl font-semibold hover:bg-blue-700 transition">
+Search
+</button>
+
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<section class="py-20">
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="grid md:grid-cols-4 gap-8 text-center">
+
+<div>
+<h3 class="text-4xl font-black text-primary">500+</h3>
+<p class="text-slate-600 mt-2">Businesses Listed</p>
+</div>
+
+<div>
+<h3 class="text-4xl font-black text-primary">15</h3>
+<p class="text-slate-600 mt-2">African Countries</p>
+</div>
+
+<div>
+<h3 class="text-4xl font-black text-primary">$20M+</h3>
+<p class="text-slate-600 mt-2">Opportunities</p>
+</div>
+
+<div>
+<h3 class="text-4xl font-black text-primary">10,000+</h3>
+<p class="text-slate-600 mt-2">Monthly Visitors</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section id="listings" class="py-24 bg-slate-50">
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="text-center mb-14">
+<h2 class="text-4xl font-bold text-primary">
+Featured Listings
+</h2>
+<p class="text-slate-600 mt-3">
+Explore high-potential businesses across Africa.
+</p>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<!-- CARD -->
+<div class="bg-white rounded-3xl p-6 shadow-premium card-hover">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">Hospitality</span>
+<h3 class="font-bold text-xl mt-4">Restaurant Chain</h3>
+<p class="text-slate-500 mt-2">Johannesburg</p>
+<p class="font-bold text-secondary mt-3">$850,000</p>
+<p class="text-slate-600 mt-3">Established multi-location restaurant brand with strong revenues.</p>
+<button class="mt-5 text-accent font-semibold">View Details →</button>
+</div>
+
+<div class="bg-white rounded-3xl p-6 shadow-premium card-hover">
+<span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">Logistics</span>
+<h3 class="font-bold text-xl mt-4">Logistics Company</h3>
+<p class="text-slate-500 mt-2">Nairobi</p>
+<p class="font-bold text-secondary mt-3">$1.2M</p>
+<p class="text-slate-600 mt-3">Regional logistics operator serving East Africa.</p>
+<button class="mt-5 text-accent font-semibold">View Details →</button>
+</div>
+
+<div class="bg-white rounded-3xl p-6 shadow-premium card-hover">
+<span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">Technology</span>
+<h3 class="font-bold text-xl mt-4">SaaS Startup</h3>
+<p class="text-slate-500 mt-2">Lagos</p>
+<p class="font-bold text-secondary mt-3">$450,000</p>
+<p class="text-slate-600 mt-3">Fast-growing software platform with recurring revenue.</p>
+<button class="mt-5 text-accent font-semibold">View Details →</button>
+</div>
+
+<div class="bg-white rounded-3xl p-6 shadow-premium card-hover">
+<span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm">Agriculture</span>
+<h3 class="font-bold text-xl mt-4">Farm Business</h3>
+<p class="text-slate-500 mt-2">Zimbabwe</p>
+<p class="font-bold text-secondary mt-3">$600,000</p>
+<p class="text-slate-600 mt-3">Commercial farming operation with export contracts.</p>
+<button class="mt-5 text-accent font-semibold">View Details →</button>
+</div>
+
+<div class="bg-white rounded-3xl p-6 shadow-premium card-hover">
+<span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">Manufacturing</span>
+<h3 class="font-bold text-xl mt-4">Manufacturing Company</h3>
+<p class="text-slate-500 mt-2">Cape Town</p>
+<p class="font-bold text-secondary mt-3">$2.4M</p>
+<p class="text-slate-600 mt-3">Well-established production business with strong contracts.</p>
+<button class="mt-5 text-accent font-semibold">View Details →</button>
+</div>
+
+<div class="bg-white rounded-3xl p-6 shadow-premium card-hover">
+<span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">Education</span>
+<h3 class="font-bold text-xl mt-4">Education Platform</h3>
+<p class="text-slate-500 mt-2">Ghana</p>
+<p class="font-bold text-secondary mt-3">$700,000</p>
+<p class="text-slate-600 mt-3">Digital education marketplace serving thousands of students.</p>
+<button class="mt-5 text-accent font-semibold">View Details →</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries" class="py-24">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-4xl font-bold text-center text-primary mb-14">
+Browse By Industry
+</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Technology</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Retail</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Agriculture</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Manufacturing</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Logistics</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Education</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Healthcare</div>
+<div class="p-8 rounded-3xl bg-white shadow-premium text-center">Hospitality</div>
+
+</div>
+</div>
+</section>
+
+<!-- COUNTRIES -->
+<section id="countries" class="py-24 bg-slate-50">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-4xl font-bold text-center text-primary mb-14">
+Browse By Country
+</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">South Africa</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Nigeria</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Kenya</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Ghana</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Zimbabwe</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Botswana</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Namibia</div>
+<div class="bg-white p-8 rounded-3xl text-center shadow-premium">Zambia</div>
+
+</div>
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="py-24">
+<div class="max-w-7xl mx-auto px-6">
+
+<h2 class="text-4xl font-bold text-center text-primary mb-16">
+How It Works
+</h2>
+
+<div class="grid lg:grid-cols-2 gap-12">
+
+<div>
+<h3 class="text-2xl font-bold mb-8">For Sellers</h3>
+<div class="space-y-6">
+<div class="bg-white p-6 rounded-2xl shadow-premium">1. Create Listing</div>
+<div class="bg-white p-6 rounded-2xl shadow-premium">2. Connect With Buyers</div>
+<div class="bg-white p-6 rounded-2xl shadow-premium">3. Close The Deal</div>
+</div>
+</div>
+
+<div>
+<h3 class="text-2xl font-bold mb-8">For Buyers</h3>
+<div class="space-y-6">
+<div class="bg-white p-6 rounded-2xl shadow-premium">1. Browse Opportunities</div>
+<div class="bg-white p-6 rounded-2xl shadow-premium">2. Contact Sellers</div>
+<div class="bg-white p-6 rounded-2xl shadow-premium">3. Acquire Businesses</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- WHY US -->
+<section id="about" class="py-24 bg-slate-50">
+<div class="max-w-7xl mx-auto px-6">
+
+<h2 class="text-4xl font-bold text-center text-primary mb-14">
+Why BuySell Africa
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="bg-white p-8 rounded-3xl shadow-premium">✓ Verified Listings</div>
+<div class="bg-white p-8 rounded-3xl shadow-premium">✓ Pan-African Reach</div>
+<div class="bg-white p-8 rounded-3xl shadow-premium">✓ Investor Network</div>
+<div class="bg-white p-8 rounded-3xl shadow-premium">✓ Secure Communication</div>
+<div class="bg-white p-8 rounded-3xl shadow-premium">✓ Business Verification</div>
+<div class="bg-white p-8 rounded-3xl shadow-premium">✓ Fast Discovery</div>
+
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24">
+<div class="max-w-7xl mx-auto px-6">
+
+<h2 class="text-4xl font-bold text-center text-primary mb-14">
+Trusted Across Africa
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="bg-white p-8 rounded-3xl shadow-premium">
+<p>"We sold our company within weeks and connected with serious buyers."</p>
+<h4 class="font-bold mt-5">Michael N.</h4>
+<span class="text-slate-500">Business Seller</span>
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-premium">
+<p>"The quality of investment opportunities exceeded expectations."</p>
+<h4 class="font-bold mt-5">Sarah K.</h4>
+<span class="text-slate-500">Investor</span>
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-premium">
+<p>"A powerful platform for entrepreneurs looking to expand."</p>
+<h4 class="font-bold mt-5">David A.</h4>
+<span class="text-slate-500">Entrepreneur</span>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="py-24">
+<div class="max-w-5xl mx-auto px-6">
+<div class="bg-primary text-white rounded-[40px] p-14 text-center">
+
+<h2 class="text-4xl font-bold">
+Ready to Buy or Sell a Business?
+</h2>
+
+<p class="mt-4 text-slate-300">
+Join Africa's growing marketplace for entrepreneurs and investors.
+</p>
+
+<div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+<button class="bg-white text-primary px-8 py-4 rounded-xl font-semibold">
+Browse Businesses
+</button>
+
+<button class="bg-secondary px-8 py-4 rounded-xl font-semibold">
+List Your Business
+</button>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-primary text-white py-16">
+<div class="max-w-7xl mx-auto px-6">
+
+<div class="grid md:grid-cols-5 gap-8">
+
+<div>
+<h3 class="font-bold text-xl mb-4">BuySell Africa</h3>
+<p class="text-slate-400">
+Africa's marketplace for buying, selling and investing in businesses.
+</p>
+</div>
+
+<div>
+<h4 class="font-semibold mb-4">Company</h4>
+<ul class="space-y-2 text-slate-400">
+<li>About</li>
+<li>Careers</li>
+<li>Contact</li>
+</ul>
+</div>
+
+<div>
+<h4 class="font-semibold mb-4">Resources</h4>
+<ul class="space-y-2 text-slate-400">
+<li>Blog</li>
+<li>Guides</li>
+<li>Support</li>
+</ul>
+</div>
+
+<div>
+<h4 class="font-semibold mb-4">Industries</h4>
+<ul class="space-y-2 text-slate-400">
+<li>Technology</li>
+<li>Retail</li>
+<li>Agriculture</li>
+</ul>
+</div>
+
+<div>
+<h4 class="font-semibold mb-4">Countries</h4>
+<ul class="space-y-2 text-slate-400">
+<li>South Africa</li>
+<li>Nigeria</li>
+<li>Kenya</li>
+</ul>
+</div>
+
+</div>
+
+<hr class="border-slate-700 my-10">
+
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+
+<p class="text-slate-400">
+© 2026 BuySell Africa. All rights reserved.
+</p>
+
+<div class="flex gap-5 text-xl">
+<span>𝕏</span>
+<span>in</span>
+<span>f</span>
+<span>◉</span>
+</div>
+
+<p class="text-slate-400">
+hello@buysellafrica.com
+</p>
+
+</div>
+</div>
+</footer>
+
+<script>
+// Simple search interaction
+document.querySelectorAll("button").forEach(btn=>{
+btn.addEventListener("mouseenter",()=>{
+btn.style.transition="all .25s ease";
+});
+});
+</script>
+
+</body>
+</html>
