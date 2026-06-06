@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Contact & Support | BuySell Africa</title>
+<meta name="description" content="Contact BuySell Africa for support, partnerships, and general inquiries." />
+<link rel="canonical" href="https://buysellafrica.com/contact" />
+
+<meta property="og:title" content="Contact BuySell Africa" />
+<meta property="og:description" content="Get support or send inquiries to BuySell Africa." />
+<meta property="og:type" content="website" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<style>
+body{font-family:Inter,sans-serif}
+.glass{backdrop-filter:blur(14px);background:rgba(255,255,255,0.75)}
+.hero{background:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d') center/cover}
+.fade{opacity:0;transform:translateY(20px);transition:.7s}
+.fade.show{opacity:1;transform:translateY(0)}
+</style>
+
+<body class="bg-slate-50 text-slate-900">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50">
+<div class="glass flex justify-between items-center px-6 py-4 shadow-sm">
+<div class="font-extrabold">BuySell Africa</div>
+
+<div class="hidden md:flex gap-6 text-sm">
+<a href="index.html">Home</a>
+<a href="browse.html">Browse</a>
+<a href="about.html">About</a>
+<a href="contact.html" class="font-bold">Contact</a>
+</div>
+
+<button class="bg-yellow-500 text-white px-4 py-2 rounded-xl text-sm">
+List Business
+</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-28 px-6 text-center fade">
+<h1 class="text-5xl font-extrabold">Contact & Support</h1>
+<p class="text-slate-500 mt-3 max-w-2xl mx-auto">
+We’re here to help buyers, sellers, and investors across Africa.
+</p>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="px-6 py-12 fade">
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+
+<!-- FORM -->
+<div class="bg-white p-8 rounded-2xl shadow">
+
+<h2 class="text-2xl font-bold">Send Us a Message</h2>
+
+<form id="contactForm" class="space-y-4 mt-6">
+
+<input class="w-full p-3 border rounded-xl" placeholder="Full Name" required />
+<input class="w-full p-3 border rounded-xl" placeholder="Email Address" type="email" required />
+
+<select class="w-full p-3 border rounded-xl">
+<option>General Inquiry</option>
+<option>Support</option>
+<option>Partnership</option>
+<option>Listing Issue</option>
+<option>Investor Relations</option>
+</select>
+
+<textarea class="w-full p-3 border rounded-xl" rows="5" placeholder="Your message..." required></textarea>
+
+<button class="w-full bg-[#0B0F19] text-white py-3 rounded-xl hover:bg-black">
+Send Message
+</button>
+
+</form>
+
+<div id="success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-xl">
+Your message has been sent successfully. We will respond shortly.
+</div>
+
+</div>
+
+<!-- INFO -->
+<div class="space-y-6">
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold text-lg">Support Email</h3>
+<p class="text-slate-600">support@buysellafrica.com</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold text-lg">Partnerships</h3>
+<p class="text-slate-600">partners@buysellafrica.com</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold text-lg">Response Time</h3>
+<p class="text-slate-600">24–48 hours for all inquiries</p>
+</div>
+
+<div class="bg-[#0B0F19] text-white p-6 rounded-2xl">
+<h3 class="font-bold text-lg">Need urgent help?</h3>
+<p class="text-white/70 mt-2">Use the contact form for faster escalation support.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="px-6 py-12 fade">
+<div class="max-w-4xl mx-auto">
+
+<h2 class="text-2xl font-bold text-center">Frequently Asked Questions</h2>
+
+<div class="mt-6 space-y-4">
+
+<div class="bg-white p-4 rounded-xl shadow cursor-pointer faq">
+<h3 class="font-semibold">How fast do you respond?</h3>
+<p class="hidden mt-2 text-slate-600">Usually within 24–48 hours.</p>
+</div>
+
+<div class="bg-white p-4 rounded-xl shadow cursor-pointer faq">
+<h3 class="font-semibold">Can I get help listing my business?</h3>
+<p class="hidden mt-2 text-slate-600">Yes, our support team assists with listing setup.</p>
+</div>
+
+<div class="bg-white p-4 rounded-xl shadow cursor-pointer faq">
+<h3 class="font-semibold">Do you support investors?</h3>
+<p class="hidden mt-2 text-slate-600">Yes, we provide investor onboarding and deal support.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-sm text-slate-500">
+© 2026 BuySell Africa — Support & Contact
+</footer>
+
+<script>
+// fade animation
+const obs=new IntersectionObserver(e=>e.forEach(x=>{
+if(x.isIntersecting)x.target.classList.add('show')
+}));
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+// form success
+document.getElementById("contactForm").addEventListener("submit", function(e){
+e.preventDefault();
+document.getElementById("success").classList.remove("hidden");
+this.reset();
+});
+
+// FAQ toggle
+document.querySelectorAll(".faq").forEach(f=>{
+f.addEventListener("click", ()=>{
+f.querySelector("p").classList.toggle("hidden");
+});
+});
+</script>
+
+</body>
+</html>
