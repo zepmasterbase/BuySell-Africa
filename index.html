@@ -12,24 +12,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
 <style>
-body{font-family:Inter,sans-serif}
+body{
+font-family:Inter,sans-serif;
+line-height:1.6;
+letter-spacing:0.1px;
+-webkit-font-smoothing:antialiased;
+-moz-osx-font-smoothing:grayscale;
+}
+
+p{
+line-height:1.7;
+}
+
+h1,h2,h3{
+line-height:1.2;
+letter-spacing:-0.5px;
+}
 
 .hero{
 background:url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a') center/cover;
 }
 
 .overlay{
-background:rgba(0,0,0,0.80);
+background:rgba(0,0,0,0.82);
 }
 
 .glass{
 backdrop-filter:blur(16px);
-background:rgba(255,255,255,0.92);
+background:rgba(255,255,255,0.96);
 }
 
 .soft-card{
 transition:.3s ease;
 }
+
 .soft-card:hover{
 transform:translateY(-6px);
 }
@@ -37,9 +53,37 @@ transform:translateY(-6px);
 .text-shadow{
 text-shadow:0 10px 30px rgba(0,0,0,0.75);
 }
+
+/* 🔥 Improved readability helpers */
+.readable{
+color:#0f172a; /* slate-900 */
+}
+
+.readable-soft{
+color:#334155; /* slate-700 */
+}
+
+.readable-light{
+color:#64748b; /* slate-500 */
+}
+
+input, select{
+color:#0f172a !important;
+font-weight:500;
+}
+
+input::placeholder{
+color:#64748b;
+opacity:1;
+}
+
+button{
+font-weight:600;
+}
+
 </style>
 
-<body class="bg-white text-slate-900">
+<body class="bg-white text-slate-900 readable">
 
 <!-- NAV -->
 <nav class="fixed w-full top-0 z-50 border-b border-slate-100">
@@ -50,13 +94,13 @@ text-shadow:0 10px 30px rgba(0,0,0,0.75);
 <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
 class="w-8 h-8 object-contain" />
 
-<div class="font-extrabold tracking-tight text-lg">
+<div class="font-extrabold tracking-tight text-lg readable">
 BuySell Africa
 </div>
 </div>
 
 <!-- LINKS -->
-<div class="hidden md:flex gap-8 text-sm text-slate-600">
+<div class="hidden md:flex gap-8 text-sm readable-soft">
 <a href="#market" class="hover:text-black">Market</a>
 <a href="#countries" class="hover:text-black">Countries</a>
 <a href="#how" class="hover:text-black">How it Works</a>
@@ -65,7 +109,7 @@ BuySell Africa
 
 <!-- ACTIONS -->
 <div class="flex gap-3">
-<button onclick="goTo('login-register.html')" class="text-sm hover:underline">
+<button onclick="goTo('login-register.html')" class="text-sm hover:underline readable-soft">
 Login
 </button>
 
@@ -84,7 +128,7 @@ List Business
 
 <div class="relative text-center text-white max-w-4xl px-6 text-shadow">
 
-<p class="text-xs uppercase tracking-widest text-white/70 mb-4">
+<p class="text-xs uppercase tracking-widest text-white/80 mb-4">
 Private Equity Marketplace for Africa
 </p>
 
@@ -92,7 +136,7 @@ Private Equity Marketplace for Africa
 Buy, Sell & Invest in African Businesses
 </h1>
 
-<p class="mt-6 text-white/85 text-lg max-w-2xl mx-auto">
+<p class="mt-6 text-white/90 text-lg max-w-2xl mx-auto">
 Trusted marketplace connecting founders, investors, and operators across 15 African countries.
 </p>
 
@@ -112,11 +156,11 @@ List Your Business
 </div>
 
 <!-- SEARCH -->
-<div class="mt-12 bg-white/10 p-4 rounded-2xl grid md:grid-cols-4 gap-3 backdrop-blur">
+<div class="mt-12 bg-white/15 p-4 rounded-2xl grid md:grid-cols-4 gap-3 backdrop-blur">
 
-<input class="p-3 rounded-lg text-black" placeholder="Search businesses, startups, franchises..." />
+<input class="p-3 rounded-lg text-black bg-white/90" placeholder="Search businesses, startups, franchises..." />
 
-<select class="p-3 rounded-lg text-black">
+<select class="p-3 rounded-lg bg-white/90">
 <option>Country</option>
 <option>South Africa - Johannesburg</option>
 <option>South Africa - Cape Town</option>
@@ -135,7 +179,7 @@ List Your Business
 <option>Senegal - Dakar</option>
 </select>
 
-<select class="p-3 rounded-lg text-black">
+<select class="p-3 rounded-lg bg-white/90">
 <option>Industry</option>
 <option>Technology</option>
 <option>Finance</option>
@@ -160,36 +204,36 @@ Search
 </section>
 
 <!-- TRUST -->
-<section class="py-10 border-b text-center text-sm text-slate-500">
+<section class="py-10 border-b text-center text-sm readable-light">
 Trusted marketplace for verified African business acquisitions
 </section>
 
 <!-- MARKET -->
 <section id="market" class="py-20 px-6">
 
-<h2 class="text-3xl font-bold text-center">Live Market Overview</h2>
-<p class="text-center text-slate-500 mt-2">Real businesses. Real buyers. Real deals.</p>
+<h2 class="text-3xl font-bold text-center readable">Live Market Overview</h2>
+<p class="text-center readable-light mt-2">Real businesses. Real buyers. Real deals.</p>
 
 <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto mt-10">
 
 <div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold">500+</h3>
-<p class="text-slate-500">Businesses Listed</p>
+<h3 class="text-3xl font-bold readable">500+</h3>
+<p class="readable-light">Businesses Listed</p>
 </div>
 
 <div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold">15</h3>
-<p class="text-slate-500">African Countries</p>
+<h3 class="text-3xl font-bold readable">15</h3>
+<p class="readable-light">African Countries</p>
 </div>
 
 <div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold">$20M+</h3>
-<p class="text-slate-500">Deal Value</p>
+<h3 class="text-3xl font-bold readable">$20M+</h3>
+<p class="readable-light">Deal Value</p>
 </div>
 
 <div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold">10K+</h3>
-<p class="text-slate-500">Active Users</p>
+<h3 class="text-3xl font-bold readable">10K+</h3>
+<p class="readable-light">Active Users</p>
 </div>
 
 </div>
@@ -198,29 +242,29 @@ Trusted marketplace for verified African business acquisitions
 <!-- DEALS -->
 <section id="deals" class="py-20 bg-slate-50 px-6">
 
-<h2 class="text-3xl font-bold text-center">Featured Deals</h2>
+<h2 class="text-3xl font-bold text-center readable">Featured Deals</h2>
 
 <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-10">
 
 <div class="soft-card bg-white p-4 rounded-2xl shadow">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
-<h3 class="font-semibold mt-3">Restaurant Group</h3>
-<p class="text-slate-500 text-sm">Johannesburg • $850K</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
+<h3 class="font-semibold mt-3 readable">Restaurant Group</h3>
+<p class="readable-light text-sm">Johannesburg • $850K</p>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2 font-medium">View Deal</button>
 </div>
 
 <div class="soft-card bg-white p-4 rounded-2xl shadow">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
-<h3 class="font-semibold mt-3">Logistics Company</h3>
-<p class="text-slate-500 text-sm">Nairobi • $1.2M</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
+<h3 class="font-semibold mt-3 readable">Logistics Company</h3>
+<p class="readable-light text-sm">Nairobi • $1.2M</p>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2 font-medium">View Deal</button>
 </div>
 
 <div class="soft-card bg-white p-4 rounded-2xl shadow">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
-<h3 class="font-semibold mt-3">SaaS Startup</h3>
-<p class="text-slate-500 text-sm">Lagos • $450K</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
+<h3 class="font-semibold mt-3 readable">SaaS Startup</h3>
+<p class="readable-light text-sm">Lagos • $450K</p>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2 font-medium">View Deal</button>
 </div>
 
 </div>
@@ -229,8 +273,8 @@ Trusted marketplace for verified African business acquisitions
 <!-- CTA -->
 <section class="py-24 bg-black text-white text-center">
 
-<h2 class="text-4xl font-bold">Own a Piece of Africa’s Business Future</h2>
-<p class="mt-3 text-white/70">Join investors, founders, and operators across Africa.</p>
+<h2 class="text-4xl font-bold leading-tight">Own a Piece of Africa’s Business Future</h2>
+<p class="mt-3 text-white/80">Join investors, founders, and operators across Africa.</p>
 
 <div class="mt-6 flex gap-4 justify-center">
 
@@ -246,7 +290,7 @@ List Business
 
 </section>
 
-<footer class="py-10 text-center text-sm text-slate-500">
+<footer class="py-10 text-center text-sm readable-light">
 © 2026 BuySell Africa
 </footer>
 
