@@ -4,9 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>BuySell Africa | Browse Businesses</title>
-
-<meta name="description" content="Browse verified African businesses for sale. Connect instantly with sellers via WhatsApp and secure high-value investment opportunities." />
+<title>Browse Deals | BuySell Africa</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -21,15 +19,6 @@ transition:.25s ease;
 transform:translateY(-6px);
 }
 
-.glass{
-backdrop-filter:blur(14px);
-background:rgba(255,255,255,0.92);
-}
-
-.badge{
-background:#10B981;
-}
-
 .whatsapp{
 background:#25D366;
 }
@@ -37,13 +26,19 @@ background:#25D366;
 .soft-shadow{
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
+
+.funnel-banner{
+background: linear-gradient(135deg, #111827, #0f172a);
+}
 </style>
+
+</head>
 
 <body class="bg-slate-50 text-slate-900">
 
 <!-- TOP BAR -->
-<nav class="fixed top-0 w-full z-50 border-b bg-white">
-<div class="glass flex justify-between items-center px-6 py-4">
+<nav class="fixed top-0 w-full z-50 bg-white border-b">
+<div class="flex justify-between items-center px-6 py-4">
 
 <div class="font-extrabold">BuySell Africa</div>
 
@@ -55,203 +50,174 @@ box-shadow:0 10px 30px rgba(0,0,0,0.08);
 </div>
 </nav>
 
-<!-- HERO -->
+<!-- HERO FUNNEL HEADER -->
 <section class="pt-28 px-6 text-center">
 
 <h1 class="text-3xl md:text-4xl font-bold">
-Browse Verified Businesses
+Find & Secure Verified African Business Deals
 </h1>
 
-<p class="text-slate-500 mt-2">
-Connect instantly with sellers via WhatsApp — no delays, no friction.
+<p class="text-slate-500 mt-3 max-w-xl mx-auto">
+Browse opportunities OR get matched instantly via WhatsApp with serious sellers.
 </p>
 
-<!-- QUICK FILTERS -->
-<div class="grid md:grid-cols-4 gap-3 max-w-5xl mx-auto mt-6">
+<!-- 🔥 PRIMARY FUNNEL CTA -->
+<div class="mt-6 flex justify-center">
+<button onclick="startWhatsAppFunnel('general')"
+class="bg-black text-white px-6 py-3 rounded-xl font-semibold">
+🔥 Get Matched on WhatsApp Instantly
+</button>
+</div>
 
-<input class="p-3 rounded-xl border" placeholder="Search business..." />
+<!-- TRUST STRIP -->
+<div class="mt-5 text-xs text-slate-400 flex justify-center gap-4 flex-wrap">
+<span>✔ Verified Deals</span>
+<span>✔ Direct Owners</span>
+<span>✔ No Brokers</span>
+<span>✔ Instant Negotiation</span>
+</div>
 
-<select class="p-3 rounded-xl border">
+</section>
+
+<!-- 🔥 FUNNEL BANNER -->
+<section class="max-w-5xl mx-auto mt-10 px-6">
+
+<div class="funnel-banner text-white p-6 rounded-2xl soft-shadow text-center">
+
+<h2 class="text-xl font-bold">⚡ Want faster deals?</h2>
+<p class="text-white/70 mt-2">
+Skip browsing — get business matches directly on WhatsApp.
+</p>
+
+<button onclick="startWhatsAppFunnel('fasttrack')"
+class="whatsapp text-black font-bold px-6 py-3 rounded-xl mt-4">
+Start WhatsApp Matching
+</button>
+
+</div>
+
+</section>
+
+<!-- FILTERS -->
+<section class="max-w-5xl mx-auto mt-10 px-6 grid md:grid-cols-4 gap-3">
+
+<input class="p-3 border rounded-xl" placeholder="Search business..." />
+
+<select class="p-3 border rounded-xl">
 <option>Country</option>
 <option>South Africa</option>
 <option>Nigeria</option>
 <option>Kenya</option>
 <option>Ghana</option>
+<option>Egypt</option>
+<option>Morocco</option>
 <option>Tanzania</option>
+<option>Uganda</option>
 <option>Rwanda</option>
 <option>Zambia</option>
-<option>Uganda</option>
-<option>Botswana</option>
-<option>Namibia</option>
-<option>Zimbabwe</option>
-<option>Senegal</option>
-<option>Morocco</option>
-<option>Egypt</option>
-<option>Ethiopia</option>
 </select>
 
-<select class="p-3 rounded-xl border">
+<select class="p-3 border rounded-xl">
 <option>Industry</option>
 <option>Technology</option>
+<option>Finance</option>
 <option>Retail</option>
 <option>Logistics</option>
 <option>Agriculture</option>
-<option>Manufacturing</option>
-<option>Finance</option>
 <option>Healthcare</option>
-<option>Education</option>
-<option>Energy</option>
-<option>Hospitality</option>
+<option>Manufacturing</option>
 </select>
 
 <button class="bg-black text-white rounded-xl px-4 py-3">
 Search
 </button>
 
-</div>
-
 </section>
 
-<!-- LEAD BANNER -->
-<section class="max-w-5xl mx-auto mt-8 px-6">
-
-<div class="bg-black text-white p-5 rounded-2xl soft-shadow flex flex-col md:flex-row justify-between items-center gap-4">
-
-<div>
-<h2 class="font-bold text-lg">🔥 Want faster deals?</h2>
-<p class="text-white/70 text-sm">Chat directly with sellers on WhatsApp and close opportunities faster.</p>
-</div>
-
-<button onclick="openWhatsApp('General Inquiry')"
-class="whatsapp text-black font-semibold px-5 py-3 rounded-xl">
-Chat Now
-</button>
-
-</div>
-
-</section>
-
-<!-- LISTINGS -->
-<section class="max-w-6xl mx-auto mt-10 px-6 grid md:grid-cols-3 gap-6">
+<!-- 🔥 DEAL FEED -->
+<section class="max-w-6xl mx-auto mt-12 px-6 grid md:grid-cols-3 gap-6">
 
 <!-- CARD 1 -->
 <div class="card bg-white rounded-2xl p-4 soft-shadow">
 
-<img class="rounded-xl"
-src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
+<img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
 
-<div class="mt-3 flex justify-between items-center">
-<h3 class="font-bold">Restaurant Group</h3>
-<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Verified</span>
-</div>
-
+<h3 class="font-bold mt-3">Restaurant Group</h3>
 <p class="text-slate-500 text-sm">Johannesburg • $850K</p>
 
 <p class="text-sm mt-2 text-slate-600">
 High traffic restaurant chain with strong monthly cash flow.
 </p>
 
-<div class="flex gap-2 mt-4">
-
-<button onclick="goTo('businessdetails.html')"
-class="text-sm px-3 py-2 border rounded-xl w-full">
-View
+<button onclick="startWhatsAppFunnel('Restaurant Group - Johannesburg - $850K')"
+class="whatsapp text-black w-full mt-4 py-2 rounded-xl font-semibold">
+Secure via WhatsApp
 </button>
-
-<button onclick="openWhatsApp('Restaurant Group - Johannesburg - $850K')"
-class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-WhatsApp
-</button>
-
-</div>
 
 </div>
 
 <!-- CARD 2 -->
 <div class="card bg-white rounded-2xl p-4 soft-shadow">
 
-<img class="rounded-xl"
-src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
+<img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
 
-<div class="mt-3 flex justify-between items-center">
-<h3 class="font-bold">Logistics Company</h3>
-<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Verified</span>
-</div>
-
+<h3 class="font-bold mt-3">Logistics Company</h3>
 <p class="text-slate-500 text-sm">Nairobi • $1.2M</p>
 
 <p class="text-sm mt-2 text-slate-600">
-Fleet-based logistics business serving major East African routes.
+Fleet-based logistics serving major East African routes.
 </p>
 
-<div class="flex gap-2 mt-4">
-
-<button onclick="goTo('businessdetails.html')"
-class="text-sm px-3 py-2 border rounded-xl w-full">
-View
+<button onclick="startWhatsAppFunnel('Logistics Company - Nairobi - $1.2M')"
+class="whatsapp text-black w-full mt-4 py-2 rounded-xl font-semibold">
+Secure via WhatsApp
 </button>
-
-<button onclick="openWhatsApp('Logistics Company - Nairobi - $1.2M')"
-class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-WhatsApp
-</button>
-
-</div>
 
 </div>
 
 <!-- CARD 3 -->
 <div class="card bg-white rounded-2xl p-4 soft-shadow">
 
-<img class="rounded-xl"
-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
+<img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
 
-<div class="mt-3 flex justify-between items-center">
-<h3 class="font-bold">SaaS Startup</h3>
-<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Hot Deal</span>
-</div>
-
+<h3 class="font-bold mt-3">SaaS Startup</h3>
 <p class="text-slate-500 text-sm">Lagos • $450K</p>
 
 <p class="text-sm mt-2 text-slate-600">
-Fast-growing software startup with recurring revenue model.
+Fast-growing software startup with recurring revenue.
 </p>
 
-<div class="flex gap-2 mt-4">
-
-<button onclick="goTo('businessdetails.html')"
-class="text-sm px-3 py-2 border rounded-xl w-full">
-View
+<button onclick="startWhatsAppFunnel('SaaS Startup - Lagos - $450K')"
+class="whatsapp text-black w-full mt-4 py-2 rounded-xl font-semibold">
+Secure via WhatsApp
 </button>
-
-<button onclick="openWhatsApp('SaaS Startup - Lagos - $450K')"
-class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-WhatsApp
-</button>
-
-</div>
 
 </div>
 
 </section>
 
-<!-- FINAL CONVERSION CTA -->
-<section class="mt-16 bg-black text-white text-center py-20 px-6">
+<!-- FINAL CTA -->
+<section class="mt-20 bg-black text-white text-center py-20 px-6">
 
-<h2 class="text-3xl md:text-4xl font-bold">
-Don’t Just Browse — Speak Directly to Sellers
+<h2 class="text-3xl font-bold">
+Stop Browsing. Start Closing Deals.
 </h2>
 
 <p class="text-white/70 mt-3">
-Most deals are closed faster via WhatsApp negotiation.
+Get matched with serious buyers and sellers instantly on WhatsApp.
 </p>
 
-<button onclick="openWhatsApp('General Marketplace Inquiry')"
+<button onclick="startWhatsAppFunnel('final_cta')"
 class="mt-6 whatsapp text-black font-bold px-6 py-3 rounded-xl">
-Open WhatsApp
+Get Instant Matches
 </button>
 
 </section>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-sm text-slate-500">
+© 2026 BuySell Africa
+</footer>
 
 <script>
 
@@ -259,16 +225,27 @@ function goTo(page){
 window.location.href = page;
 }
 
-// 🔥 WhatsApp Funnel (Replace number with real one)
-function openWhatsApp(context){
+/* 🔥 WHATSAPP FUNNEL ENGINE */
+function startWhatsAppFunnel(context){
 
-let phone = "27600000000"; // <-- REPLACE WITH YOUR WHATSAPP NUMBER
+let phone = "27600000000";
 
-let message = encodeURIComponent(
-"Hello BuySell Africa 👋 I am interested in: " + context + " and would like more details."
-);
+let message = "";
 
-let url = "https://wa.me/" + phone + "?text=" + message;
+if(context === "general"){
+message = "Hi 👋 I want to buy a business. Please show me available deals.";
+}
+else if(context === "fasttrack"){
+message = "Hi 👋 I want fast business matches. I am a serious buyer.";
+}
+else if(context === "final_cta"){
+message = "Hi 👋 I am ready to close a business deal. Send best opportunities.";
+}
+else{
+message = "Hi 👋 I am interested in: " + context + ". Please send more details.";
+}
+
+let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
 
 window.open(url, "_blank");
 }
