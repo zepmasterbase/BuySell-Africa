@@ -4,314 +4,218 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>BuySell Africa | Africa’s Private Equity Marketplace</title>
-
-<meta name="description" content="Buy, sell and invest in verified African businesses. A trusted private equity marketplace connecting investors, buyers and founders across Africa." />
+<title>BuySell Africa Terminal | Deal Flow Intelligence</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
 
 <style>
 body{
 font-family:Inter,sans-serif;
-line-height:1.6;
-letter-spacing:0.1px;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
+background:#050814;
+color:#e5e7eb;
 }
 
-p{
-line-height:1.7;
+/* TICKER */
+.ticker{
+white-space:nowrap;
+overflow:hidden;
+background:#0b1220;
+border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
-h1,h2,h3{
-line-height:1.2;
-letter-spacing:-0.5px;
+.ticker span{
+display:inline-block;
+padding-left:100%;
+animation:scroll 25s linear infinite;
+color:#93c5fd;
+font-size:12px;
+letter-spacing:1px;
 }
 
-.hero{
-background:url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a') center/cover;
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
 }
 
-.overlay{
-background:rgba(0,0,0,0.82);
+/* GLASS PANEL */
+.panel{
+background:rgba(15,23,42,0.7);
+border:1px solid rgba(255,255,255,0.06);
+backdrop-filter:blur(14px);
 }
 
-.glass{
-backdrop-filter:blur(16px);
-background:rgba(255,255,255,0.96);
+/* CARD */
+.card{
+background:rgba(2,6,23,0.8);
+border:1px solid rgba(255,255,255,0.06);
+transition:.2s;
 }
 
-.soft-card{
-transition:.3s ease;
+.card:hover{
+border-color:#3b82f6;
+transform:translateY(-3px);
 }
 
-.soft-card:hover{
-transform:translateY(-6px);
-}
+/* SIGNAL COLORS */
+.green{color:#22c55e;}
+.red{color:#ef4444;}
+.blue{color:#3b82f6;}
+.dim{color:#94a3b8;}
 
-.text-shadow{
-text-shadow:0 10px 30px rgba(0,0,0,0.75);
-}
-
-/* 🔥 Improved readability helpers */
-.readable{
-color:#0f172a; /* slate-900 */
-}
-
-.readable-soft{
-color:#334155; /* slate-700 */
-}
-
-.readable-light{
-color:#64748b; /* slate-500 */
-}
-
-input, select{
-color:#0f172a !important;
-font-weight:500;
-}
-
-input::placeholder{
-color:#64748b;
-opacity:1;
-}
-
-button{
-font-weight:600;
+input,select{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+color:#fff;
 }
 
 </style>
 
-<body class="bg-white text-slate-900 readable">
+</head>
+
+<body>
+
+<!-- MARKET TICKER -->
+<div class="ticker py-2">
+<span>
+AFRICA DEAL FLOW ▲ +12.4% • PRIVATE EQUITY INDEX ▲ 3.1% • ZAR/USD 18.42 ▲ • NIGERIA TECH SECTOR ▲ HIGH LIQUIDITY • KENYA STARTUPS ▲ ACTIVE FUNDING • SOUTH AFRICA M&A ▼ STABLE • GHANA GROWTH ▲
+</span>
+</div>
 
 <!-- NAV -->
-<nav class="fixed w-full top-0 z-50 border-b border-slate-100">
-<div class="glass flex justify-between items-center px-6 py-4">
-
-<!-- LOGO -->
-<div class="flex items-center gap-3">
-<img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
-class="w-8 h-8 object-contain" />
-
-<div class="font-extrabold tracking-tight text-lg readable">
-BuySell Africa
-</div>
+<nav class="flex justify-between items-center px-6 py-4 panel">
+<div class="font-bold text-white tracking-tight">
+BuySell Africa TERMINAL
 </div>
 
-<!-- LINKS -->
-<div class="hidden md:flex gap-8 text-sm readable-soft">
-<a href="#market" class="hover:text-black">Market</a>
-<a href="#countries" class="hover:text-black">Countries</a>
-<a href="#how" class="hover:text-black">How it Works</a>
-<a href="#deals" class="hover:text-black">Deals</a>
+<div class="hidden md:flex gap-6 text-sm dim">
+<a href="#">Dashboard</a>
+<a href="#">Markets</a>
+<a href="#">Deals</a>
+<a href="#">Analytics</a>
 </div>
 
-<!-- ACTIONS -->
 <div class="flex gap-3">
-<button onclick="goTo('login-register.html')" class="text-sm hover:underline readable-soft">
-Login
+<button class="text-sm dim">Login</button>
+<button class="bg-blue-600 px-4 py-2 rounded-lg text-sm font-semibold">
+ENTER TERMINAL
 </button>
-
-<button onclick="handleListBusiness()" class="bg-black text-white px-4 py-2 rounded-xl text-sm">
-List Business
-</button>
-</div>
-
 </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero h-screen flex items-center justify-center relative pt-28">
+<!-- MAIN GRID -->
+<div class="grid md:grid-cols-12 gap-4 p-4">
 
-<div class="absolute inset-0 overlay"></div>
+<!-- LEFT PANEL (MARKET + FEED) -->
+<div class="md:col-span-8 space-y-4">
 
-<div class="relative text-center text-white max-w-4xl px-6 text-shadow">
+<!-- MARKET SNAPSHOT -->
+<div class="panel p-4 rounded-xl">
+<h2 class="text-lg font-bold">Market Snapshot</h2>
 
-<p class="text-xs uppercase tracking-widest text-white/80 mb-4">
-Private Equity Marketplace for Africa
-</p>
+<div class="grid grid-cols-4 gap-3 mt-4">
 
-<h1 class="text-4xl md:text-6xl font-bold leading-tight">
-Buy, Sell & Invest in African Businesses
-</h1>
-
-<p class="mt-6 text-white/90 text-lg max-w-2xl mx-auto">
-Trusted marketplace connecting founders, investors, and operators across 15 African countries.
-</p>
-
-<!-- CTA -->
-<div class="flex flex-col md:flex-row gap-4 justify-center mt-10">
-
-<button onclick="goTo('browsebusinesses.html')"
-class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
-Explore Opportunities
-</button>
-
-<button onclick="handleListBusiness()"
-class="bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold">
-List Your Business
-</button>
-
+<div class="card p-4 rounded-lg text-center">
+<p class="dim text-xs">Deals</p>
+<h3 class="text-xl font-bold">512</h3>
 </div>
 
-<!-- SEARCH -->
-<div class="mt-12 bg-white/15 p-4 rounded-2xl grid md:grid-cols-4 gap-3 backdrop-blur">
+<div class="card p-4 rounded-lg text-center">
+<p class="dim text-xs">Volume</p>
+<h3 class="text-xl font-bold">$20M</h3>
+</div>
 
-<input class="p-3 rounded-lg text-black bg-white/90" placeholder="Search businesses, startups, franchises..." />
+<div class="card p-4 rounded-lg text-center">
+<p class="dim text-xs">Active Buyers</p>
+<h3 class="text-xl font-bold">10.2K</h3>
+</div>
 
-<select class="p-3 rounded-lg bg-white/90">
-<option>Country</option>
-<option>South Africa - Johannesburg</option>
-<option>South Africa - Cape Town</option>
-<option>Nigeria - Lagos</option>
-<option>Kenya - Nairobi</option>
-<option>Ghana - Accra</option>
-<option>Egypt - Cairo</option>
-<option>Morocco - Casablanca</option>
-<option>Tanzania - Dar es Salaam</option>
-<option>Uganda - Kampala</option>
-<option>Rwanda - Kigali</option>
-<option>Zimbabwe - Harare</option>
-<option>Zambia - Lusaka</option>
-<option>Botswana - Gaborone</option>
-<option>Namibia - Windhoek</option>
-<option>Senegal - Dakar</option>
-</select>
-
-<select class="p-3 rounded-lg bg-white/90">
-<option>Industry</option>
-<option>Technology</option>
-<option>Finance</option>
-<option>Retail</option>
-<option>Logistics</option>
-<option>Agriculture</option>
-<option>Healthcare</option>
-<option>Energy</option>
-<option>Education</option>
-<option>Manufacturing</option>
-<option>Hospitality</option>
-</select>
-
-<button onclick="goTo('browsebusinesses.html')"
-class="bg-blue-600 text-white rounded-lg font-semibold">
-Search
-</button>
-
+<div class="card p-4 rounded-lg text-center">
+<p class="dim text-xs">Markets</p>
+<h3 class="text-xl font-bold">15</h3>
 </div>
 
 </div>
-</section>
-
-<!-- TRUST -->
-<section class="py-10 border-b text-center text-sm readable-light">
-Trusted marketplace for verified African business acquisitions
-</section>
-
-<!-- MARKET -->
-<section id="market" class="py-20 px-6">
-
-<h2 class="text-3xl font-bold text-center readable">Live Market Overview</h2>
-<p class="text-center readable-light mt-2">Real businesses. Real buyers. Real deals.</p>
-
-<div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto mt-10">
-
-<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold readable">500+</h3>
-<p class="readable-light">Businesses Listed</p>
 </div>
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold readable">15</h3>
-<p class="readable-light">African Countries</p>
+<!-- LIVE DEAL FLOW -->
+<div class="panel p-4 rounded-xl">
+<h2 class="text-lg font-bold">Live Deal Flow</h2>
+
+<div class="space-y-3 mt-4">
+
+<div class="card p-3 rounded-lg">
+<p class="blue text-xs">NEW LISTING</p>
+<p class="font-semibold">Restaurant Group — Johannesburg</p>
+<p class="dim text-sm">$850K • Revenue Positive • High Demand</p>
 </div>
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold readable">$20M+</h3>
-<p class="readable-light">Deal Value</p>
+<div class="card p-3 rounded-lg">
+<p class="green text-xs">INVESTOR INTEREST HIGH</p>
+<p class="font-semibold">Logistics Company — Nairobi</p>
+<p class="dim text-sm">$1.2M • 3 offers in 24h</p>
 </div>
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
-<h3 class="text-3xl font-bold readable">10K+</h3>
-<p class="readable-light">Active Users</p>
+<div class="card p-3 rounded-lg">
+<p class="red text-xs">PRICE ADJUSTED</p>
+<p class="font-semibold">SaaS Startup — Lagos</p>
+<p class="dim text-sm">$450K → $420K • Negotiation active</p>
 </div>
 
 </div>
-</section>
-
-<!-- DEALS -->
-<section id="deals" class="py-20 bg-slate-50 px-6">
-
-<h2 class="text-3xl font-bold text-center readable">Featured Deals</h2>
-
-<div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-10">
-
-<div class="soft-card bg-white p-4 rounded-2xl shadow">
-<img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
-<h3 class="font-semibold mt-3 readable">Restaurant Group</h3>
-<p class="readable-light text-sm">Johannesburg • $850K</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2 font-medium">View Deal</button>
-</div>
-
-<div class="soft-card bg-white p-4 rounded-2xl shadow">
-<img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
-<h3 class="font-semibold mt-3 readable">Logistics Company</h3>
-<p class="readable-light text-sm">Nairobi • $1.2M</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2 font-medium">View Deal</button>
-</div>
-
-<div class="soft-card bg-white p-4 rounded-2xl shadow">
-<img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
-<h3 class="font-semibold mt-3 readable">SaaS Startup</h3>
-<p class="readable-light text-sm">Lagos • $450K</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2 font-medium">View Deal</button>
 </div>
 
 </div>
-</section>
 
-<!-- CTA -->
-<section class="py-24 bg-black text-white text-center">
+<!-- RIGHT PANEL (INTELLIGENCE) -->
+<div class="md:col-span-4 space-y-4">
 
-<h2 class="text-4xl font-bold leading-tight">Own a Piece of Africa’s Business Future</h2>
-<p class="mt-3 text-white/80">Join investors, founders, and operators across Africa.</p>
+<div class="panel p-4 rounded-xl">
+<h2 class="text-lg font-bold">Market Intelligence</h2>
 
-<div class="mt-6 flex gap-4 justify-center">
+<div class="mt-4 space-y-3 text-sm">
 
-<button onclick="goTo('browsebusinesses.html')" class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
-Browse Deals
-</button>
+<p>📊 African PE inflows rising in Q2</p>
+<p>⚡ Tech startups leading deal volume</p>
+<p>🏦 Banks increasing acquisition activity</p>
+<p>🌍 Cross-border deals increasing 18%</p>
 
-<button onclick="handleListBusiness()" class="bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold">
-List Business
-</button>
+</div>
+</div>
+
+<div class="panel p-4 rounded-xl">
+<h2 class="text-lg font-bold">Signal Heatmap</h2>
+
+<div class="mt-4 space-y-2 text-sm">
+
+<p class="green">● Nigeria — High Activity</p>
+<p class="blue">● Kenya — Stable Growth</p>
+<p class="green">● South Africa — Strong M&A</p>
+<p class="red">● Egypt — Slow Deal Flow</p>
+
+</div>
+</div>
+
+<div class="panel p-4 rounded-xl">
+<h2 class="text-lg font-bold">Alerts</h2>
+
+<div class="mt-4 text-sm space-y-2">
+
+<p>🔔 New $5M deal entering pipeline</p>
+<p>🔔 Investor from UAE joined platform</p>
+<p>🔔 12 listings updated today</p>
+
+</div>
+</div>
 
 </div>
 
-</section>
-
-<footer class="py-10 text-center text-sm readable-light">
-© 2026 BuySell Africa
-</footer>
+</div>
 
 <script>
-
-function goTo(page){
-window.location.href = page;
-}
-
-function isLoggedIn(){
-return localStorage.getItem("bsa_logged_in") === "true";
-}
-
-function handleListBusiness(){
-if(isLoggedIn()){
-window.location.href = "businesslisting.html";
-}else{
-window.location.href = "login-register.html";
-}
-}
-
+setInterval(()=>{
+// fake ticker pulse effect (future upgrade hook)
+},5000);
 </script>
 
 </body>
