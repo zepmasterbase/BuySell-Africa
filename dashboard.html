@@ -4,12 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Deal OS Dashboard v3 | Analytics</title>
+<title>Deal OS Dashboard</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{font-family:Inter,sans-serif}
+body{
+font-family:Inter, sans-serif;
+}
 
 .card{
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
@@ -26,7 +28,6 @@ padding:4px 8px;
 border-radius:999px;
 }
 </style>
-
 </head>
 
 <body class="bg-slate-100">
@@ -35,7 +36,7 @@ border-radius:999px;
 <div class="bg-black text-white p-4 flex justify-between items-center">
 
 <div>
-<h1 class="font-bold">Deal OS v3 Dashboard</h1>
+<h1 class="font-bold">Deal OS Dashboard</h1>
 <p class="text-xs text-white/60" id="userInfo"></p>
 </div>
 
@@ -45,35 +46,32 @@ Logout
 
 </div>
 
-<!-- KPI SECTION -->
-<div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-4 p-4 mt-4">
-
-<div class="bg-white p-4 rounded-2xl card">
-<p class="text-slate-500 text-sm">My Listings</p>
-<h2 id="totalListings" class="text-2xl font-bold">0</h2>
-</div>
-
-<div class="bg-white p-4 rounded-2xl card">
-<p class="text-slate-500 text-sm">Total Views</p>
-<h2 id="totalViews" class="text-2xl font-bold">0</h2>
-</div>
-
-<div class="bg-white p-4 rounded-2xl card">
-<p class="text-slate-500 text-sm">WhatsApp Leads</p>
-<h2 id="totalClicks" class="text-2xl font-bold">0</h2>
-</div>
-
-<div class="bg-white p-4 rounded-2xl card">
-<p class="text-slate-500 text-sm">Live Deals</p>
-<h2 id="liveDeals" class="text-2xl font-bold">0</h2>
-</div>
-
-</div>
-
 <!-- MAIN GRID -->
-<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 p-4">
+<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 p-4 mt-4">
 
-<!-- MY LISTINGS -->
+<!-- LEFT: ACTION PANEL -->
+<div class="bg-white p-4 rounded-2xl card">
+
+<h2 class="font-bold mb-3">⚡ Quick Actions</h2>
+
+<button onclick="go('browsebusinesses.html')"
+class="w-full bg-slate-900 text-white py-2 rounded-xl mb-2">
+Browse Deals
+</button>
+
+<button onclick="go('businesslisting.html')"
+class="w-full bg-black text-white py-2 rounded-xl mb-2">
+List Business
+</button>
+
+<button onclick="openWhatsApp()"
+class="w-full bg-green-500 text-black py-2 rounded-xl font-semibold">
+Get Matched on WhatsApp
+</button>
+
+</div>
+
+<!-- MIDDLE: MY LISTINGS -->
 <div class="bg-white p-4 rounded-2xl card">
 
 <h2 class="font-bold mb-3">📦 My Listings</h2>
@@ -82,21 +80,30 @@ Logout
 
 </div>
 
-<!-- TOP PERFORMERS -->
-<div class="bg-white p-4 rounded-2xl card">
-
-<h2 class="font-bold mb-3">🔥 Top Performing Deals</h2>
-
-<div id="topDeals" class="space-y-3 text-sm"></div>
-
-</div>
-
-<!-- INSIGHTS -->
+<!-- RIGHT: INSIGHTS -->
 <div class="bg-white p-4 rounded-2xl card">
 
 <h2 class="font-bold mb-3">📊 Insights</h2>
 
-<div id="insights" class="text-sm text-slate-600 space-y-2">
+<div id="insights" class="space-y-2 text-sm text-slate-600"></div>
+
+<hr class="my-3"/>
+
+<h2 class="font-bold mb-2">🔥 Upgrade Options</h2>
+
+<div class="space-y-2 text-sm">
+
+<div class="p-2 border rounded-lg">
+Boost Listing: <b>$10</b>
+</div>
+
+<div class="p-2 border rounded-lg">
+Pro Plan: <b>$15/month</b>
+</div>
+
+<div class="p-2 border rounded-lg">
+Premium Plan: <b>$30/month</b>
+</div>
 
 </div>
 
@@ -107,7 +114,7 @@ Logout
 <script>
 
 /* -----------------------------
-   SESSION
+   SESSION CHECK
 ------------------------------*/
 
 let session = JSON.parse(localStorage.getItem("bsa_session"));
@@ -117,7 +124,7 @@ window.location.href = "login-register.html";
 }
 
 document.getElementById("userInfo").innerText =
-session.name + " • Deal Operator";
+session.name + " • " + session.email;
 
 /* -----------------------------
    DATA
@@ -126,107 +133,89 @@ session.name + " • Deal Operator";
 let data = JSON.parse(localStorage.getItem("bsa_pipeline")) || [];
 
 /* -----------------------------
-   TRACKING ENGINE
+   RENDER LISTINGS
 ------------------------------*/
 
-function trackView(id){
+function loadMyListings(){
 
-let item = data.find(d => d.id === id);
-if(!item) return;
+let container = document.getElementById("myListings");
+container.innerHTML = "";
 
-item.views = (item.views || 0) + 1;
-save();
+/* for MVP: show all (later filter by user email) */
+let mine = data;
+
+if(mine.length === 0){
+container.innerHTML = "<p class='text-slate-400'>No listings yet</p>";
+return;
 }
 
-function trackWhatsApp(id){
+mine.forEach(item => {
 
-let item = data.find(d => d.id === id);
-if(!item) return;
-
-item.whatsappClicks = (item.whatsappClicks || 0) + 1;
-save();
-}
-
-/* -----------------------------
-   SAVE
-------------------------------*/
-
-function save(){
-localStorage.setItem("bsa_pipeline", JSON.stringify(data));
-render();
-}
-
-/* -----------------------------
-   DASHBOARD RENDER
-------------------------------*/
-
-function render(){
-
-let my = data.filter(d => true); // MVP: all visible to user
-
-// KPIs
-let totalListings = my.length;
-let totalViews = my.reduce((a,b)=>a+(b.views||0),0);
-let totalClicks = my.reduce((a,b)=>a+(b.whatsappClicks||0),0);
-let liveDeals = my.filter(d=>d.status==="approved").length;
-
-document.getElementById("totalListings").innerText = totalListings;
-document.getElementById("totalViews").innerText = totalViews;
-document.getElementById("totalClicks").innerText = totalClicks;
-document.getElementById("liveDeals").innerText = liveDeals;
-
-// MY LISTINGS
-let mine = document.getElementById("myListings");
-mine.innerHTML = "";
-
-my.slice(0,6).forEach(item=>{
-
-mine.innerHTML += `
+container.innerHTML += `
 <div class="p-3 border rounded-xl">
 
 <div class="font-bold">${item.name}</div>
+
 <div class="text-xs text-slate-500">
-Views: ${item.views || 0} • Leads: ${item.whatsappClicks || 0}
+${item.location} • ${item.price}
 </div>
 
-<span class="badge ${item.status==="approved"?"bg-green-500 text-white":"bg-yellow-500 text-white"}">
+<div class="text-xs mt-1">
+👁 ${item.views || 0} views • 💬 ${item.whatsappClicks || 0} leads
+</div>
+
+<span class="badge ${item.status === 'approved' ? 'bg-green-500 text-white' : 'bg-yellow-500 text-white'}">
 ${item.status || "pending"}
 </span>
 
-</div>
-`;
-});
-
-// TOP DEALS
-let top = [...data]
-.sort((a,b)=>(b.whatsappClicks||0)-(a.whatsappClicks||0))
-.slice(0,5);
-
-let topDiv = document.getElementById("topDeals");
-topDiv.innerHTML = "";
-
-top.forEach(item=>{
-
-topDiv.innerHTML += `
-<div class="p-3 border rounded-xl">
-
-<div class="font-bold">${item.name}</div>
-<div class="text-xs text-slate-500">
-🔥 ${item.whatsappClicks||0} leads • 👁 ${item.views||0} views
-</div>
+${item.boosted ? `<span class="badge bg-yellow-400 text-black ml-1">🔥 Boosted</span>` : ""}
 
 </div>
 `;
 });
 
-// INSIGHTS
-let ins = document.getElementById("insights");
-ins.innerHTML = `
-<p>📌 Active Listings: ${liveDeals}</p>
-<p>📌 Avg Views per Deal: ${(totalViews/totalListings || 0).toFixed(1)}</p>
-<p>📌 Conversion Rate: ${(totalClicks/totalViews*100 || 0).toFixed(1)}%</p>
-`;
+}
 
+/* -----------------------------
+   INSIGHTS
+------------------------------*/
+
+function loadInsights(){
+
+let totalListings = data.length;
+let totalViews = data.reduce((a,b)=>a+(b.views||0),0);
+let totalLeads = data.reduce((a,b)=>a+(b.whatsappClicks||0),0);
+let live = data.filter(d=>d.status==="approved").length;
+
+document.getElementById("insights").innerHTML = `
+<p>📌 Total Listings: <b>${totalListings}</b></p>
+<p>📌 Live Deals: <b>${live}</b></p>
+<p>👁 Total Views: <b>${totalViews}</b></p>
+<p>💬 WhatsApp Leads: <b>${totalLeads}</b></p>
+<p>📊 Avg Views per Listing: <b>${(totalViews/totalListings || 0).toFixed(1)}</b></p>
+<p>⚡ Conversion Rate: <b>${(totalLeads/totalViews*100 || 0).toFixed(1)}%</b></p>
+`;
+}
+
+/* -----------------------------
+   NAV
+------------------------------*/
+
+function go(page){
+window.location.href = page;
+}
+
+/* -----------------------------
+   WHATSAPP FUNNEL
+------------------------------*/
+
+function openWhatsApp(){
+
+let phone = "27600000000";
+
+let message = "Hi 👋 I want help growing my business listings on Deal OS.";
+
+window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(message));
 }
 
 /* -----------------------------
@@ -238,7 +227,9 @@ localStorage.removeItem("bsa_session");
 window.location.href = "login-register.html";
 }
 
-render();
+/* INIT */
+loadMyListings();
+loadInsights();
 
 </script>
 
