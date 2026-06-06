@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>BuySell Africa | Browse Businesses</title>
+<title>BuySell Africa | Verified Business Marketplace</title>
 
-<meta name="description" content="Browse verified African businesses for sale. Connect instantly with sellers via WhatsApp and secure high-value investment opportunities." />
+<meta name="description" content="Buy and sell verified African businesses instantly. Connect directly with owners via WhatsApp and close deals faster." />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -14,25 +14,15 @@
 <style>
 body{font-family:Inter,sans-serif}
 
-.card{
-transition:.25s ease;
-}
-.card:hover{
-transform:translateY(-6px);
-}
+.card{transition:.25s ease;}
+.card:hover{transform:translateY(-6px);}
 
 .glass{
 backdrop-filter:blur(14px);
 background:rgba(255,255,255,0.92);
 }
 
-.badge{
-background:#10B981;
-}
-
-.whatsapp{
-background:#25D366;
-}
+.whatsapp{background:#25D366;}
 
 .soft-shadow{
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
@@ -47,7 +37,12 @@ box-shadow:0 10px 30px rgba(0,0,0,0.08);
 <nav class="fixed top-0 w-full z-50 border-b bg-white">
 <div class="glass flex justify-between items-center px-6 py-4">
 
-<div class="font-extrabold">BuySell Africa</div>
+<!-- LOGO (UPGRADED) -->
+<div class="flex items-center gap-2">
+  <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
+       class="w-8 h-8 rounded-md" />
+  <div class="font-extrabold tracking-tight">BuySell Africa</div>
+</div>
 
 <div class="flex gap-3">
 <button onclick="goTo('index.html')" class="text-sm hover:underline">Home</button>
@@ -57,21 +52,38 @@ box-shadow:0 10px 30px rgba(0,0,0,0.08);
 </div>
 </nav>
 
-<!-- HERO (FIXED SPACING + CLEANER BREATHING ROOM) -->
+<!-- HERO -->
 <section class="pt-40 md:pt-44 px-6 text-center">
 
-<h1 class="text-3xl md:text-4xl font-bold">
-Browse Verified Businesses
+<!-- HIGH-CONVERSION HEADLINE -->
+<h1 class="text-3xl md:text-5xl font-bold leading-tight">
+Buy & Sell Verified African Businesses in Minutes
 </h1>
 
-<p class="text-slate-500 mt-3 max-w-xl mx-auto">
-Connect instantly with sellers via WhatsApp — no delays, no friction.
+<p class="text-slate-500 mt-4 max-w-xl mx-auto">
+Skip brokers. Talk directly to business owners. Close deals instantly via WhatsApp.
 </p>
 
-<!-- QUICK FILTERS -->
-<div class="grid md:grid-cols-4 gap-3 max-w-5xl mx-auto mt-8">
+<!-- PRIMARY ACTION (ABOVE FOLD CONVERSION TRIGGER) -->
+<div class="mt-6 flex justify-center">
+  <button onclick="openWhatsApp('I want to buy a business')"
+    class="bg-black text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition">
+    🔥 Get Business Matches on WhatsApp
+  </button>
+</div>
 
-<input class="p-3 rounded-xl border focus:outline-none focus:ring-2 focus:ring-black/10" placeholder="Search business..." />
+<!-- TRUST STRIP -->
+<div class="mt-5 text-xs text-slate-400 flex justify-center gap-4 flex-wrap">
+  <span>✔ Verified Listings</span>
+  <span>✔ Direct Owners</span>
+  <span>✔ No Broker Fees</span>
+  <span>✔ Instant Deals</span>
+</div>
+
+<!-- FILTERS -->
+<div class="grid md:grid-cols-4 gap-3 max-w-5xl mx-auto mt-10">
+
+<input class="p-3 rounded-xl border" placeholder="Search business..." />
 
 <select class="p-3 rounded-xl border">
 <option>Country</option>
@@ -106,7 +118,7 @@ Connect instantly with sellers via WhatsApp — no delays, no friction.
 <option>Hospitality</option>
 </select>
 
-<button class="bg-black text-white rounded-xl px-4 py-3 hover:opacity-90 transition">
+<button class="bg-black text-white rounded-xl px-4 py-3 hover:opacity-90">
 Search
 </button>
 
@@ -115,13 +127,15 @@ Search
 </section>
 
 <!-- LEAD BANNER -->
-<section class="max-w-5xl mx-auto mt-10 px-6">
+<section class="max-w-5xl mx-auto mt-12 px-6">
 
-<div class="bg-black text-white p-5 rounded-2xl soft-shadow flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="bg-black text-white p-6 rounded-2xl soft-shadow flex flex-col md:flex-row justify-between items-center gap-4">
 
 <div>
-<h2 class="font-bold text-lg">🔥 Want faster deals?</h2>
-<p class="text-white/70 text-sm">Chat directly with sellers on WhatsApp and close opportunities faster.</p>
+<h2 class="font-bold text-lg">🔥 Want Faster Deals?</h2>
+<p class="text-white/70 text-sm">
+Connect directly with sellers and negotiate instantly on WhatsApp.
+</p>
 </div>
 
 <button onclick="openWhatsApp('General Inquiry')"
@@ -133,8 +147,14 @@ Chat Now
 
 </section>
 
+<!-- SECTION TITLE (URGENCY TRIGGER) -->
+<div class="text-center mt-12 mb-4">
+<h2 class="font-bold text-lg">🔥 Today’s Active Business Deals</h2>
+<p class="text-sm text-slate-500">High-intent sellers ready to negotiate now</p>
+</div>
+
 <!-- LISTINGS -->
-<section class="max-w-6xl mx-auto mt-12 px-6 grid md:grid-cols-3 gap-6">
+<section class="max-w-6xl mx-auto mt-6 px-6 grid md:grid-cols-3 gap-6">
 
 <!-- CARD 1 -->
 <div class="card bg-white rounded-2xl p-4 soft-shadow">
@@ -157,12 +177,12 @@ High traffic restaurant chain with strong monthly cash flow.
 
 <button onclick="goTo('businessdetails.html')"
 class="text-sm px-3 py-2 border rounded-xl w-full">
-View
+View Deal
 </button>
 
 <button onclick="openWhatsApp('Restaurant Group - Johannesburg - $850K')"
 class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-WhatsApp
+Secure Deal
 </button>
 
 </div>
@@ -189,12 +209,12 @@ Fleet-based logistics business serving major East African routes.
 
 <button onclick="goTo('businessdetails.html')"
 class="text-sm px-3 py-2 border rounded-xl w-full">
-View
+View Deal
 </button>
 
 <button onclick="openWhatsApp('Logistics Company - Nairobi - $1.2M')"
 class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-WhatsApp
+Secure Deal
 </button>
 
 </div>
@@ -221,12 +241,12 @@ Fast-growing software startup with recurring revenue model.
 
 <button onclick="goTo('businessdetails.html')"
 class="text-sm px-3 py-2 border rounded-xl w-full">
-View
+View Deal
 </button>
 
 <button onclick="openWhatsApp('SaaS Startup - Lagos - $450K')"
 class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-WhatsApp
+Secure Deal
 </button>
 
 </div>
@@ -238,16 +258,16 @@ WhatsApp
 <section class="mt-16 bg-black text-white text-center py-20 px-6">
 
 <h2 class="text-3xl md:text-4xl font-bold">
-Don’t Just Browse — Speak Directly to Sellers
+Serious Buyers Don’t Browse. They Close Deals.
 </h2>
 
 <p class="text-white/70 mt-3">
-Most deals are closed faster via WhatsApp negotiation.
+Start negotiating directly with business owners today via WhatsApp.
 </p>
 
 <button onclick="openWhatsApp('General Marketplace Inquiry')"
 class="mt-6 whatsapp text-black font-bold px-6 py-3 rounded-xl">
-Open WhatsApp
+Open WhatsApp Now
 </button>
 
 </section>
@@ -258,7 +278,6 @@ function goTo(page){
 window.location.href = page;
 }
 
-// WhatsApp Funnel
 function openWhatsApp(context){
 
 let phone = "27600000000";
