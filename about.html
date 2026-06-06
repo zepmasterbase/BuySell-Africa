@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>About BuySell Africa | Africa’s Private Equity Marketplace</title>
+<meta name="description" content="Learn what BuySell Africa is, our mission, and how we connect buyers, sellers, and investors across Africa." />
+<link rel="canonical" href="https://buysellafrica.com/about" />
+
+<meta property="og:title" content="About BuySell Africa" />
+<meta property="og:description" content="Africa’s marketplace for buying, selling and investing in real businesses." />
+<meta property="og:type" content="website" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+
+<style>
+body{font-family:Inter,sans-serif}
+.glass{backdrop-filter:blur(14px);background:rgba(255,255,255,0.75)}
+.hero{background:url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a') center/cover}
+.fade{opacity:0;transform:translateY(20px);transition:.7s}
+.fade.show{opacity:1;transform:translateY(0)}
+</style>
+
+<body class="bg-slate-50 text-slate-900">
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50">
+<div class="glass flex justify-between items-center px-6 py-4 shadow-sm">
+<div class="font-extrabold">BuySell Africa</div>
+
+<div class="hidden md:flex gap-6 text-sm">
+<a href="index.html">Home</a>
+<a href="browse.html">Browse</a>
+<a href="about.html" class="font-bold">About</a>
+</div>
+
+<button class="bg-yellow-500 text-white px-4 py-2 rounded-xl text-sm">
+List Business
+</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="pt-28 px-6 text-center fade">
+<h1 class="text-5xl font-extrabold">What is BuySell Africa?</h1>
+<p class="text-slate-500 mt-3 max-w-2xl mx-auto">
+A private equity marketplace connecting Africa’s business owners, investors, and entrepreneurs.
+</p>
+</section>
+
+<!-- CONTENT -->
+<section class="px-6 py-12 fade">
+<div class="max-w-5xl mx-auto space-y-10">
+
+<div class="bg-white p-8 rounded-2xl shadow">
+<h2 class="text-2xl font-bold">Our Mission</h2>
+<p class="mt-3 text-slate-600 leading-relaxed">
+BuySell Africa exists to unlock Africa’s hidden business value by creating a trusted marketplace where businesses can be bought, sold, and funded transparently.
+We aim to reduce barriers to capital and accelerate economic growth across the continent.
+</p>
+</div>
+
+<div class="bg-white p-8 rounded-2xl shadow">
+<h2 class="text-2xl font-bold">What We Do</h2>
+<p class="mt-3 text-slate-600 leading-relaxed">
+We connect verified business owners with qualified buyers and investors. From startups to established companies, we provide a platform for acquisition, investment, and expansion opportunities across multiple industries.
+</p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold">For Sellers</h3>
+<p class="text-sm text-slate-600 mt-2">
+List your business, get verified, and connect with serious buyers and investors across Africa and globally.
+</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold">For Buyers</h3>
+<p class="text-sm text-slate-600 mt-2">
+Discover profitable businesses, evaluate financials, and acquire ready-to-scale opportunities.
+</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold">For Investors</h3>
+<p class="text-sm text-slate-600 mt-2">
+Access curated private equity opportunities across high-growth African markets.
+</p>
+</div>
+
+</div>
+
+<div class="bg-white p-8 rounded-2xl shadow">
+<h2 class="text-2xl font-bold">Why BuySell Africa</h2>
+<ul class="mt-4 space-y-2 text-slate-600">
+<li>✔ Verified business listings</li>
+<li>✔ Secure deal communication</li>
+<li>✔ Pan-African reach</li>
+<li>✔ Investor-focused ecosystem</li>
+<li>✔ Transparent acquisition process</li>
+</ul>
+</div>
+
+<div class="bg-[#0B0F19] text-white p-10 rounded-2xl text-center">
+<h2 class="text-3xl font-bold">Africa’s Next Wave of Business Growth Starts Here</h2>
+<p class="mt-3 text-white/70">
+We are building the infrastructure for business ownership transfer across the continent.
+</p>
+<button class="mt-6 bg-[#D4AF37] px-6 py-3 rounded-xl">
+Join the Marketplace
+</button>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 text-center text-sm text-slate-500">
+© 2026 BuySell Africa — All Rights Reserved
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{
+if(x.isIntersecting)x.target.classList.add('show')
+}));
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
