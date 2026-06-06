@@ -5,126 +5,209 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Login / Register | BuySell Africa</title>
-<meta name="description" content="Login or create an account to buy, sell, and invest in African businesses on BuySell Africa." />
-<link rel="canonical" href="https://buysellafrica.com/login" />
-
-<meta property="og:title" content="Login / Register | BuySell Africa" />
-<meta property="og:description" content="Access your BuySell Africa account as a buyer or seller." />
-<meta property="og:type" content="website" />
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
 
 <style>
-body{font-family:Inter,sans-serif}
-.glass{backdrop-filter:blur(16px);background:rgba(255,255,255,0.75)}
-.fade{opacity:0;transform:translateY(20px);transition:0.7s}
-.fade.show{opacity:1;transform:translateY(0)}
-.tab-active{background:#0B0F19;color:white}
+body{
+font-family:Inter, sans-serif;
+}
+
+.card{
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
 </style>
 
-<body class="bg-slate-50 text-slate-900">
+</head>
 
-<!-- NAV -->
-<nav class="fixed top-0 w-full z-50">
-<div class="glass flex justify-between items-center px-6 py-4 shadow-sm">
-<div class="font-extrabold">BuySell Africa</div>
-<div class="flex gap-3">
-<a href="index.html" class="text-sm">Home</a>
-<a href="browse.html" class="text-sm">Browse</a>
-</div>
-</div>
-</nav>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen">
 
-<!-- HERO -->
-<section class="pt-28 px-6 text-center fade">
-<h1 class="text-4xl font-extrabold">Welcome Back</h1>
-<p class="text-slate-500 mt-2">Login or create an account to continue</p>
-</section>
+<!-- MAIN CARD -->
+<div class="bg-white w-full max-w-md p-6 rounded-2xl card">
 
-<!-- AUTH BOX -->
-<section class="px-6 py-10 fade">
-<div class="max-w-md mx-auto bg-white shadow rounded-2xl p-6">
+<!-- HEADER -->
+<h1 class="text-2xl font-bold text-center">BuySell Africa</h1>
+<p class="text-center text-slate-500 text-sm mt-1">
+Access your Deal Dashboard
+</p>
 
-<!-- TABS -->
-<div class="flex gap-2 mb-6">
-<button id="loginTab" class="flex-1 py-2 rounded-xl tab-active">Login</button>
-<button id="registerTab" class="flex-1 py-2 rounded-xl bg-slate-100">Register</button>
-</div>
+<!-- TOGGLE -->
+<div class="flex mt-6 bg-slate-100 p-1 rounded-xl">
 
-<!-- LOGIN FORM -->
-<form id="loginForm" class="space-y-4">
-
-<input class="w-full p-3 border rounded-xl" placeholder="Email Address" type="email" required />
-<input class="w-full p-3 border rounded-xl" placeholder="Password" type="password" required />
-
-<button class="w-full bg-[#0B0F19] text-white py-3 rounded-xl hover:bg-black">
+<button onclick="showLogin()" id="loginTab"
+class="w-1/2 py-2 rounded-xl bg-black text-white text-sm">
 Login
 </button>
 
-<p class="text-xs text-slate-500 text-center">
-Forgot password? Reset via email
-</p>
-
-</form>
-
-<!-- REGISTER FORM -->
-<form id="registerForm" class="space-y-4 hidden">
-
-<input class="w-full p-3 border rounded-xl" placeholder="Full Name" required />
-<input class="w-full p-3 border rounded-xl" placeholder="Email Address" type="email" required />
-<input class="w-full p-3 border rounded-xl" placeholder="Password" type="password" required />
-
-<select class="w-full p-3 border rounded-xl">
-<option value="buyer">I am a Buyer</option>
-<option value="seller">I am a Seller</option>
-<option value="investor">I am an Investor</option>
-</select>
-
-<button class="w-full bg-[#D4AF37] text-white py-3 rounded-xl hover:opacity-90">
-Create Account
+<button onclick="showRegister()" id="registerTab"
+class="w-1/2 py-2 rounded-xl text-sm">
+Register
 </button>
 
-</form>
+</div>
+
+<!-- FORM -->
+<div class="mt-6">
+
+<!-- EMAIL -->
+<input id="email"
+type="email"
+placeholder="Email"
+class="w-full p-3 border rounded-xl mb-3"/>
+
+<!-- PASSWORD -->
+<input id="password"
+type="password"
+placeholder="Password"
+class="w-full p-3 border rounded-xl mb-3"/>
+
+<!-- NAME (REGISTER ONLY) -->
+<input id="name"
+type="text"
+placeholder="Full Name"
+class="w-full p-3 border rounded-xl mb-3 hidden"/>
+
+<!-- ACTION BUTTON -->
+<button onclick="handleAuth()"
+class="w-full bg-black text-white py-3 rounded-xl font-semibold">
+
+Login
+</button>
+
+<!-- ERROR -->
+<p id="msg" class="text-red-500 text-sm mt-3 text-center"></p>
 
 </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="py-10 text-center text-sm text-slate-500">
-© 2026 BuySell Africa — Secure Access Portal
-</footer>
+</div>
 
 <script>
-// fade animation
-const obs=new IntersectionObserver(e=>e.forEach(x=>{
-if(x.isIntersecting)x.target.classList.add('show')
+
+/* -----------------------------
+   STATE
+------------------------------*/
+
+let mode = "login"; // login | register
+
+function showLogin(){
+mode = "login";
+
+document.getElementById("loginTab").classList.add("bg-black","text-white");
+document.getElementById("registerTab").classList.remove("bg-black","text-white");
+
+document.querySelector("button[onclick='handleAuth()']").innerText = "Login";
+
+document.getElementById("name").classList.add("hidden");
+}
+
+function showRegister(){
+mode = "register";
+
+document.getElementById("registerTab").classList.add("bg-black","text-white");
+document.getElementById("loginTab").classList.remove("bg-black","text-white");
+
+document.querySelector("button[onclick='handleAuth()']").innerText = "Create Account";
+
+document.getElementById("name").classList.remove("hidden");
+}
+
+/* -----------------------------
+   AUTH SYSTEM (LOCAL STORAGE)
+------------------------------*/
+
+function handleAuth(){
+
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value.trim();
+let name = document.getElementById("name").value.trim();
+let msg = document.getElementById("msg");
+
+if(!email || !password){
+msg.innerText = "Please fill all required fields";
+return;
+}
+
+let users = JSON.parse(localStorage.getItem("bsa_users")) || [];
+
+/* ---------------- REGISTER ---------------- */
+if(mode === "register"){
+
+if(!name){
+msg.innerText = "Please enter your name";
+return;
+}
+
+let exists = users.find(u => u.email === email);
+
+if(exists){
+msg.innerText = "User already exists. Please login.";
+return;
+}
+
+users.push({
+id: Date.now(),
+name,
+email,
+password
+});
+
+localStorage.setItem("bsa_users", JSON.stringify(users));
+
+msg.style.color = "green";
+msg.innerText = "Account created successfully! Logging in...";
+
+loginUser(email, password);
+
+return;
+}
+
+/* ---------------- LOGIN ---------------- */
+
+loginUser(email, password);
+
+}
+
+/* ---------------- LOGIN FUNCTION ---------------- */
+
+function loginUser(email, password){
+
+let users = JSON.parse(localStorage.getItem("bsa_users")) || [];
+
+let user = users.find(u => u.email === email && u.password === password);
+
+if(!user){
+document.getElementById("msg").style.color = "red";
+document.getElementById("msg").innerText = "Invalid email or password";
+return;
+}
+
+/* SAVE SESSION */
+localStorage.setItem("bsa_session", JSON.stringify({
+loggedIn:true,
+userId:user.id,
+name:user.name,
+email:user.email
 }));
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 
-// tabs
-const loginTab=document.getElementById("loginTab");
-const registerTab=document.getElementById("registerTab");
-const loginForm=document.getElementById("loginForm");
-const registerForm=document.getElementById("registerForm");
+// redirect to dashboard
+window.location.href = "dashboard.html";
+}
 
-loginTab.onclick=()=>{
-loginForm.classList.remove("hidden");
-registerForm.classList.add("hidden");
+/* ---------------- AUTO LOGIN CHECK ---------------- */
 
-loginTab.classList.add("tab-active");
-registerTab.classList.remove("tab-active");
-registerTab.classList.add("bg-slate-100");
-};
+(function checkSession(){
 
-registerTab.onclick=()=>{
-registerForm.classList.remove("hidden");
-loginForm.classList.add("hidden");
+let session = JSON.parse(localStorage.getItem("bsa_session"));
 
-registerTab.classList.add("tab-active");
-loginTab.classList.remove("tab-active");
-loginTab.classList.add("bg-slate-100");
-};
+if(session && session.loggedIn){
+window.location.href = "dashboard.html";
+}
+
+})();
+
+/* INIT */
+showLogin();
+
 </script>
 
 </body>
