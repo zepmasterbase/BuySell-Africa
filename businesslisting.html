@@ -4,9 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>BuySell Africa | List Your Business</title>
-
-<meta name="description" content="List your business for sale on BuySell Africa and connect with verified buyers and investors across Africa." />
+<title>List Your Business | BuySell Africa</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -14,41 +12,39 @@
 <style>
 body{font-family:Inter,sans-serif}
 
-.glass{
-backdrop-filter:blur(16px);
-background:rgba(255,255,255,0.92);
-}
-
 .card{
-transition:.25s ease;
-}
-.card:hover{
-transform:translateY(-4px);
-}
-
-.soft-shadow{
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
+.whatsapp{
+background:#25D366;
+}
+
+.paypal{
+background:#003087;
+}
+
 .step{
-transition:.3s ease;
+transition:.25s ease;
 }
 .step:hover{
-transform:translateY(-3px);
+transform:translateY(-4px);
 }
 </style>
+
+</head>
 
 <body class="bg-slate-50 text-slate-900">
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-50 border-b bg-white">
-<div class="glass flex justify-between items-center px-6 py-4">
+<nav class="bg-white border-b fixed w-full z-50">
+<div class="flex justify-between items-center px-6 py-4">
 
 <div class="font-extrabold">BuySell Africa</div>
 
 <div class="flex gap-3">
 <button onclick="goTo('index.html')" class="text-sm hover:underline">Home</button>
-<button onclick="goTo('browsebusinesses.html')" class="text-sm hover:underline">Browse</button>
+<button onclick="goTo('browsebusinesses.html')" class="text-sm hover:underline">Deals</button>
 </div>
 
 </div>
@@ -58,107 +54,137 @@ transform:translateY(-3px);
 <section class="pt-28 px-6 text-center">
 
 <h1 class="text-3xl md:text-4xl font-bold">
-List Your Business for Sale
+List Your Business on Africa’s Private Deal Network
 </h1>
 
-<p class="text-slate-500 mt-2 max-w-2xl mx-auto">
-Reach verified buyers and investors across Africa. Listings are reviewed for quality and visibility.
+<p class="text-slate-500 mt-3 max-w-xl mx-auto">
+Get verified, get visibility, and connect directly with serious buyers across Africa.
 </p>
 
-<!-- VALUE STEPS -->
-<div class="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto mt-10">
+</section>
 
-<div class="step bg-white p-5 rounded-2xl soft-shadow">
-<h3 class="font-bold">1. Create Listing</h3>
-<p class="text-sm text-slate-500 mt-1">Add business details in minutes.</p>
+<!-- VALUE + WHY PAY $50 -->
+<section class="max-w-5xl mx-auto mt-10 px-6 grid md:grid-cols-3 gap-6">
+
+<div class="bg-white p-6 rounded-2xl card step">
+<h3 class="font-bold">✔ Verified Badge</h3>
+<p class="text-sm text-slate-500 mt-2">
+Your listing gets trust badge buyers prefer.
+</p>
 </div>
 
-<div class="step bg-white p-5 rounded-2xl soft-shadow">
-<h3 class="font-bold">2. Get Verified</h3>
-<p class="text-sm text-slate-500 mt-1">We review your listing for trust.</p>
+<div class="bg-white p-6 rounded-2xl card step">
+<h3 class="font-bold">✔ More Visibility</h3>
+<p class="text-sm text-slate-500 mt-2">
+Your business appears in featured deal feeds.
+</p>
 </div>
 
-<div class="step bg-white p-5 rounded-2xl soft-shadow">
-<h3 class="font-bold">3. Get Buyers</h3>
-<p class="text-sm text-slate-500 mt-1">Connect with serious investors.</p>
+<div class="bg-white p-6 rounded-2xl card step">
+<h3 class="font-bold">✔ Direct Buyers</h3>
+<p class="text-sm text-slate-500 mt-2">
+Buyers contact you directly via WhatsApp.
+</p>
 </div>
+
+</section>
+
+<!-- PAYMENT SECTION -->
+<section class="max-w-4xl mx-auto mt-12 px-6 text-center">
+
+<div class="bg-white p-8 rounded-2xl card">
+
+<h2 class="text-2xl font-bold">Verification Fee</h2>
+
+<p class="text-slate-500 mt-2">
+One-time payment to list and verify your business.
+</p>
+
+<div class="mt-6 text-3xl font-bold text-black">
+$50 USD
+</div>
+
+<!-- PAYPAL BUTTON -->
+<a href="https://www.paypal.me/buysellAfrica"
+target="_blank"
+class="inline-block mt-6 paypal text-white px-6 py-3 rounded-xl font-semibold">
+Pay $50 via PayPal
+</a>
+
+<p class="text-xs text-slate-400 mt-3">
+After payment, send proof on WhatsApp to activate your listing.
+</p>
 
 </div>
 
 </section>
 
-<!-- FORM -->
-<section class="max-w-4xl mx-auto mt-12 px-6">
+<!-- WHATSAPP VERIFICATION -->
+<section class="max-w-4xl mx-auto mt-12 px-6 text-center">
 
-<div class="bg-white p-6 rounded-2xl soft-shadow">
+<div class="bg-black text-white p-8 rounded-2xl">
 
-<h2 class="text-xl font-bold mb-6">Business Listing Form</h2>
+<h2 class="text-xl font-bold">Step 2: Send Verification on WhatsApp</h2>
 
-<form onsubmit="submitListing(event)" class="grid md:grid-cols-2 gap-4">
+<p class="text-white/70 mt-2">
+After payment, send your business details + proof of payment.
+</p>
 
-<!-- BUSINESS NAME -->
-<input id="name" class="p-3 border rounded-xl" placeholder="Business Name" required />
-
-<!-- LOCATION -->
-<input id="location" class="p-3 border rounded-xl" placeholder="City / Country" required />
-
-<!-- INDUSTRY -->
-<select id="industry" class="p-3 border rounded-xl" required>
-<option value="">Select Industry</option>
-<option>Technology</option>
-<option>Retail</option>
-<option>Logistics</option>
-<option>Agriculture</option>
-<option>Manufacturing</option>
-<option>Finance</option>
-<option>Healthcare</option>
-<option>Education</option>
-<option>Energy</option>
-<option>Hospitality</option>
-</select>
-
-<!-- PRICE -->
-<input id="price" class="p-3 border rounded-xl" placeholder="Asking Price (e.g. $500,000)" required />
-
-<!-- DESCRIPTION -->
-<textarea id="description" class="p-3 border rounded-xl md:col-span-2" rows="4" placeholder="Business description..." required></textarea>
-
-<!-- CONTACT -->
-<input id="contact" class="p-3 border rounded-xl md:col-span-2" placeholder="WhatsApp or Email Contact" required />
-
-<!-- SUBMIT -->
-<button class="bg-black text-white px-6 py-3 rounded-xl md:col-span-2 font-semibold">
-Submit Listing
+<button onclick="openWhatsApp()"
+class="whatsapp text-black px-6 py-3 rounded-xl font-semibold mt-6">
+Send Details on WhatsApp
 </button>
 
-</form>
+</div>
+
+</section>
+
+<!-- FORM GUIDE (NO BACKEND) -->
+<section class="max-w-4xl mx-auto mt-12 px-6">
+
+<div class="bg-white p-6 rounded-2xl card">
+
+<h2 class="font-bold text-lg">What to send on WhatsApp:</h2>
+
+<pre class="text-sm text-slate-600 mt-3 whitespace-pre-wrap">
+Hi BuySell Africa 👋
+
+I have completed the $50 verification payment.
+
+Business Details:
+- Business Name:
+- Country:
+- Industry:
+- Asking Price:
+- Description:
+- Proof of Payment:
+</pre>
 
 </div>
 
 </section>
 
-<!-- TRUST -->
-<section class="text-center py-12 text-sm text-slate-500">
-Your listing is shown to verified buyers & investors across 15 African markets
-</section>
+<!-- FINAL CTA -->
+<section class="mt-16 bg-black text-white text-center py-20 px-6">
 
-<!-- CTA -->
-<section class="bg-black text-white text-center py-20 px-6">
-
-<h2 class="text-3xl md:text-4xl font-bold">
-Serious Buyers Are Already Searching
+<h2 class="text-3xl font-bold">
+Get Verified. Get Buyers. Close Deals Faster.
 </h2>
 
 <p class="text-white/70 mt-3">
-List your business now and get discovered instantly.
+Join Africa’s fastest growing private business marketplace.
 </p>
 
-<button onclick="goTo('browsebusinesses.html')"
-class="mt-6 bg-white text-black px-6 py-3 rounded-xl font-semibold">
-Browse Buyers Activity
+<button onclick="openWhatsApp()"
+class="mt-6 whatsapp text-black px-6 py-3 rounded-xl font-semibold">
+Start Now on WhatsApp
 </button>
 
 </section>
+
+<footer class="py-10 text-center text-sm text-slate-500">
+© 2026 BuySell Africa
+</footer>
 
 <script>
 
@@ -166,27 +192,22 @@ function goTo(page){
 window.location.href = page;
 }
 
-// simple local storage simulation
-function submitListing(e){
-e.preventDefault();
+// WhatsApp verification funnel
+function openWhatsApp(){
 
-let listing = {
-name: document.getElementById("name").value,
-location: document.getElementById("location").value,
-industry: document.getElementById("industry").value,
-price: document.getElementById("price").value,
-description: document.getElementById("description").value,
-contact: document.getElementById("contact").value,
-time: new Date().toISOString()
-};
+let phone = "27600000000"; // REPLACE WITH YOUR NUMBER
 
-let existing = JSON.parse(localStorage.getItem("bsa_listings") || "[]");
-existing.push(listing);
-localStorage.setItem("bsa_listings", JSON.stringify(existing));
+let message = `Hi BuySell Africa 👋
 
-alert("Listing submitted successfully. Our team will review it shortly.");
+I want to list my business.
 
-window.location.href = "dashboard.html";
+I will send proof of my $50 PayPal payment via https://www.paypal.me/buysellAfrica
+
+Please guide me to activate my listing.`;
+
+let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+window.open(url, "_blank");
 }
 
 </script>
