@@ -19,12 +19,12 @@ background:url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a') c
 }
 
 .overlay{
-background:rgba(0,0,0,0.78);
+background:rgba(0,0,0,0.80);
 }
 
 .glass{
 backdrop-filter:blur(16px);
-background:rgba(255,255,255,0.9);
+background:rgba(255,255,255,0.92);
 }
 
 .soft-card{
@@ -35,27 +35,35 @@ transform:translateY(-6px);
 }
 
 .text-shadow{
-text-shadow:0 10px 30px rgba(0,0,0,0.7);
+text-shadow:0 10px 30px rgba(0,0,0,0.75);
 }
 </style>
 
 <body class="bg-white text-slate-900">
 
-<!-- NAV (Goldman Sachs style: minimal, institutional) -->
+<!-- NAV -->
 <nav class="fixed w-full top-0 z-50 border-b border-slate-100">
 <div class="glass flex justify-between items-center px-6 py-4">
+
+<!-- LOGO -->
+<div class="flex items-center gap-3">
+<img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
+class="w-8 h-8 object-contain" />
 
 <div class="font-extrabold tracking-tight text-lg">
 BuySell Africa
 </div>
+</div>
 
+<!-- LINKS -->
 <div class="hidden md:flex gap-8 text-sm text-slate-600">
 <a href="#market" class="hover:text-black">Market</a>
 <a href="#countries" class="hover:text-black">Countries</a>
-<a href="#insights" class="hover:text-black">Insights</a>
 <a href="#how" class="hover:text-black">How it Works</a>
+<a href="#deals" class="hover:text-black">Deals</a>
 </div>
 
+<!-- ACTIONS -->
 <div class="flex gap-3">
 <button onclick="goTo('login-register.html')" class="text-sm hover:underline">
 Login
@@ -69,23 +77,27 @@ List Business
 </div>
 </nav>
 
-<!-- HERO (Airbnb emotional + Goldman clarity) -->
-<section class="hero h-screen flex items-center justify-center relative">
+<!-- HERO -->
+<section class="hero h-screen flex items-center justify-center relative pt-28">
 
 <div class="absolute inset-0 overlay"></div>
 
 <div class="relative text-center text-white max-w-4xl px-6 text-shadow">
 
-<h1 class="text-4xl md:text-6xl font-bold leading-tight">
-Africa’s Marketplace for Buying & Selling Businesses
-</h1>
-
-<p class="mt-5 text-white/80 text-lg">
-Trusted by founders, investors, and operators across 15 African markets.
+<p class="text-xs uppercase tracking-widest text-white/70 mb-4">
+Private Equity Marketplace for Africa
 </p>
 
-<!-- CTAs -->
-<div class="flex flex-col md:flex-row gap-4 justify-center mt-8">
+<h1 class="text-4xl md:text-6xl font-bold leading-tight">
+Buy, Sell & Invest in African Businesses
+</h1>
+
+<p class="mt-6 text-white/85 text-lg max-w-2xl mx-auto">
+Trusted marketplace connecting founders, investors, and operators across 15 African countries.
+</p>
+
+<!-- CTA -->
+<div class="flex flex-col md:flex-row gap-4 justify-center mt-10">
 
 <button onclick="goTo('browsebusinesses.html')"
 class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
@@ -99,8 +111,8 @@ List Your Business
 
 </div>
 
-<!-- SEARCH (Airbnb feel) -->
-<div class="mt-10 bg-white/10 p-4 rounded-2xl grid md:grid-cols-4 gap-3 backdrop-blur">
+<!-- SEARCH -->
+<div class="mt-12 bg-white/10 p-4 rounded-2xl grid md:grid-cols-4 gap-3 backdrop-blur">
 
 <input class="p-3 rounded-lg text-black" placeholder="Search businesses, startups, franchises..." />
 
@@ -132,6 +144,9 @@ List Your Business
 <option>Agriculture</option>
 <option>Healthcare</option>
 <option>Energy</option>
+<option>Education</option>
+<option>Manufacturing</option>
+<option>Hospitality</option>
 </select>
 
 <button onclick="goTo('browsebusinesses.html')"
@@ -144,45 +159,44 @@ Search
 </div>
 </section>
 
-<!-- TRUST STRIP (Goldman Sachs feel) -->
+<!-- TRUST -->
 <section class="py-10 border-b text-center text-sm text-slate-500">
-Trusted marketplace for verified business acquisitions across Africa
+Trusted marketplace for verified African business acquisitions
 </section>
 
-<!-- MARKET SNAPSHOT -->
+<!-- MARKET -->
 <section id="market" class="py-20 px-6">
 
 <h2 class="text-3xl font-bold text-center">Live Market Overview</h2>
-<p class="text-center text-slate-500 mt-2">Real opportunities. Real businesses. Real buyers.</p>
+<p class="text-center text-slate-500 mt-2">Real businesses. Real buyers. Real deals.</p>
 
 <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto mt-10">
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl">
-<h3 class="text-2xl font-bold">500+</h3>
+<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">500+</h3>
 <p class="text-slate-500">Businesses Listed</p>
 </div>
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl">
-<h3 class="text-2xl font-bold">15</h3>
+<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">15</h3>
 <p class="text-slate-500">African Countries</p>
 </div>
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl">
-<h3 class="text-2xl font-bold">$20M+</h3>
+<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">$20M+</h3>
 <p class="text-slate-500">Deal Value</p>
 </div>
 
-<div class="soft-card bg-slate-50 p-6 rounded-2xl">
-<h3 class="text-2xl font-bold">10,000+</h3>
+<div class="soft-card bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">10K+</h3>
 <p class="text-slate-500">Active Users</p>
 </div>
 
 </div>
-
 </section>
 
-<!-- FEATURED DEALS -->
-<section class="py-20 bg-slate-50 px-6">
+<!-- DEALS -->
+<section id="deals" class="py-20 bg-slate-50 px-6">
 
 <h2 class="text-3xl font-bold text-center">Featured Deals</h2>
 
@@ -192,48 +206,39 @@ Trusted marketplace for verified business acquisitions across Africa
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
 <h3 class="font-semibold mt-3">Restaurant Group</h3>
 <p class="text-slate-500 text-sm">Johannesburg • $850K</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">
-View Deal
-</button>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
 </div>
 
 <div class="soft-card bg-white p-4 rounded-2xl shadow">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
 <h3 class="font-semibold mt-3">Logistics Company</h3>
 <p class="text-slate-500 text-sm">Nairobi • $1.2M</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">
-View Deal
-</button>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
 </div>
 
 <div class="soft-card bg-white p-4 rounded-2xl shadow">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
 <h3 class="font-semibold mt-3">SaaS Startup</h3>
 <p class="text-slate-500 text-sm">Lagos • $450K</p>
-<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">
-View Deal
-</button>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
 </div>
 
 </div>
-
 </section>
 
 <!-- CTA -->
 <section class="py-24 bg-black text-white text-center">
 
 <h2 class="text-4xl font-bold">Own a Piece of Africa’s Business Future</h2>
-<p class="mt-3 text-white/70">Join investors, founders, and operators building the next wave of African enterprise.</p>
+<p class="mt-3 text-white/70">Join investors, founders, and operators across Africa.</p>
 
 <div class="mt-6 flex gap-4 justify-center">
 
-<button onclick="goTo('browsebusinesses.html')"
-class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
+<button onclick="goTo('browsebusinesses.html')" class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
 Browse Deals
 </button>
 
-<button onclick="handleListBusiness()"
-class="bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold">
+<button onclick="handleListBusiness()" class="bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold">
 List Business
 </button>
 
@@ -242,7 +247,7 @@ List Business
 </section>
 
 <footer class="py-10 text-center text-sm text-slate-500">
-© 2026 BuySell Africa — Built for Africa’s Deal Economy
+© 2026 BuySell Africa
 </footer>
 
 <script>
