@@ -4,26 +4,17 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Admin Pipeline OS | BuySell Africa</title>
+<title>Deal OS Admin Panel v4</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{font-family:Inter,sans-serif}
-
-.tab{
-cursor:pointer;
-padding:10px 14px;
-border-radius:12px;
-font-size:14px;
-}
-
-.active{
-background:#111827;
-color:white;
+body{
+font-family:Inter, sans-serif;
 }
 
 .card{
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 transition:.2s ease;
 }
 
@@ -31,9 +22,11 @@ transition:.2s ease;
 transform:translateY(-3px);
 }
 
-.badge-paid{background:#10b981;}
-.badge-pending{background:#f59e0b;}
-.badge-failed{background:#ef4444;}
+.badge{
+font-size:10px;
+padding:4px 8px;
+border-radius:999px;
+}
 </style>
 
 </head>
@@ -42,177 +35,218 @@ transform:translateY(-3px);
 
 <!-- HEADER -->
 <div class="bg-black text-white p-4 flex justify-between items-center">
-<h1 class="font-bold">BuySell Africa • Admin Pipeline OS</h1>
-<button onclick="seedDemo()" class="bg-white text-black px-4 py-2 rounded-xl text-sm">
-+ Seed Demo Data
+
+<div>
+<h1 class="font-bold">Deal OS Admin v4</h1>
+<p class="text-xs text-white/60">Monetization Control Center</p>
+</div>
+
+<button onclick="logout()" class="bg-white text-black px-4 py-2 rounded-xl text-sm">
+Logout
 </button>
-</div>
-
-<!-- TABS -->
-<div class="flex gap-2 p-4 max-w-6xl mx-auto">
-
-<div onclick="switchTab('payments')" id="tab-payments" class="tab active">Payments Queue</div>
-<div onclick="switchTab('listings')" id="tab-listings" class="tab">Listing Requests</div>
-<div onclick="switchTab('live')" id="tab-live" class="tab">Live Marketplace</div>
 
 </div>
 
-<!-- CONTENT -->
-<div class="max-w-6xl mx-auto p-4">
+<!-- STATS -->
+<div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-4 p-4">
 
-<!-- PAYMENTS -->
-<div id="payments" class="grid md:grid-cols-3 gap-4"></div>
+<div class="bg-white p-4 rounded-2xl card">
+<p class="text-slate-500 text-sm">Total Listings</p>
+<h2 id="totalListings" class="text-2xl font-bold">0</h2>
+</div>
+
+<div class="bg-white p-4 rounded-2xl card">
+<p class="text-slate-500 text-sm">Live Deals</p>
+<h2 id="liveDeals" class="text-2xl font-bold">0</h2>
+</div>
+
+<div class="bg-white p-4 rounded-2xl card">
+<p class="text-slate-500 text-sm">Boosted Listings</p>
+<h2 id="boosted" class="text-2xl font-bold">0</h2>
+</div>
+
+<div class="bg-white p-4 rounded-2xl card">
+<p class="text-slate-500 text-sm">Total Leads</p>
+<h2 id="leads" class="text-2xl font-bold">0</h2>
+</div>
+
+</div>
+
+<!-- LISTINGS CONTROL -->
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-4 p-4">
 
 <!-- LISTINGS -->
-<div id="listings" class="grid md:grid-cols-3 gap-4 hidden"></div>
+<div class="bg-white p-4 rounded-2xl card">
 
-<!-- LIVE -->
-<div id="live" class="grid md:grid-cols-3 gap-4 hidden"></div>
+<h2 class="font-bold mb-3">📦 Listings Control</h2>
+
+<div id="listings" class="space-y-3 text-sm"></div>
+
+</div>
+
+<!-- MONETIZATION CONTROL -->
+<div class="bg-white p-4 rounded-2xl card">
+
+<h2 class="font-bold mb-3">💰 Monetization Controls</h2>
+
+<div class="space-y-3 text-sm text-slate-600">
+
+<p>✔ Approve Listings</p>
+<p>✔ Enable Boost ($10)</p>
+<p>✔ Set Subscription Tier</p>
+<p>✔ Unlock Paid Leads</p>
+
+<hr class="my-2"/>
+
+<p class="text-xs text-slate-500">
+All actions simulate real SaaS monetization without backend.
+</p>
+
+</div>
+
+</div>
 
 </div>
 
 <script>
 
+/* -----------------------------
+   LOAD DATA
+------------------------------*/
+
 let data = JSON.parse(localStorage.getItem("bsa_pipeline")) || [];
+
+/* -----------------------------
+   SAVE
+------------------------------*/
 
 function save(){
 localStorage.setItem("bsa_pipeline", JSON.stringify(data));
 render();
 }
 
-function switchTab(tab){
-
-document.getElementById("payments").classList.add("hidden");
-document.getElementById("listings").classList.add("hidden");
-document.getElementById("live").classList.add("hidden");
-
-document.getElementById("tab-payments").classList.remove("active");
-document.getElementById("tab-listings").classList.remove("active");
-document.getElementById("tab-live").classList.remove("active");
-
-document.getElementById(tab).classList.remove("hidden");
-document.getElementById("tab-" + tab).classList.add("active");
-}
-
 /* -----------------------------
-   APPROVAL LOGIC PIPELINE
+   ACTIONS
 ------------------------------*/
 
-// STEP 1: Mark payment verified
-function verifyPayment(id){
-let item = data.find(d => d.id === id);
-item.paymentStatus = "paid";
-save();
-}
-
-// STEP 2: Approve listing
-function approveListing(id){
-let item = data.find(d => d.id === id);
+function approve(id){
+let item = data.find(d=>d.id===id);
 item.status = "approved";
 save();
 }
 
-// STEP 3: Reject listing
-function rejectListing(id){
-data = data.filter(d => d.id !== id);
+function reject(id){
+let item = data.find(d=>d.id===id);
+item.status = "rejected";
+save();
+}
+
+function boost(id){
+let item = data.find(d=>d.id===id);
+item.boosted = true;
+save();
+}
+
+function setFree(id){
+let item = data.find(d=>d.id===id);
+item.subscription = "free";
+save();
+}
+
+function setPro(id){
+let item = data.find(d=>d.id===id);
+item.subscription = "pro";
+save();
+}
+
+function setPremium(id){
+let item = data.find(d=>d.id===id);
+item.subscription = "premium";
+save();
+}
+
+function unlockLead(id){
+let item = data.find(d=>d.id===id);
+item.leadLocked = false;
 save();
 }
 
 /* -----------------------------
-   RENDER SYSTEM
+   RENDER
 ------------------------------*/
 
 function render(){
 
-let payments = document.getElementById("payments");
-let listings = document.getElementById("listings");
-let live = document.getElementById("live");
+let container = document.getElementById("listings");
+container.innerHTML = "";
 
-payments.innerHTML = "";
-listings.innerHTML = "";
-live.innerHTML = "";
+/* STATS */
+document.getElementById("totalListings").innerText = data.length;
+document.getElementById("liveDeals").innerText = data.filter(d=>d.status==="approved").length;
+document.getElementById("boosted").innerText = data.filter(d=>d.boosted).length;
+document.getElementById("leads").innerText = data.reduce((a,b)=>a+(b.whatsappClicks||0),0);
 
-/* ---------------- PAYMENTS ---------------- */
-data.filter(d => d.paymentStatus !== "paid").forEach(item => {
+/* LISTINGS */
+data.forEach(item=>{
 
-payments.innerHTML += `
-<div class="card bg-white p-4 rounded-2xl shadow">
+container.innerHTML += `
+<div class="p-3 border rounded-xl">
 
-<h3 class="font-bold">${item.name}</h3>
+<div class="font-bold">${item.name}</div>
 
-<p class="text-sm text-slate-500">${item.location}</p>
-
-<span class="text-xs px-2 py-1 rounded badge-pending text-white">
-PENDING PAYMENT
-</span>
-
-<div class="flex gap-2 mt-4">
-
-<button onclick="verifyPayment(${item.id})"
-class="bg-green-500 text-white px-3 py-2 rounded-xl text-sm">
-Mark Paid
-</button>
-
-<button onclick="rejectListing(${item.id})"
-class="bg-red-500 text-white px-3 py-2 rounded-xl text-sm">
-Reject
-</button>
-
+<div class="text-xs text-slate-500">
+${item.location} • ${item.price}
 </div>
 
+<div class="text-xs mt-1">
+Status: <b>${item.status || "pending"}</b>
 </div>
-`;
-});
 
-/* ---------------- LISTINGS ---------------- */
-data.filter(d => d.paymentStatus === "paid" && d.status !== "approved").forEach(item => {
+<div class="text-xs">
+👁 ${item.views||0} • 💬 ${item.whatsappClicks||0}
+</div>
 
-listings.innerHTML += `
-<div class="card bg-white p-4 rounded-2xl shadow">
+${item.boosted ? `<span class="badge bg-yellow-400 text-black">🔥 BOOSTED</span>` : ""}
 
-<h3 class="font-bold">${item.name}</h3>
+${item.subscription ? `<span class="badge bg-blue-500 text-white ml-1">${item.subscription}</span>` : ""}
 
-<p class="text-sm text-slate-500">${item.location} • ${item.price}</p>
+<!-- ACTION BUTTONS -->
+<div class="grid grid-cols-2 gap-2 mt-3">
 
-<span class="text-xs px-2 py-1 rounded badge-paid text-white">
-PAID VERIFIED
-</span>
-
-<p class="text-sm mt-2">${item.desc}</p>
-
-<div class="flex gap-2 mt-4">
-
-<button onclick="approveListing(${item.id})"
-class="bg-black text-white px-3 py-2 rounded-xl text-sm">
+<button onclick="approve(${item.id})" class="bg-green-500 text-white text-xs py-1 rounded">
 Approve
 </button>
 
-<button onclick="rejectListing(${item.id})"
-class="bg-red-500 text-white px-3 py-2 rounded-xl text-sm">
+<button onclick="reject(${item.id})" class="bg-red-500 text-white text-xs py-1 rounded">
 Reject
+</button>
+
+<button onclick="boost(${item.id})" class="bg-yellow-400 text-black text-xs py-1 rounded">
+Boost $10
+</button>
+
+<button onclick="unlockLead(${item.id})" class="bg-black text-white text-xs py-1 rounded">
+Unlock Lead
 </button>
 
 </div>
 
+<!-- SUBSCRIPTION -->
+<div class="flex gap-2 mt-2">
+
+<button onclick="setFree(${item.id})" class="text-xs bg-slate-200 px-2 py-1 rounded">
+Free
+</button>
+
+<button onclick="setPro(${item.id})" class="text-xs bg-blue-500 text-white px-2 py-1 rounded">
+Pro
+</button>
+
+<button onclick="setPremium(${item.id})" class="text-xs bg-purple-500 text-white px-2 py-1 rounded">
+Premium
+</button>
+
 </div>
-`;
-});
-
-/* ---------------- LIVE ---------------- */
-data.filter(d => d.status === "approved").forEach(item => {
-
-live.innerHTML += `
-<div class="card bg-white p-4 rounded-2xl shadow">
-
-<h3 class="font-bold">${item.name}</h3>
-
-<p class="text-sm text-slate-500">${item.location} • ${item.price}</p>
-
-<span class="text-xs px-2 py-1 rounded bg-green-600 text-white">
-LIVE
-</span>
-
-<p class="text-sm mt-2">${item.desc}</p>
 
 </div>
 `;
@@ -220,31 +254,24 @@ LIVE
 
 }
 
-/* ---------------- DEMO DATA ---------------- */
+/* -----------------------------
+   AUTH (SIMPLE LOCK)
+------------------------------*/
 
-function seedDemo(){
+let session = JSON.parse(localStorage.getItem("bsa_session"));
 
-data.push({
-id: Date.now(),
-name: "Restaurant Group",
-location: "Johannesburg",
-price: "$850K",
-desc: "High traffic restaurant chain with strong cash flow.",
-paymentStatus: "paid",
-status: "pending"
-});
+if(!session || session.email !== "admin@bsa.com"){
+alert("Admin access only");
+window.location.href = "login-register.html";
+}
 
-data.push({
-id: Date.now()+1,
-name: "Logistics Company",
-location: "Nairobi",
-price: "$1.2M",
-desc: "Fleet-based logistics across East Africa.",
-paymentStatus: "unpaid",
-status: "pending"
-});
+/* -----------------------------
+   LOGOUT
+------------------------------*/
 
-save();
+function logout(){
+localStorage.removeItem("bsa_session");
+window.location.href = "login-register.html";
 }
 
 render();
