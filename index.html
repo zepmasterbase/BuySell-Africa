@@ -19,33 +19,35 @@
 <style>
 body{font-family:Inter,sans-serif}
 .hero{background:url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a') center/cover}
-.glass{backdrop-filter:blur(14px);background:rgba(255,255,255,.75)}
+.glass{backdrop-filter:blur(14px);background:rgba(255,255,255,.85)}
 .fade{opacity:0;transform:translateY(20px);transition:.8s}
 .fade.show{opacity:1;transform:translateY(0)}
-.card:hover{transform:translateY(-6px);transition:.3s}
+.card{transition:.3s}
+.card:hover{transform:translateY(-6px)}
+.header-space{padding-top:90px;}
 </style>
 
 <body class="bg-white text-slate-900">
 
 <!-- NAV -->
-<nav class="fixed w-full z-50 top-0">
+<nav class="fixed top-0 w-full z-50 shadow-sm">
 <div class="glass flex justify-between items-center px-6 py-4">
 
-<div class="font-extrabold">BuySell Africa</div>
+<div class="font-extrabold text-lg">BuySell Africa</div>
 
 <div class="hidden md:flex gap-6 text-sm">
-<a href="#browse">Browse</a>
-<a href="#industries">Industries</a>
-<a href="#how">How it Works</a>
-<a href="#success">Success</a>
+<a href="#browse" class="hover:text-blue-600">Browse</a>
+<a href="#industries" class="hover:text-blue-600">Industries</a>
+<a href="#how" class="hover:text-blue-600">How it Works</a>
+<a href="#countries" class="hover:text-blue-600">Countries</a>
 </div>
 
 <div class="flex gap-3">
-<button onclick="goTo('login-register.html')" class="hover:underline">
+<button onclick="goTo('login-register.html')" class="text-sm hover:underline">
 Login
 </button>
 
-<button onclick="handleListBusiness()" class="bg-yellow-500 px-4 py-2 rounded-xl text-white">
+<button onclick="handleListBusiness()" class="bg-yellow-500 text-white px-4 py-2 rounded-xl text-sm">
 List Business
 </button>
 </div>
@@ -54,45 +56,71 @@ List Business
 </nav>
 
 <!-- HERO -->
-<section class="hero h-screen flex items-center justify-center relative">
+<section class="hero h-screen flex items-center justify-center relative header-space">
 <div class="absolute inset-0 bg-black/60"></div>
 
-<div class="relative text-center text-white max-w-3xl px-4">
+<div class="relative text-center text-white max-w-4xl px-6">
 
-<h1 class="text-5xl font-extrabold">Buy, Sell & Invest in African Businesses</h1>
-<p class="mt-4 text-white/80">Discover verified opportunities across the continent.</p>
+<h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+Buy, Sell & Invest in African Businesses
+</h1>
 
-<!-- ACTION BUTTONS -->
-<div class="flex gap-4 justify-center mt-6">
-<button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl">
+<p class="mt-4 text-white/80 text-lg">
+Verified opportunities across 15 high-growth African markets.
+</p>
+
+<!-- CTA -->
+<div class="flex flex-col md:flex-row gap-4 justify-center mt-8">
+
+<button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl font-semibold">
 Browse Businesses
 </button>
 
-<button onclick="handleListBusiness()" class="bg-white/10 px-6 py-3 rounded-xl">
+<button onclick="handleListBusiness()" class="bg-white/10 px-6 py-3 rounded-xl font-semibold">
 List Your Business
 </button>
+
 </div>
 
-<!-- SEARCH BAR -->
-<div class="mt-6 grid md:grid-cols-3 gap-2 bg-white/10 p-4 rounded-xl">
+<!-- SEARCH -->
+<div class="mt-8 grid md:grid-cols-4 gap-2 bg-white/10 p-4 rounded-xl">
 
-<input id="searchInput" class="p-2 rounded text-black" placeholder="Search businesses..." />
+<input class="p-3 rounded text-black" placeholder="Search business..." />
 
-<select class="p-2 rounded text-black">
+<select class="p-3 rounded text-black">
 <option>Country</option>
-<option>South Africa</option>
-<option>Nigeria</option>
-<option>Kenya</option>
+<option>South Africa - Johannesburg</option>
+<option>South Africa - Cape Town</option>
+<option>Nigeria - Lagos</option>
+<option>Nigeria - Abuja</option>
+<option>Kenya - Nairobi</option>
+<option>Ghana - Accra</option>
+<option>Egypt - Cairo</option>
+<option>Morocco - Casablanca</option>
+<option>Tanzania - Dar es Salaam</option>
+<option>Uganda - Kampala</option>
+<option>Rwanda - Kigali</option>
+<option>Zimbabwe - Harare</option>
+<option>Zambia - Lusaka</option>
+<option>Botswana - Gaborone</option>
+<option>Namibia - Windhoek</option>
 </select>
 
-<select class="p-2 rounded text-black">
+<select class="p-3 rounded text-black">
 <option>Industry</option>
-<option>Tech</option>
+<option>Technology</option>
 <option>Retail</option>
 <option>Logistics</option>
+<option>Agriculture</option>
+<option>Healthcare</option>
+<option>Manufacturing</option>
+<option>Education</option>
+<option>Energy</option>
+<option>Hospitality</option>
+<option>Fintech</option>
 </select>
 
-<button onclick="searchRedirect()" class="bg-[#2563EB] text-white rounded-xl px-4">
+<button onclick="goTo('browsebusinesses.html')" class="bg-blue-600 text-white rounded-xl px-4 font-semibold">
 Search
 </button>
 
@@ -102,8 +130,8 @@ Search
 </section>
 
 <!-- STATS -->
-<section class="py-16 text-center fade">
-<div class="grid md:grid-cols-5 gap-6 max-w-5xl mx-auto">
+<section class="py-16 text-center fade header-space">
+<div class="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
 
 <div><h2 class="counter text-3xl font-bold" data-target="500">0</h2><p>Businesses</p></div>
 <div><h2 class="counter text-3xl font-bold" data-target="15">0</h2><p>Countries</p></div>
@@ -114,35 +142,37 @@ Search
 </div>
 </section>
 
-<!-- LISTINGS -->
-<section id="browse" class="py-20 px-6 fade">
+<!-- FEATURED -->
+<section id="browse" class="py-20 px-6 fade header-space">
+
 <h2 class="text-3xl font-bold text-center">Featured Businesses</h2>
+<p class="text-center text-slate-500 mt-2">High-value opportunities across Africa</p>
 
 <div class="grid md:grid-cols-3 gap-6 mt-10 max-w-6xl mx-auto">
 
-<div class="card bg-white shadow rounded-2xl p-4">
+<div class="card bg-white shadow-lg rounded-2xl p-4">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
 <h3 class="font-bold mt-3">Restaurant Chain</h3>
 <p class="text-sm text-slate-500">Johannesburg • $850K</p>
-<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">
 View Details
 </button>
 </div>
 
-<div class="card bg-white shadow rounded-2xl p-4">
+<div class="card bg-white shadow-lg rounded-2xl p-4">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
 <h3 class="font-bold mt-3">Logistics Company</h3>
 <p class="text-sm text-slate-500">Nairobi • $1.2M</p>
-<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">
 View Details
 </button>
 </div>
 
-<div class="card bg-white shadow rounded-2xl p-4">
+<div class="card bg-white shadow-lg rounded-2xl p-4">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
 <h3 class="font-bold mt-3">SaaS Startup</h3>
 <p class="text-sm text-slate-500">Lagos • $450K</p>
-<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">
 View Details
 </button>
 </div>
@@ -150,49 +180,51 @@ View Details
 </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how" class="py-20 bg-slate-50 fade px-6">
-<h2 class="text-3xl font-bold text-center">How It Works</h2>
+<!-- COUNTRIES -->
+<section id="countries" class="py-20 bg-slate-50 px-6 fade header-space">
 
-<div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-10">
+<h2 class="text-3xl font-bold text-center">Browse by Country</h2>
+<p class="text-center text-slate-500 mt-2">15 active African markets with city-level discovery</p>
 
-<div>
-<h3 class="font-bold">Sellers</h3>
-<ul class="mt-3 space-y-2 text-slate-600">
-<li>Create Listing</li>
-<li>Get Verified</li>
-<li>Connect Buyers</li>
-<li>Close Deal</li>
-</ul>
-</div>
+<div class="grid md:grid-cols-5 gap-4 mt-10 max-w-6xl mx-auto text-center">
 
-<div>
-<h3 class="font-bold">Buyers</h3>
-<ul class="mt-3 space-y-2 text-slate-600">
-<li>Browse Deals</li>
-<li>Review Financials</li>
-<li>Contact Sellers</li>
-<li>Acquire Business</li>
-</ul>
-</div>
+<div class="bg-white p-4 rounded-xl shadow">🇿🇦 South Africa<br><span class="text-sm text-slate-500">Johannesburg, Cape Town</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇳🇬 Nigeria<br><span class="text-sm text-slate-500">Lagos, Abuja</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇰🇪 Kenya<br><span class="text-sm text-slate-500">Nairobi</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇬🇭 Ghana<br><span class="text-sm text-slate-500">Accra</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇪🇬 Egypt<br><span class="text-sm text-slate-500">Cairo</span></div>
+
+<div class="bg-white p-4 rounded-xl shadow">🇲🇦 Morocco<br><span class="text-sm text-slate-500">Casablanca</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇹🇿 Tanzania<br><span class="text-sm text-slate-500">Dar es Salaam</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇺🇬 Uganda<br><span class="text-sm text-slate-500">Kampala</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇷🇼 Rwanda<br><span class="text-sm text-slate-500">Kigali</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇿🇼 Zimbabwe<br><span class="text-sm text-slate-500">Harare</span></div>
+
+<div class="bg-white p-4 rounded-xl shadow">🇿🇲 Zambia<br><span class="text-sm text-slate-500">Lusaka</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇧🇼 Botswana<br><span class="text-sm text-slate-500">Gaborone</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇳🇦 Namibia<br><span class="text-sm text-slate-500">Windhoek</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇸🇳 Senegal<br><span class="text-sm text-slate-500">Dakar</span></div>
+<div class="bg-white p-4 rounded-xl shadow">🇨🇮 Côte d’Ivoire<br><span class="text-sm text-slate-500">Abidjan</span></div>
 
 </div>
 </section>
 
 <!-- CTA -->
-<section class="py-24 bg-[#0B0F19] text-white text-center fade">
-<h2 class="text-4xl font-bold">Your Next Acquisition Is One Click Away</h2>
-<p class="mt-3 text-white/70">Join Africa’s fastest growing deal marketplace.</p>
+<section class="py-24 bg-[#0B0F19] text-white text-center fade header-space">
+
+<h2 class="text-4xl font-bold">Turn Your Business Into Capital</h2>
+<p class="mt-3 text-white/70">Join Africa’s fastest growing private deal marketplace.</p>
 
 <div class="mt-6 flex gap-4 justify-center">
-<button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl">
+<button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl font-semibold">
 Browse
 </button>
 
-<button onclick="handleListBusiness()" class="bg-white/10 px-6 py-3 rounded-xl">
+<button onclick="handleListBusiness()" class="bg-white/10 px-6 py-3 rounded-xl font-semibold">
 List
 </button>
 </div>
+
 </section>
 
 <footer class="py-10 text-center text-sm text-slate-500">
@@ -200,17 +232,18 @@ List
 </footer>
 
 <script>
-// SIMPLE AUTH CHECK (demo)
+
+// AUTH CHECK
 function isLoggedIn(){
 return localStorage.getItem("bsa_logged_in") === "true";
 }
 
-// NAVIGATION
+// NAV
 function goTo(page){
 window.location.href = page;
 }
 
-// LIST BUSINESS LOGIC
+// LIST BUSINESS RULE
 function handleListBusiness(){
 if(isLoggedIn()){
 window.location.href = "businesslisting.html";
@@ -220,9 +253,11 @@ window.location.href = "login-register.html";
 }
 
 // SEARCH REDIRECT
-function searchRedirect(){
+document.querySelectorAll("input")[0].addEventListener("keypress", function(e){
+if(e.key === "Enter"){
 window.location.href = "browsebusinesses.html";
 }
+});
 
 // FADE
 const obs=new IntersectionObserver(e=>e.forEach(x=>{
@@ -247,6 +282,7 @@ c.innerText=t;
 };
 fn();
 });
+
 </script>
 
 </body>
