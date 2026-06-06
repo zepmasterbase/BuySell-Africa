@@ -22,32 +22,55 @@ body{font-family:Inter,sans-serif}
 .glass{backdrop-filter:blur(14px);background:rgba(255,255,255,.85)}
 .fade{opacity:0;transform:translateY(20px);transition:.8s}
 .fade.show{opacity:1;transform:translateY(0)}
-.card{transition:.3s}
-.card:hover{transform:translateY(-6px)}
-.header-space{padding-top:90px;}
+.card:hover{transform:translateY(-6px);transition:.3s}
+
+/* sleek logo spacing */
+.logo-wrap{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo-img{
+width:34px;
+height:34px;
+object-fit:contain;
+border-radius:6px;
+}
 </style>
 
 <body class="bg-white text-slate-900">
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-50 shadow-sm">
+<nav class="fixed w-full z-50 top-0 shadow-sm">
 <div class="glass flex justify-between items-center px-6 py-4">
 
-<div class="font-extrabold text-lg">BuySell Africa</div>
+<!-- LOGO (SLEEK + CLEAN) -->
+<div class="logo-wrap">
+<img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
+alt="BuySell Africa Logo"
+class="logo-img"/>
 
-<div class="hidden md:flex gap-6 text-sm">
+<div class="font-extrabold text-lg tracking-tight">
+BuySell Africa
+</div>
+</div>
+
+<!-- NAV LINKS -->
+<div class="hidden md:flex gap-6 text-sm text-slate-700">
 <a href="#browse" class="hover:text-blue-600">Browse</a>
 <a href="#industries" class="hover:text-blue-600">Industries</a>
 <a href="#how" class="hover:text-blue-600">How it Works</a>
 <a href="#countries" class="hover:text-blue-600">Countries</a>
 </div>
 
+<!-- ACTIONS -->
 <div class="flex gap-3">
 <button onclick="goTo('login-register.html')" class="text-sm hover:underline">
 Login
 </button>
 
-<button onclick="handleListBusiness()" class="bg-yellow-500 text-white px-4 py-2 rounded-xl text-sm">
+<button onclick="handleListBusiness()" class="bg-yellow-500 text-white px-4 py-2 rounded-xl text-sm font-semibold">
 List Business
 </button>
 </div>
@@ -56,7 +79,7 @@ List Business
 </nav>
 
 <!-- HERO -->
-<section class="hero h-screen flex items-center justify-center relative header-space">
+<section class="hero h-screen flex items-center justify-center relative">
 <div class="absolute inset-0 bg-black/60"></div>
 
 <div class="relative text-center text-white max-w-4xl px-6">
@@ -69,7 +92,6 @@ Buy, Sell & Invest in African Businesses
 Verified opportunities across 15 high-growth African markets.
 </p>
 
-<!-- CTA -->
 <div class="flex flex-col md:flex-row gap-4 justify-center mt-8">
 
 <button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl font-semibold">
@@ -130,7 +152,7 @@ Search
 </section>
 
 <!-- STATS -->
-<section class="py-16 text-center fade header-space">
+<section class="py-16 text-center fade">
 <div class="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
 
 <div><h2 class="counter text-3xl font-bold" data-target="500">0</h2><p>Businesses</p></div>
@@ -143,7 +165,7 @@ Search
 </section>
 
 <!-- FEATURED -->
-<section id="browse" class="py-20 px-6 fade header-space">
+<section id="browse" class="py-20 px-6 fade">
 
 <h2 class="text-3xl font-bold text-center">Featured Businesses</h2>
 <p class="text-center text-slate-500 mt-2">High-value opportunities across Africa</p>
@@ -181,36 +203,15 @@ View Details
 </section>
 
 <!-- COUNTRIES -->
-<section id="countries" class="py-20 bg-slate-50 px-6 fade header-space">
+<section id="countries" class="py-20 bg-slate-50 px-6 fade">
 
 <h2 class="text-3xl font-bold text-center">Browse by Country</h2>
-<p class="text-center text-slate-500 mt-2">15 active African markets with city-level discovery</p>
+<p class="text-center text-slate-500 mt-2">15 African markets with city-level discovery</p>
 
-<div class="grid md:grid-cols-5 gap-4 mt-10 max-w-6xl mx-auto text-center">
-
-<div class="bg-white p-4 rounded-xl shadow">🇿🇦 South Africa<br><span class="text-sm text-slate-500">Johannesburg, Cape Town</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇳🇬 Nigeria<br><span class="text-sm text-slate-500">Lagos, Abuja</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇰🇪 Kenya<br><span class="text-sm text-slate-500">Nairobi</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇬🇭 Ghana<br><span class="text-sm text-slate-500">Accra</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇪🇬 Egypt<br><span class="text-sm text-slate-500">Cairo</span></div>
-
-<div class="bg-white p-4 rounded-xl shadow">🇲🇦 Morocco<br><span class="text-sm text-slate-500">Casablanca</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇹🇿 Tanzania<br><span class="text-sm text-slate-500">Dar es Salaam</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇺🇬 Uganda<br><span class="text-sm text-slate-500">Kampala</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇷🇼 Rwanda<br><span class="text-sm text-slate-500">Kigali</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇿🇼 Zimbabwe<br><span class="text-sm text-slate-500">Harare</span></div>
-
-<div class="bg-white p-4 rounded-xl shadow">🇿🇲 Zambia<br><span class="text-sm text-slate-500">Lusaka</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇧🇼 Botswana<br><span class="text-sm text-slate-500">Gaborone</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇳🇦 Namibia<br><span class="text-sm text-slate-500">Windhoek</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇸🇳 Senegal<br><span class="text-sm text-slate-500">Dakar</span></div>
-<div class="bg-white p-4 rounded-xl shadow">🇨🇮 Côte d’Ivoire<br><span class="text-sm text-slate-500">Abidjan</span></div>
-
-</div>
 </section>
 
 <!-- CTA -->
-<section class="py-24 bg-[#0B0F19] text-white text-center fade header-space">
+<section class="py-24 bg-[#0B0F19] text-white text-center fade">
 
 <h2 class="text-4xl font-bold">Turn Your Business Into Capital</h2>
 <p class="mt-3 text-white/70">Join Africa’s fastest growing private deal marketplace.</p>
@@ -233,39 +234,22 @@ List
 
 <script>
 
-// AUTH CHECK
 function isLoggedIn(){
 return localStorage.getItem("bsa_logged_in") === "true";
 }
 
-// NAV
 function goTo(page){
 window.location.href = page;
 }
 
-// LIST BUSINESS RULE
 function handleListBusiness(){
 if(isLoggedIn()){
 window.location.href = "businesslisting.html";
-} else {
+}else{
 window.location.href = "login-register.html";
 }
 }
 
-// SEARCH REDIRECT
-document.querySelectorAll("input")[0].addEventListener("keypress", function(e){
-if(e.key === "Enter"){
-window.location.href = "browsebusinesses.html";
-}
-});
-
-// FADE
-const obs=new IntersectionObserver(e=>e.forEach(x=>{
-if(x.isIntersecting)x.target.classList.add('show')
-}));
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
-
-// COUNTERS
 document.querySelectorAll('.counter').forEach(c=>{
 let t=+c.dataset.target;
 let i=0;
