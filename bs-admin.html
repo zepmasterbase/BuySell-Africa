@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Admin Panel | BuySell Africa</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{font-family:Inter,sans-serif}
+
+.card{
+transition:.2s ease;
+}
+.card:hover{
+transform:translateY(-3px);
+}
+
+.badge-pending{background:#f59e0b;}
+.badge-approved{background:#10b981;}
+.badge-rejected{background:#ef4444;}
+</style>
+
+</head>
+
+<body class="bg-slate-100">
+
+<!-- HEADER -->
+<div class="bg-black text-white p-4 flex justify-between items-center">
+<h1 class="font-bold">BuySell Africa Admin OS</h1>
+<button onclick="addDemoListing()" class="bg-white text-black px-4 py-2 rounded-xl text-sm">
++ Add Demo Listing
+</button>
+</div>
+
+<!-- INPUT FORM -->
+<div class="max-w-4xl mx-auto mt-6 bg-white p-6 rounded-2xl shadow">
+
+<h2 class="font-bold text-lg">Add New Seller Submission</h2>
+
+<div class="grid md:grid-cols-2 gap-3 mt-4">
+
+<input id="name" class="border p-3 rounded-xl" placeholder="Business Name" />
+<input id="price" class="border p-3 rounded-xl" placeholder="Price (e.g. $500K)" />
+<input id="location" class="border p-3 rounded-xl" placeholder="Location" />
+<input id="industry" class="border p-3 rounded-xl" placeholder="Industry" />
+
+</div>
+
+<textarea id="desc" class="border p-3 rounded-xl w-full mt-3" placeholder="Description"></textarea>
+
+<button onclick="addListing()" class="mt-4 bg-black text-white px-5 py-3 rounded-xl">
+Add to Pending
+</button>
+
+</div>
+
+<!-- LISTINGS -->
+<div class="max-w-6xl mx-auto mt-10">
+
+<h2 class="font-bold text-xl mb-4">📦 Listings Queue</h2>
+
+<div id="listings" class="grid md:grid-cols-3 gap-4">
+
+</div>
+
+</div>
+
+<script>
+
+let listings = JSON.parse(localStorage.getItem("bsa_listings")) || [];
+
+function save(){
+localStorage.setItem("bsa_listings", JSON.stringify(listings));
+render();
+}
+
+function addListing(){
+
+let item = {
+id: Date.now(),
+name: document.getElementById("name").value,
+price: document.getElementById("price").value,
+location: document.getElementById("location").value,
+industry: document.getElementById("industry").value,
+desc: document.getElementById("desc").value,
+status: "pending"
+};
+
+listings.push(item);
+save();
+clearForm();
+}
+
+function clearForm(){
+document.getElementById("name").value="";
+document.getElementById("price").value="";
+document.getElementById("location").value="";
+document.getElementById("industry").value="";
+document.getElementById("desc").value="";
+}
+
+function approve(id){
+let item = listings.find(l => l.id === id);
+item.status = "approved";
+save();
+}
+
+function reject(id){
+listings = listings.filter(l => l.id !== id);
+save();
+}
+
+function copyHTML(item){
+
+let html = `
+<div class="card bg-white p-4 rounded-2xl shadow">
+<h3 class="font-bold">${item.name}</h3>
+<p class="text-slate-500 text-sm">${item.location} • ${item.price}</p>
+<p class="text-sm mt-2">${item.desc}</p>
+<button onclick="openWhatsApp('${item.name}')" class="bg-green-500 text-black px-3 py-2 rounded-xl mt-3">
+Secure via WhatsApp
+</button>
+</div>
+`;
+
+navigator.clipboard.writeText(html);
+alert("Listing HTML copied!");
+}
+
+function render(){
+
+let container = document.getElementById("listings");
+container.innerHTML = "";
+
+listings.forEach(item => {
+
+let badgeColor =
+item.status === "pending" ? "badge-pending" :
+item.status === "approved" ? "badge-approved" :
+"badge-rejected";
+
+container.innerHTML += `
+<div class="card bg-white p-4 rounded-2xl shadow">
+
+<div class="flex justify-between items-center">
+<h3 class="font-bold">${item.name}</h3>
+<span class="text-white text-xs px-2 py-1 rounded ${badgeColor}">
+${item.status}
+</span>
+</div>
+
+<p class="text-slate-500 text-sm">${item.location} • ${item.price}</p>
+
+<p class="text-sm mt-2">${item.desc}</p>
+
+<div class="flex gap-2 mt-4">
+
+<button onclick="approve(${item.id})"
+class="bg-green-500 text-white px-3 py-2 rounded-xl text-sm">
+Approve
+</button>
+
+<button onclick="reject(${item.id})"
+class="bg-red-500 text-white px-3 py-2 rounded-xl text-sm">
+Reject
+</button>
+
+<button onclick='copyHTML(${JSON.stringify(item)})'
+class="bg-black text-white px-3 py-2 rounded-xl text-sm">
+Copy Listing
+</button>
+
+</div>
+
+</div>
+`;
+});
+
+}
+
+function addDemoListing(){
+
+listings.push({
+id: Date.now(),
+name: "Demo Restaurant Group",
+price: "$800K",
+location: "Johannesburg",
+industry: "Hospitality",
+desc: "High traffic restaurant chain with strong cash flow.",
+status: "pending"
+});
+
+save();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
