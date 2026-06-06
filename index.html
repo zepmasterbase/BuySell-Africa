@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>BuySell Africa | Verified Business Marketplace</title>
+<title>BuySell Africa | Private Business Marketplace</title>
 
-<meta name="description" content="Buy and sell verified African businesses instantly. Connect directly with owners via WhatsApp and close deals faster." />
+<meta name="description" content="Buy, sell and invest in verified African businesses. A private deal marketplace connecting founders, buyers and investors across Africa." />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -14,263 +14,259 @@
 <style>
 body{font-family:Inter,sans-serif}
 
-.card{transition:.25s ease;}
-.card:hover{transform:translateY(-6px);}
+.hero{
+background:url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a') center/cover;
+background-attachment:fixed;
+}
+
+.overlay{
+background:rgba(0,0,0,0.82);
+}
 
 .glass{
-backdrop-filter:blur(14px);
+backdrop-filter:blur(16px);
 background:rgba(255,255,255,0.92);
 }
 
-.whatsapp{background:#25D366;}
+.card{
+transition:.3s ease;
+}
+.card:hover{
+transform:translateY(-6px);
+}
 
-.soft-shadow{
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
+.text-shadow{
+text-shadow:0 10px 30px rgba(0,0,0,0.75);
+}
+
+.pill{
+transition:.2s ease;
+}
+.pill:hover{
+transform:scale(1.05);
 }
 </style>
 
 </head>
 
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-white text-slate-900">
 
-<!-- TOP BAR -->
-<nav class="fixed top-0 w-full z-50 border-b bg-white">
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 border-b border-slate-100">
 <div class="glass flex justify-between items-center px-6 py-4">
 
-<!-- LOGO (UPGRADED) -->
-<div class="flex items-center gap-2">
-  <img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
-       class="w-8 h-8 rounded-md" />
-  <div class="font-extrabold tracking-tight">BuySell Africa</div>
+<!-- LOGO -->
+<div class="flex items-center gap-3">
+<img src="https://payhip.com/cdn-cgi/image/format=auto/https://pe56d.s3.amazonaws.com/o_1jqefsco3s9d1asrch91b25j8l15.png"
+class="w-8 h-8 object-contain"/>
+
+<div class="font-extrabold text-lg tracking-tight">BuySell Africa</div>
 </div>
 
+<!-- LINKS -->
+<div class="hidden md:flex gap-6 text-sm text-slate-600">
+<a href="#browse" class="hover:text-black">Deals</a>
+<a href="#countries" class="hover:text-black">Countries</a>
+<a href="#how" class="hover:text-black">How it Works</a>
+</div>
+
+<!-- ACTIONS -->
 <div class="flex gap-3">
-<button onclick="goTo('index.html')" class="text-sm hover:underline">Home</button>
-<button onclick="goTo('dashboard.html')" class="text-sm hover:underline">Dashboard</button>
+<button onclick="goTo('login-register.html')" class="text-sm hover:underline">
+Login
+</button>
+
+<button onclick="handleListBusiness()" class="bg-black text-white px-4 py-2 rounded-xl text-sm">
+List Business
+</button>
 </div>
 
 </div>
 </nav>
 
 <!-- HERO -->
-<section class="pt-40 md:pt-44 px-6 text-center">
+<section class="hero h-screen flex items-center justify-center relative pt-28">
 
-<!-- HIGH-CONVERSION HEADLINE -->
-<h1 class="text-3xl md:text-5xl font-bold leading-tight">
-Buy & Sell Verified African Businesses in Minutes
-</h1>
+<div class="absolute inset-0 overlay"></div>
 
-<p class="text-slate-500 mt-4 max-w-xl mx-auto">
-Skip brokers. Talk directly to business owners. Close deals instantly via WhatsApp.
+<div class="relative text-center text-white max-w-5xl px-6 text-shadow">
+
+<!-- TRUST BADGE -->
+<p class="text-xs uppercase tracking-widest text-white/60 mb-4">
+Verified African Private Deal Exchange
 </p>
 
-<!-- PRIMARY ACTION (ABOVE FOLD CONVERSION TRIGGER) -->
-<div class="mt-6 flex justify-center">
-  <button onclick="openWhatsApp('I want to buy a business')"
-    class="bg-black text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition">
-    🔥 Get Business Matches on WhatsApp
-  </button>
+<!-- HEADLINE -->
+<h1 class="text-4xl md:text-6xl font-bold leading-tight">
+Buy, Sell & Invest in Profitable African Businesses
+</h1>
+
+<p class="mt-6 text-white/85 text-lg max-w-3xl mx-auto">
+A private marketplace connecting serious buyers, founders, and investors across Africa’s fastest growing economies.
+</p>
+
+<!-- SPLIT CTA -->
+<div class="mt-10 grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+
+<button onclick="goTo('browsebusinesses.html')"
+class="bg-white text-black px-6 py-4 rounded-xl font-semibold pill">
+I WANT TO BUY A BUSINESS
+</button>
+
+<button onclick="handleListBusiness()"
+class="bg-yellow-500 text-black px-6 py-4 rounded-xl font-semibold pill">
+I WANT TO SELL MY BUSINESS
+</button>
+
 </div>
 
-<!-- TRUST STRIP -->
-<div class="mt-5 text-xs text-slate-400 flex justify-center gap-4 flex-wrap">
-  <span>✔ Verified Listings</span>
-  <span>✔ Direct Owners</span>
-  <span>✔ No Broker Fees</span>
-  <span>✔ Instant Deals</span>
+<!-- TRUST STACK -->
+<div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-white/80">
+
+<div class="bg-white/10 p-3 rounded-xl">✔ Verified Listings</div>
+<div class="bg-white/10 p-3 rounded-xl">✔ Direct Owners</div>
+<div class="bg-white/10 p-3 rounded-xl">✔ Secure Deals</div>
+<div class="bg-white/10 p-3 rounded-xl">✔ Africa-Wide Network</div>
+
 </div>
 
-<!-- FILTERS -->
-<div class="grid md:grid-cols-4 gap-3 max-w-5xl mx-auto mt-10">
+<!-- SEARCH -->
+<div class="mt-10 bg-white/10 p-4 rounded-2xl grid md:grid-cols-4 gap-3 backdrop-blur">
 
-<input class="p-3 rounded-xl border" placeholder="Search business..." />
+<input class="p-3 rounded-lg text-black" placeholder="Search businesses, startups, franchises..." />
 
-<select class="p-3 rounded-xl border">
+<select class="p-3 rounded-lg text-black">
 <option>Country</option>
-<option>South Africa</option>
-<option>Nigeria</option>
-<option>Kenya</option>
-<option>Ghana</option>
-<option>Tanzania</option>
-<option>Rwanda</option>
-<option>Zambia</option>
-<option>Uganda</option>
-<option>Botswana</option>
-<option>Namibia</option>
-<option>Zimbabwe</option>
-<option>Senegal</option>
-<option>Morocco</option>
-<option>Egypt</option>
-<option>Ethiopia</option>
+<option>South Africa - Johannesburg</option>
+<option>Nigeria - Lagos</option>
+<option>Kenya - Nairobi</option>
+<option>Ghana - Accra</option>
+<option>Egypt - Cairo</option>
+<option>Morocco - Casablanca</option>
+<option>Tanzania - Dar es Salaam</option>
+<option>Uganda - Kampala</option>
+<option>Rwanda - Kigali</option>
+<option>Zimbabwe - Harare</option>
+<option>Zambia - Lusaka</option>
 </select>
 
-<select class="p-3 rounded-xl border">
+<select class="p-3 rounded-lg text-black">
 <option>Industry</option>
 <option>Technology</option>
+<option>Finance</option>
 <option>Retail</option>
 <option>Logistics</option>
 <option>Agriculture</option>
-<option>Manufacturing</option>
-<option>Finance</option>
 <option>Healthcare</option>
-<option>Education</option>
 <option>Energy</option>
-<option>Hospitality</option>
+<option>Manufacturing</option>
 </select>
 
-<button class="bg-black text-white rounded-xl px-4 py-3 hover:opacity-90">
+<button onclick="goTo('browsebusinesses.html')"
+class="bg-blue-600 text-white rounded-lg font-semibold">
 Search
 </button>
 
 </div>
 
+<!-- LIVE ACTIVITY -->
+<div class="mt-6 text-sm text-white/70">
+🔥 4 investors viewing Nairobi Logistics • New SaaS deal listed in Lagos 1h ago
+</div>
+
+</div>
 </section>
 
-<!-- LEAD BANNER -->
-<section class="max-w-5xl mx-auto mt-12 px-6">
-
-<div class="bg-black text-white p-6 rounded-2xl soft-shadow flex flex-col md:flex-row justify-between items-center gap-4">
-
-<div>
-<h2 class="font-bold text-lg">🔥 Want Faster Deals?</h2>
-<p class="text-white/70 text-sm">
-Connect directly with sellers and negotiate instantly on WhatsApp.
-</p>
-</div>
-
-<button onclick="openWhatsApp('General Inquiry')"
-class="whatsapp text-black font-semibold px-5 py-3 rounded-xl">
-Chat Now
-</button>
-
-</div>
-
+<!-- TRUST BAR -->
+<section class="py-10 border-b text-center text-sm text-slate-500">
+Trusted by founders, investors, and operators across Africa’s fastest growing deal markets
 </section>
 
-<!-- SECTION TITLE (URGENCY TRIGGER) -->
-<div class="text-center mt-12 mb-4">
-<h2 class="font-bold text-lg">🔥 Today’s Active Business Deals</h2>
-<p class="text-sm text-slate-500">High-intent sellers ready to negotiate now</p>
+<!-- MARKET SNAPSHOT -->
+<section class="py-20 px-6" id="browse">
+
+<h2 class="text-3xl font-bold text-center">Live Deal Flow</h2>
+<p class="text-center text-slate-500 mt-2">Real businesses actively changing ownership</p>
+
+<div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto mt-10">
+
+<div class="bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">500+</h3>
+<p class="text-slate-500">Active Listings</p>
 </div>
 
-<!-- LISTINGS -->
-<section class="max-w-6xl mx-auto mt-6 px-6 grid md:grid-cols-3 gap-6">
-
-<!-- CARD 1 -->
-<div class="card bg-white rounded-2xl p-4 soft-shadow">
-
-<img class="rounded-xl"
-src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
-
-<div class="mt-3 flex justify-between items-center">
-<h3 class="font-bold">Restaurant Group</h3>
-<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Verified</span>
+<div class="bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">15</h3>
+<p class="text-slate-500">Countries</p>
 </div>
 
+<div class="bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">$20M+</h3>
+<p class="text-slate-500">Deal Volume</p>
+</div>
+
+<div class="bg-slate-50 p-6 rounded-2xl text-center">
+<h3 class="text-3xl font-bold">10K+</h3>
+<p class="text-slate-500">Users</p>
+</div>
+
+</div>
+</section>
+
+<!-- FEATURED DEALS -->
+<section class="py-20 bg-slate-50 px-6">
+
+<h2 class="text-3xl font-bold text-center">Featured Investment Opportunities</h2>
+
+<div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-10">
+
+<div class="card bg-white p-4 rounded-2xl shadow">
+<img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
+<h3 class="font-semibold mt-3">Restaurant Group</h3>
 <p class="text-slate-500 text-sm">Johannesburg • $850K</p>
-
-<p class="text-sm mt-2 text-slate-600">
-High traffic restaurant chain with strong monthly cash flow.
-</p>
-
-<div class="flex gap-2 mt-4">
-
-<button onclick="goTo('businessdetails.html')"
-class="text-sm px-3 py-2 border rounded-xl w-full">
-View Deal
-</button>
-
-<button onclick="openWhatsApp('Restaurant Group - Johannesburg - $850K')"
-class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-Secure Deal
-</button>
-
-</div>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
 </div>
 
-<!-- CARD 2 -->
-<div class="card bg-white rounded-2xl p-4 soft-shadow">
-
-<img class="rounded-xl"
-src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
-
-<div class="mt-3 flex justify-between items-center">
-<h3 class="font-bold">Logistics Company</h3>
-<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Verified</span>
-</div>
-
+<div class="card bg-white p-4 rounded-2xl shadow">
+<img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
+<h3 class="font-semibold mt-3">Logistics Company</h3>
 <p class="text-slate-500 text-sm">Nairobi • $1.2M</p>
-
-<p class="text-sm mt-2 text-slate-600">
-Fleet-based logistics business serving major East African routes.
-</p>
-
-<div class="flex gap-2 mt-4">
-
-<button onclick="goTo('businessdetails.html')"
-class="text-sm px-3 py-2 border rounded-xl w-full">
-View Deal
-</button>
-
-<button onclick="openWhatsApp('Logistics Company - Nairobi - $1.2M')"
-class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-Secure Deal
-</button>
-
-</div>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
 </div>
 
-<!-- CARD 3 -->
-<div class="card bg-white rounded-2xl p-4 soft-shadow">
-
-<img class="rounded-xl"
-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
-
-<div class="mt-3 flex justify-between items-center">
-<h3 class="font-bold">SaaS Startup</h3>
-<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">Hot Deal</span>
-</div>
-
+<div class="card bg-white p-4 rounded-2xl shadow">
+<img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
+<h3 class="font-semibold mt-3">SaaS Startup</h3>
 <p class="text-slate-500 text-sm">Lagos • $450K</p>
-
-<p class="text-sm mt-2 text-slate-600">
-Fast-growing software startup with recurring revenue model.
-</p>
-
-<div class="flex gap-2 mt-4">
-
-<button onclick="goTo('businessdetails.html')"
-class="text-sm px-3 py-2 border rounded-xl w-full">
-View Deal
-</button>
-
-<button onclick="openWhatsApp('SaaS Startup - Lagos - $450K')"
-class="whatsapp text-black text-sm px-3 py-2 rounded-xl w-full font-semibold">
-Secure Deal
-</button>
-
-</div>
+<button onclick="goTo('businessdetails.html')" class="text-blue-600 mt-2">View Deal</button>
 </div>
 
+</div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="mt-16 bg-black text-white text-center py-20 px-6">
+<section class="py-24 bg-black text-white text-center">
 
-<h2 class="text-3xl md:text-4xl font-bold">
-Serious Buyers Don’t Browse. They Close Deals.
-</h2>
+<h2 class="text-4xl font-bold">Your Next Deal Is Already Live</h2>
+<p class="mt-3 text-white/70">Join Africa’s private deal economy today.</p>
 
-<p class="text-white/70 mt-3">
-Start negotiating directly with business owners today via WhatsApp.
-</p>
+<div class="mt-6 flex gap-4 justify-center">
 
-<button onclick="openWhatsApp('General Marketplace Inquiry')"
-class="mt-6 whatsapp text-black font-bold px-6 py-3 rounded-xl">
-Open WhatsApp Now
+<button onclick="goTo('browsebusinesses.html')" class="bg-white text-black px-6 py-3 rounded-xl font-semibold">
+Browse Deals
 </button>
 
+<button onclick="handleListBusiness()" class="bg-yellow-500 text-black px-6 py-3 rounded-xl font-semibold">
+List Business
+</button>
+
+</div>
+
 </section>
+
+<footer class="py-10 text-center text-sm text-slate-500">
+© 2026 BuySell Africa
+</footer>
 
 <script>
 
@@ -278,17 +274,16 @@ function goTo(page){
 window.location.href = page;
 }
 
-function openWhatsApp(context){
+function isLoggedIn(){
+return localStorage.getItem("bsa_logged_in") === "true";
+}
 
-let phone = "27600000000";
-
-let message = encodeURIComponent(
-"Hello BuySell Africa 👋 I am interested in: " + context + " and would like more details."
-);
-
-let url = "https://wa.me/" + phone + "?text=" + message;
-
-window.open(url, "_blank");
+function handleListBusiness(){
+if(isLoggedIn()){
+window.location.href = "businesslisting.html";
+}else{
+window.location.href = "login-register.html";
+}
 }
 
 </script>
