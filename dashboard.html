@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>BuySell Africa | Dashboard</title>
+<title>Dashboard | BuySell Africa Deal OS</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -12,194 +12,219 @@
 <style>
 body{font-family:Inter,sans-serif}
 
-.glass{
-backdrop-filter:blur(16px);
-background:rgba(255,255,255,0.9);
-}
-
 .card{
-transition:0.3s ease;
+transition:.25s ease;
 }
 .card:hover{
-transform:translateY(-6px);
+transform:translateY(-4px);
 }
 
-.sidebar-link:hover{
-background:#f8fafc;
+.whatsapp{
+background:#25D366;
+}
+
+.soft-shadow{
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.active-tab{
+background:#111827;
+color:white;
 }
 </style>
 
+</head>
+
 <body class="bg-slate-50 text-slate-900">
 
-<!-- TOP NAV -->
-<nav class="fixed top-0 w-full z-50 border-b bg-white">
+<!-- TOP BAR -->
+<nav class="bg-white border-b fixed w-full z-50">
 <div class="flex justify-between items-center px-6 py-4">
 
-<div class="font-extrabold text-lg">BuySell Africa Dashboard</div>
+<div class="font-extrabold">BuySell Africa • Deal OS</div>
 
-<div class="flex gap-3">
-<button onclick="logout()" class="text-sm hover:underline">Logout</button>
+<div class="flex gap-3 items-center">
+
+<button onclick="toggleRole('buyer')" id="buyerBtn"
+class="px-3 py-1 rounded-xl text-sm border">
+Buyer Mode
+</button>
+
+<button onclick="toggleRole('seller')" id="sellerBtn"
+class="px-3 py-1 rounded-xl text-sm border">
+Seller Mode
+</button>
+
 </div>
 
 </div>
 </nav>
 
-<!-- LAYOUT -->
-<div class="pt-20 flex">
+<!-- PAGE WRAP -->
+<div class="pt-24 px-6 max-w-6xl mx-auto">
 
-<!-- SIDEBAR -->
-<aside class="w-64 hidden md:block bg-white border-r min-h-screen p-4">
+<!-- HEADER SUMMARY -->
+<div class="grid md:grid-cols-4 gap-4">
 
-<div class="mb-6">
-<p class="text-xs text-slate-500">MAIN MENU</p>
+<div class="bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="text-sm text-slate-500">Saved / Listings</h3>
+<p id="metric1" class="text-2xl font-bold">12</p>
 </div>
 
-<div class="space-y-2">
+<div class="bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="text-sm text-slate-500">Active Deals</h3>
+<p id="metric2" class="text-2xl font-bold">5</p>
+</div>
 
-<button onclick="showSection('overview')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
-Overview
+<div class="bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="text-sm text-slate-500">WhatsApp Leads</h3>
+<p id="metric3" class="text-2xl font-bold">8</p>
+</div>
+
+<div class="bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="text-sm text-slate-500">Engagement Score</h3>
+<p id="metric4" class="text-2xl font-bold">High</p>
+</div>
+
+</div>
+
+<!-- LIVE ACTIVITY -->
+<div class="mt-8 bg-black text-white p-4 rounded-2xl">
+<h3 class="font-bold">🔥 Live Activity Feed</h3>
+<ul class="text-sm text-white/70 mt-2 space-y-1">
+<li>• 3 investors viewed your Lagos SaaS deal</li>
+<li>• New WhatsApp lead from Nairobi</li>
+<li>• Seller updated Restaurant Group listing</li>
+<li>• Buyer opened Logistics Company chat</li>
+</ul>
+</div>
+
+<!-- BUYER VIEW -->
+<div id="buyerView" class="mt-10">
+
+<h2 class="text-xl font-bold mb-4">🟦 Buyer Dashboard</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="card bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="font-semibold">Restaurant Group</h3>
+<p class="text-sm text-slate-500">Johannesburg • $850K</p>
+<button onclick="openWhatsApp('Restaurant Group')" class="whatsapp w-full mt-3 py-2 rounded-xl font-semibold">
+Continue WhatsApp Chat
+</button>
+</div>
+
+<div class="card bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="font-semibold">Logistics Company</h3>
+<p class="text-sm text-slate-500">Nairobi • $1.2M</p>
+<button onclick="openWhatsApp('Logistics Company')" class="whatsapp w-full mt-3 py-2 rounded-xl font-semibold">
+Continue WhatsApp Chat
+</button>
+</div>
+
+<div class="card bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="font-semibold">SaaS Startup</h3>
+<p class="text-sm text-slate-500">Lagos • $450K</p>
+<button onclick="openWhatsApp('SaaS Startup')" class="whatsapp w-full mt-3 py-2 rounded-xl font-semibold">
+Continue WhatsApp Chat
+</button>
+</div>
+
+</div>
+
+</div>
+
+<!-- SELLER VIEW -->
+<div id="sellerView" class="mt-10 hidden">
+
+<h2 class="text-xl font-bold mb-4">🟩 Seller Dashboard</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="card bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="font-semibold">Restaurant Group</h3>
+<p class="text-sm text-slate-500">Views: 120 • Leads: 8</p>
+<button class="bg-black text-white w-full mt-3 py-2 rounded-xl">
+Edit Listing
+</button>
+</div>
+
+<div class="card bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="font-semibold">Logistics Company</h3>
+<p class="text-sm text-slate-500">Views: 90 • Leads: 5</p>
+<button class="bg-black text-white w-full mt-3 py-2 rounded-xl">
+Boost Listing
+</button>
+</div>
+
+<div class="card bg-white p-4 rounded-2xl soft-shadow">
+<h3 class="font-semibold">SaaS Startup</h3>
+<p class="text-sm text-slate-500">Views: 200 • Leads: 12</p>
+<button class="bg-black text-white w-full mt-3 py-2 rounded-xl">
+View Leads
+</button>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FLOATING ACTION BUTTON -->
+<div class="fixed bottom-6 right-6 flex flex-col gap-3">
+
+<button onclick="goTo('businesslisting.html')" class="bg-black text-white px-4 py-3 rounded-full shadow-lg text-sm">
++ List Business
 </button>
 
-<button onclick="showSection('listings')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
-My Listings
+<button onclick="openWhatsApp('Support')" class="whatsapp text-black px-4 py-3 rounded-full shadow-lg text-sm font-semibold">
+WhatsApp Support
 </button>
 
-<button onclick="showSection('inquiries')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
-Inquiries
-</button>
-
-<button onclick="showSection('analytics')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
-Analytics
-</button>
-
-<button onclick="goTo('businesslisting.html')" class="w-full text-left px-3 py-2 rounded-lg bg-black text-white">
-+ New Listing
-</button>
-
-</div>
-
-</aside>
-
-<!-- MAIN -->
-<main class="flex-1 p-6">
-
-<!-- OVERVIEW -->
-<section id="overview">
-
-<h1 class="text-2xl font-bold">Welcome Back 👋</h1>
-<p class="text-slate-500">Manage your listings, inquiries and business performance.</p>
-
-<div class="grid md:grid-cols-3 gap-6 mt-6">
-
-<div class="bg-white p-5 rounded-2xl shadow">
-<h2 class="text-2xl font-bold">3</h2>
-<p class="text-slate-500">Active Listings</p>
-</div>
-
-<div class="bg-white p-5 rounded-2xl shadow">
-<h2 class="text-2xl font-bold">12</h2>
-<p class="text-slate-500">New Inquiries</p>
-</div>
-
-<div class="bg-white p-5 rounded-2xl shadow">
-<h2 class="text-2xl font-bold">$240K</h2>
-<p class="text-slate-500">Potential Value</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- LISTINGS -->
-<section id="listings" class="hidden">
-
-<h2 class="text-xl font-bold">My Listings</h2>
-
-<div class="grid md:grid-cols-2 gap-4 mt-6">
-
-<div class="bg-white p-4 rounded-2xl shadow card">
-<h3 class="font-bold">Restaurant Chain</h3>
-<p class="text-slate-500 text-sm">Johannesburg • $850K</p>
-<div class="flex gap-3 mt-3">
-<button class="text-blue-600 text-sm">Edit</button>
-<button class="text-red-500 text-sm">Delete</button>
-</div>
-</div>
-
-<div class="bg-white p-4 rounded-2xl shadow card">
-<h3 class="font-bold">Logistics Company</h3>
-<p class="text-slate-500 text-sm">Nairobi • $1.2M</p>
-<div class="flex gap-3 mt-3">
-<button class="text-blue-600 text-sm">Edit</button>
-<button class="text-red-500 text-sm">Delete</button>
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- INQUIRIES -->
-<section id="inquiries" class="hidden">
-
-<h2 class="text-xl font-bold">Buyer Inquiries</h2>
-
-<div class="space-y-4 mt-6">
-
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="font-semibold">Investor from South Africa</p>
-<p class="text-slate-500 text-sm">Interested in Restaurant Chain</p>
-<button class="text-blue-600 text-sm mt-2">Reply</button>
-</div>
-
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="font-semibold">Buyer from Kenya</p>
-<p class="text-slate-500 text-sm">Wants more details on Logistics Company</p>
-<button class="text-blue-600 text-sm mt-2">Reply</button>
-</div>
-
-</div>
-
-</section>
-
-<!-- ANALYTICS -->
-<section id="analytics" class="hidden">
-
-<h2 class="text-xl font-bold">Analytics</h2>
-
-<div class="grid md:grid-cols-2 gap-6 mt-6">
-
-<div class="bg-white p-6 rounded-2xl shadow">
-<h3 class="font-bold">Views</h3>
-<p class="text-3xl font-bold mt-2">1,240</p>
-</div>
-
-<div class="bg-white p-6 rounded-2xl shadow">
-<h3 class="font-bold">Clicks</h3>
-<p class="text-3xl font-bold mt-2">320</p>
-</div>
-
-</div>
-
-</section>
-
-</main>
 </div>
 
 <script>
 
-function showSection(id){
-document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
-document.getElementById(id).classList.remove("hidden");
+let role = "buyer";
+
+function toggleRole(newRole){
+
+role = newRole;
+
+if(role === "buyer"){
+document.getElementById("buyerView").classList.remove("hidden");
+document.getElementById("sellerView").classList.add("hidden");
+
+document.getElementById("buyerBtn").classList.add("active-tab");
+document.getElementById("sellerBtn").classList.remove("active-tab");
 }
+
+if(role === "seller"){
+document.getElementById("sellerView").classList.remove("hidden");
+document.getElementById("buyerView").classList.add("hidden");
+
+document.getElementById("sellerBtn").classList.add("active-tab");
+document.getElementById("buyerBtn").classList.remove("active-tab");
+}
+}
+
+// default
+toggleRole("buyer");
 
 function goTo(page){
 window.location.href = page;
 }
 
-function logout(){
-localStorage.removeItem("bsa_logged_in");
-window.location.href = "login-register.html";
+function openWhatsApp(context){
+
+let phone = "27600000000";
+
+let message = "Hi 👋 I am interested in " + context + " and would like more details.";
+
+let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+window.open(url, "_blank");
 }
 
 </script>
