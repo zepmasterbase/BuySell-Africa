@@ -4,131 +4,191 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>List Your Business | BuySell Africa</title>
-<meta name="description" content="List your business for sale or investment on BuySell Africa. Reach verified buyers and investors across Africa." />
-<link rel="canonical" href="https://buysellafrica.com/list-your-business" />
+<title>BuySell Africa | List Your Business</title>
 
-<meta property="og:title" content="List Your Business | BuySell Africa" />
-<meta property="og:description" content="Sell or raise investment for your business across Africa." />
-<meta property="og:type" content="website" />
+<meta name="description" content="List your business for sale on BuySell Africa and connect with verified buyers and investors across Africa." />
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
 <style>
 body{font-family:Inter,sans-serif}
-.glass{backdrop-filter:blur(14px);background:rgba(255,255,255,.75)}
-.fade{opacity:0;transform:translateY(20px);transition:.7s}
-.fade.show{opacity:1;transform:translateY(0)}
+
+.glass{
+backdrop-filter:blur(16px);
+background:rgba(255,255,255,0.92);
+}
+
+.card{
+transition:.25s ease;
+}
+.card:hover{
+transform:translateY(-4px);
+}
+
+.soft-shadow{
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.step{
+transition:.3s ease;
+}
+.step:hover{
+transform:translateY(-3px);
+}
 </style>
 
 <body class="bg-slate-50 text-slate-900">
 
 <!-- NAV -->
-<nav class="fixed top-0 w-full z-50">
-<div class="glass flex justify-between items-center px-6 py-4 shadow-sm">
+<nav class="fixed top-0 w-full z-50 border-b bg-white">
+<div class="glass flex justify-between items-center px-6 py-4">
+
 <div class="font-extrabold">BuySell Africa</div>
 
-<div class="hidden md:flex gap-6 text-sm">
-<a href="index.html">Home</a>
-<a href="browse.html">Browse</a>
+<div class="flex gap-3">
+<button onclick="goTo('index.html')" class="text-sm hover:underline">Home</button>
+<button onclick="goTo('browsebusinesses.html')" class="text-sm hover:underline">Browse</button>
 </div>
 
-<button class="bg-yellow-500 text-white px-4 py-2 rounded-xl text-sm">
-Login
-</button>
 </div>
 </nav>
 
-<!-- HEADER -->
-<section class="pt-28 px-6 text-center fade">
-<h1 class="text-4xl font-extrabold">List Your Business</h1>
-<p class="text-slate-500 mt-2">Reach verified buyers and investors across Africa</p>
+<!-- HERO -->
+<section class="pt-28 px-6 text-center">
+
+<h1 class="text-3xl md:text-4xl font-bold">
+List Your Business for Sale
+</h1>
+
+<p class="text-slate-500 mt-2 max-w-2xl mx-auto">
+Reach verified buyers and investors across Africa. Listings are reviewed for quality and visibility.
+</p>
+
+<!-- VALUE STEPS -->
+<div class="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto mt-10">
+
+<div class="step bg-white p-5 rounded-2xl soft-shadow">
+<h3 class="font-bold">1. Create Listing</h3>
+<p class="text-sm text-slate-500 mt-1">Add business details in minutes.</p>
+</div>
+
+<div class="step bg-white p-5 rounded-2xl soft-shadow">
+<h3 class="font-bold">2. Get Verified</h3>
+<p class="text-sm text-slate-500 mt-1">We review your listing for trust.</p>
+</div>
+
+<div class="step bg-white p-5 rounded-2xl soft-shadow">
+<h3 class="font-bold">3. Get Buyers</h3>
+<p class="text-sm text-slate-500 mt-1">Connect with serious investors.</p>
+</div>
+
+</div>
+
 </section>
 
 <!-- FORM -->
-<section class="px-6 py-10 fade">
-<div class="max-w-4xl mx-auto bg-white shadow rounded-2xl p-8">
+<section class="max-w-4xl mx-auto mt-12 px-6">
 
-<form id="listingForm" class="grid md:grid-cols-2 gap-6">
+<div class="bg-white p-6 rounded-2xl soft-shadow">
 
-<!-- BUSINESS INFO -->
-<div class="md:col-span-2">
-<h2 class="font-bold text-lg">Business Information</h2>
-</div>
+<h2 class="text-xl font-bold mb-6">Business Listing Form</h2>
 
-<input class="p-3 border rounded-xl" placeholder="Business Name" required />
-<input class="p-3 border rounded-xl" placeholder="Industry (e.g. Tech, Retail)" required />
+<form onsubmit="submitListing(event)" class="grid md:grid-cols-2 gap-4">
 
-<input class="p-3 border rounded-xl" placeholder="Location (City, Country)" required />
-<input class="p-3 border rounded-xl" placeholder="Asking Price (USD)" required />
+<!-- BUSINESS NAME -->
+<input id="name" class="p-3 border rounded-xl" placeholder="Business Name" required />
 
-<textarea class="md:col-span-2 p-3 border rounded-xl" placeholder="Business Description" rows="4" required></textarea>
+<!-- LOCATION -->
+<input id="location" class="p-3 border rounded-xl" placeholder="City / Country" required />
 
-<!-- FINANCIALS -->
-<div class="md:col-span-2 mt-4">
-<h2 class="font-bold text-lg">Financial Information</h2>
-</div>
+<!-- INDUSTRY -->
+<select id="industry" class="p-3 border rounded-xl" required>
+<option value="">Select Industry</option>
+<option>Technology</option>
+<option>Retail</option>
+<option>Logistics</option>
+<option>Agriculture</option>
+<option>Manufacturing</option>
+<option>Finance</option>
+<option>Healthcare</option>
+<option>Education</option>
+<option>Energy</option>
+<option>Hospitality</option>
+</select>
 
-<input class="p-3 border rounded-xl" placeholder="Annual Revenue (USD)" />
-<input class="p-3 border rounded-xl" placeholder="Profit Margin (%)" />
+<!-- PRICE -->
+<input id="price" class="p-3 border rounded-xl" placeholder="Asking Price (e.g. $500,000)" required />
+
+<!-- DESCRIPTION -->
+<textarea id="description" class="p-3 border rounded-xl md:col-span-2" rows="4" placeholder="Business description..." required></textarea>
 
 <!-- CONTACT -->
-<div class="md:col-span-2 mt-4">
-<h2 class="font-bold text-lg">Contact Details</h2>
-</div>
-
-<input class="p-3 border rounded-xl" placeholder="Full Name" required />
-<input class="p-3 border rounded-xl" placeholder="Email Address" required />
-<input class="p-3 border rounded-xl" placeholder="Phone Number" />
-
-<!-- UPLOAD -->
-<div class="md:col-span-2">
-<label class="block font-medium mb-2">Business Images</label>
-<input type="file" class="w-full p-3 border rounded-xl bg-slate-50" multiple />
-</div>
-
-<!-- TERMS -->
-<div class="md:col-span-2 flex items-start gap-2 text-sm text-slate-600">
-<input type="checkbox" required />
-<span>I confirm that all information provided is accurate and I agree to BuySell Africa terms.</span>
-</div>
+<input id="contact" class="p-3 border rounded-xl md:col-span-2" placeholder="WhatsApp or Email Contact" required />
 
 <!-- SUBMIT -->
-<div class="md:col-span-2">
-<button type="submit" class="w-full bg-[#0B0F19] text-white py-3 rounded-xl font-semibold hover:bg-black transition">
+<button class="bg-black text-white px-6 py-3 rounded-xl md:col-span-2 font-semibold">
 Submit Listing
 </button>
-</div>
 
 </form>
 
-<!-- SUCCESS MESSAGE -->
-<div id="success" class="hidden mt-6 p-4 bg-green-100 text-green-700 rounded-xl">
-Your business has been submitted successfully. Our team will review and verify your listing.
 </div>
 
-</div>
 </section>
 
-<!-- FOOTER -->
-<footer class="py-10 text-center text-sm text-slate-500">
-© 2026 BuySell Africa — List Your Business
-</footer>
+<!-- TRUST -->
+<section class="text-center py-12 text-sm text-slate-500">
+Your listing is shown to verified buyers & investors across 15 African markets
+</section>
+
+<!-- CTA -->
+<section class="bg-black text-white text-center py-20 px-6">
+
+<h2 class="text-3xl md:text-4xl font-bold">
+Serious Buyers Are Already Searching
+</h2>
+
+<p class="text-white/70 mt-3">
+List your business now and get discovered instantly.
+</p>
+
+<button onclick="goTo('browsebusinesses.html')"
+class="mt-6 bg-white text-black px-6 py-3 rounded-xl font-semibold">
+Browse Buyers Activity
+</button>
+
+</section>
 
 <script>
-// fade
-const obs=new IntersectionObserver(e=>e.forEach(x=>{
-if(x.isIntersecting)x.target.classList.add('show')
-}));
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 
-// form submit
-document.getElementById("listingForm").addEventListener("submit", function(e){
+function goTo(page){
+window.location.href = page;
+}
+
+// simple local storage simulation
+function submitListing(e){
 e.preventDefault();
-document.getElementById("success").classList.remove("hidden");
-this.reset();
-});
+
+let listing = {
+name: document.getElementById("name").value,
+location: document.getElementById("location").value,
+industry: document.getElementById("industry").value,
+price: document.getElementById("price").value,
+description: document.getElementById("description").value,
+contact: document.getElementById("contact").value,
+time: new Date().toISOString()
+};
+
+let existing = JSON.parse(localStorage.getItem("bsa_listings") || "[]");
+existing.push(listing);
+localStorage.setItem("bsa_listings", JSON.stringify(existing));
+
+alert("Listing submitted successfully. Our team will review it shortly.");
+
+window.location.href = "dashboard.html";
+}
+
 </script>
 
 </body>
