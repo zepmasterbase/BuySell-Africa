@@ -4,162 +4,204 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Dashboard | BuySell Africa</title>
-<meta name="description" content="Manage your listings, inquiries, and activity on BuySell Africa dashboard." />
-<link rel="canonical" href="https://buysellafrica.com/dashboard" />
-
-<meta property="og:title" content="Dashboard | BuySell Africa" />
-<meta property="og:description" content="Manage listings and inquiries." />
+<title>BuySell Africa | Dashboard</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
 <style>
 body{font-family:Inter,sans-serif}
-.glass{backdrop-filter:blur(16px);background:rgba(255,255,255,0.75)}
-.card:hover{transform:translateY(-5px);transition:.2s}
-.fade{opacity:0;transform:translateY(20px);transition:.7s}
-.fade.show{opacity:1;transform:translateY(0)}
-.sidebar-active{background:#0B0F19;color:white}
+
+.glass{
+backdrop-filter:blur(16px);
+background:rgba(255,255,255,0.9);
+}
+
+.card{
+transition:0.3s ease;
+}
+.card:hover{
+transform:translateY(-6px);
+}
+
+.sidebar-link:hover{
+background:#f8fafc;
+}
 </style>
 
 <body class="bg-slate-50 text-slate-900">
 
 <!-- TOP NAV -->
-<nav class="fixed top-0 w-full z-50">
-<div class="glass flex justify-between items-center px-6 py-4 shadow-sm">
-<div class="font-extrabold">BuySell Africa Dashboard</div>
-<div class="flex gap-3 text-sm">
-<span class="text-slate-500">Welcome, User</span>
-<button class="bg-yellow-500 text-white px-4 py-2 rounded-xl">List Business</button>
+<nav class="fixed top-0 w-full z-50 border-b bg-white">
+<div class="flex justify-between items-center px-6 py-4">
+
+<div class="font-extrabold text-lg">BuySell Africa Dashboard</div>
+
+<div class="flex gap-3">
+<button onclick="logout()" class="text-sm hover:underline">Logout</button>
 </div>
+
 </div>
 </nav>
 
 <!-- LAYOUT -->
-<div class="pt-24 flex">
+<div class="pt-20 flex">
 
 <!-- SIDEBAR -->
-<aside class="w-64 hidden md:block bg-white h-screen fixed left-0 top-0 pt-28 border-r px-4">
+<aside class="w-64 hidden md:block bg-white border-r min-h-screen p-4">
 
-<div class="space-y-2 text-sm">
+<div class="mb-6">
+<p class="text-xs text-slate-500">MAIN MENU</p>
+</div>
 
-<button class="w-full text-left px-4 py-3 rounded-xl sidebar-active">Overview</button>
-<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">My Listings</button>
-<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Inquiries</button>
-<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Saved Deals</button>
-<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Analytics</button>
-<button class="w-full text-left px-4 py-3 rounded-xl hover:bg-slate-100">Settings</button>
+<div class="space-y-2">
+
+<button onclick="showSection('overview')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
+Overview
+</button>
+
+<button onclick="showSection('listings')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
+My Listings
+</button>
+
+<button onclick="showSection('inquiries')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
+Inquiries
+</button>
+
+<button onclick="showSection('analytics')" class="w-full text-left px-3 py-2 rounded-lg sidebar-link">
+Analytics
+</button>
+
+<button onclick="goTo('businesslisting.html')" class="w-full text-left px-3 py-2 rounded-lg bg-black text-white">
++ New Listing
+</button>
 
 </div>
 
 </aside>
 
 <!-- MAIN -->
-<main class="flex-1 md:ml-64 p-6">
+<main class="flex-1 p-6">
 
-<!-- STATS -->
-<section class="grid md:grid-cols-4 gap-4 fade">
+<!-- OVERVIEW -->
+<section id="overview">
 
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="text-slate-500 text-sm">Active Listings</p>
+<h1 class="text-2xl font-bold">Welcome Back 👋</h1>
+<p class="text-slate-500">Manage your listings, inquiries and business performance.</p>
+
+<div class="grid md:grid-cols-3 gap-6 mt-6">
+
+<div class="bg-white p-5 rounded-2xl shadow">
 <h2 class="text-2xl font-bold">3</h2>
+<p class="text-slate-500">Active Listings</p>
 </div>
 
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="text-slate-500 text-sm">Total Views</p>
-<h2 class="text-2xl font-bold">1,240</h2>
+<div class="bg-white p-5 rounded-2xl shadow">
+<h2 class="text-2xl font-bold">12</h2>
+<p class="text-slate-500">New Inquiries</p>
 </div>
 
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="text-slate-500 text-sm">Inquiries</p>
-<h2 class="text-2xl font-bold">18</h2>
+<div class="bg-white p-5 rounded-2xl shadow">
+<h2 class="text-2xl font-bold">$240K</h2>
+<p class="text-slate-500">Potential Value</p>
 </div>
 
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="text-slate-500 text-sm">Saved Deals</p>
-<h2 class="text-2xl font-bold">5</h2>
 </div>
 
 </section>
 
 <!-- LISTINGS -->
-<section class="mt-10 fade">
+<section id="listings" class="hidden">
+
 <h2 class="text-xl font-bold">My Listings</h2>
 
-<div class="grid md:grid-cols-3 gap-6 mt-4">
+<div class="grid md:grid-cols-2 gap-4 mt-6">
 
-<div class="card bg-white p-4 rounded-2xl shadow">
+<div class="bg-white p-4 rounded-2xl shadow card">
 <h3 class="font-bold">Restaurant Chain</h3>
-<p class="text-sm text-slate-500">Johannesburg • $850K</p>
-
-<div class="flex gap-2 mt-4">
-<button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
-<button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+<p class="text-slate-500 text-sm">Johannesburg • $850K</p>
+<div class="flex gap-3 mt-3">
+<button class="text-blue-600 text-sm">Edit</button>
+<button class="text-red-500 text-sm">Delete</button>
 </div>
 </div>
 
-<div class="card bg-white p-4 rounded-2xl shadow">
+<div class="bg-white p-4 rounded-2xl shadow card">
 <h3 class="font-bold">Logistics Company</h3>
-<p class="text-sm text-slate-500">Nairobi • $1.2M</p>
-
-<div class="flex gap-2 mt-4">
-<button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
-<button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
-</div>
-</div>
-
-<div class="card bg-white p-4 rounded-2xl shadow">
-<h3 class="font-bold">SaaS Startup</h3>
-<p class="text-sm text-slate-500">Lagos • $450K</p>
-
-<div class="flex gap-2 mt-4">
-<button class="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm">Edit</button>
-<button class="bg-red-500 text-white px-3 py-1 rounded-lg text-sm">Delete</button>
+<p class="text-slate-500 text-sm">Nairobi • $1.2M</p>
+<div class="flex gap-3 mt-3">
+<button class="text-blue-600 text-sm">Edit</button>
+<button class="text-red-500 text-sm">Delete</button>
 </div>
 </div>
 
 </div>
+
 </section>
 
 <!-- INQUIRIES -->
-<section class="mt-10 fade">
-<h2 class="text-xl font-bold">Recent Inquiries</h2>
+<section id="inquiries" class="hidden">
 
-<div class="space-y-4 mt-4">
+<h2 class="text-xl font-bold">Buyer Inquiries</h2>
 
-<div class="bg-white p-4 rounded-2xl shadow">
-<p class="font-bold">Investor from Cape Town</p>
-<p class="text-sm text-slate-500">Interested in Restaurant Chain listing</p>
-</div>
+<div class="space-y-4 mt-6">
 
 <div class="bg-white p-4 rounded-2xl shadow">
-<p class="font-bold">Buyer from London</p>
-<p class="text-sm text-slate-500">Requesting financials for SaaS Startup</p>
+<p class="font-semibold">Investor from South Africa</p>
+<p class="text-slate-500 text-sm">Interested in Restaurant Chain</p>
+<button class="text-blue-600 text-sm mt-2">Reply</button>
 </div>
 
 <div class="bg-white p-4 rounded-2xl shadow">
-<p class="font-bold">Private Equity Firm</p>
-<p class="text-sm text-slate-500">Wants due diligence documents</p>
+<p class="font-semibold">Buyer from Kenya</p>
+<p class="text-slate-500 text-sm">Wants more details on Logistics Company</p>
+<button class="text-blue-600 text-sm mt-2">Reply</button>
 </div>
 
 </div>
+
+</section>
+
+<!-- ANALYTICS -->
+<section id="analytics" class="hidden">
+
+<h2 class="text-xl font-bold">Analytics</h2>
+
+<div class="grid md:grid-cols-2 gap-6 mt-6">
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold">Views</h3>
+<p class="text-3xl font-bold mt-2">1,240</p>
+</div>
+
+<div class="bg-white p-6 rounded-2xl shadow">
+<h3 class="font-bold">Clicks</h3>
+<p class="text-3xl font-bold mt-2">320</p>
+</div>
+
+</div>
+
 </section>
 
 </main>
 </div>
 
-<!-- FOOTER -->
-<footer class="text-center text-sm text-slate-500 py-10">
-© 2026 BuySell Africa Dashboard
-</footer>
-
 <script>
-// fade animation
-const obs=new IntersectionObserver(e=>e.forEach(x=>{
-if(x.isIntersecting)x.target.classList.add('show')
-}));
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+function showSection(id){
+document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));
+document.getElementById(id).classList.remove("hidden");
+}
+
+function goTo(page){
+window.location.href = page;
+}
+
+function logout(){
+localStorage.removeItem("bsa_logged_in");
+window.location.href = "login-register.html";
+}
+
 </script>
 
 </body>
