@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Admin Pipeline OS | BuySell Africa</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{font-family:Inter,sans-serif}
+
+.tab{
+cursor:pointer;
+padding:10px 14px;
+border-radius:12px;
+font-size:14px;
+}
+
+.active{
+background:#111827;
+color:white;
+}
+
+.card{
+transition:.2s ease;
+}
+
+.card:hover{
+transform:translateY(-3px);
+}
+
+.badge-paid{background:#10b981;}
+.badge-pending{background:#f59e0b;}
+.badge-failed{background:#ef4444;}
+</style>
+
+</head>
+
+<body class="bg-slate-100">
+
+<!-- HEADER -->
+<div class="bg-black text-white p-4 flex justify-between items-center">
+<h1 class="font-bold">BuySell Africa • Admin Pipeline OS</h1>
+<button onclick="seedDemo()" class="bg-white text-black px-4 py-2 rounded-xl text-sm">
++ Seed Demo Data
+</button>
+</div>
+
+<!-- TABS -->
+<div class="flex gap-2 p-4 max-w-6xl mx-auto">
+
+<div onclick="switchTab('payments')" id="tab-payments" class="tab active">Payments Queue</div>
+<div onclick="switchTab('listings')" id="tab-listings" class="tab">Listing Requests</div>
+<div onclick="switchTab('live')" id="tab-live" class="tab">Live Marketplace</div>
+
+</div>
+
+<!-- CONTENT -->
+<div class="max-w-6xl mx-auto p-4">
+
+<!-- PAYMENTS -->
+<div id="payments" class="grid md:grid-cols-3 gap-4"></div>
+
+<!-- LISTINGS -->
+<div id="listings" class="grid md:grid-cols-3 gap-4 hidden"></div>
+
+<!-- LIVE -->
+<div id="live" class="grid md:grid-cols-3 gap-4 hidden"></div>
+
+</div>
+
+<script>
+
+let data = JSON.parse(localStorage.getItem("bsa_pipeline")) || [];
+
+function save(){
+localStorage.setItem("bsa_pipeline", JSON.stringify(data));
+render();
+}
+
+function switchTab(tab){
+
+document.getElementById("payments").classList.add("hidden");
+document.getElementById("listings").classList.add("hidden");
+document.getElementById("live").classList.add("hidden");
+
+document.getElementById("tab-payments").classList.remove("active");
+document.getElementById("tab-listings").classList.remove("active");
+document.getElementById("tab-live").classList.remove("active");
+
+document.getElementById(tab).classList.remove("hidden");
+document.getElementById("tab-" + tab).classList.add("active");
+}
+
+/* -----------------------------
+   APPROVAL LOGIC PIPELINE
+------------------------------*/
+
+// STEP 1: Mark payment verified
+function verifyPayment(id){
+let item = data.find(d => d.id === id);
+item.paymentStatus = "paid";
+save();
+}
+
+// STEP 2: Approve listing
+function approveListing(id){
+let item = data.find(d => d.id === id);
+item.status = "approved";
+save();
+}
+
+// STEP 3: Reject listing
+function rejectListing(id){
+data = data.filter(d => d.id !== id);
+save();
+}
+
+/* -----------------------------
+   RENDER SYSTEM
+------------------------------*/
+
+function render(){
+
+let payments = document.getElementById("payments");
+let listings = document.getElementById("listings");
+let live = document.getElementById("live");
+
+payments.innerHTML = "";
+listings.innerHTML = "";
+live.innerHTML = "";
+
+/* ---------------- PAYMENTS ---------------- */
+data.filter(d => d.paymentStatus !== "paid").forEach(item => {
+
+payments.innerHTML += `
+<div class="card bg-white p-4 rounded-2xl shadow">
+
+<h3 class="font-bold">${item.name}</h3>
+
+<p class="text-sm text-slate-500">${item.location}</p>
+
+<span class="text-xs px-2 py-1 rounded badge-pending text-white">
+PENDING PAYMENT
+</span>
+
+<div class="flex gap-2 mt-4">
+
+<button onclick="verifyPayment(${item.id})"
+class="bg-green-500 text-white px-3 py-2 rounded-xl text-sm">
+Mark Paid
+</button>
+
+<button onclick="rejectListing(${item.id})"
+class="bg-red-500 text-white px-3 py-2 rounded-xl text-sm">
+Reject
+</button>
+
+</div>
+
+</div>
+`;
+});
+
+/* ---------------- LISTINGS ---------------- */
+data.filter(d => d.paymentStatus === "paid" && d.status !== "approved").forEach(item => {
+
+listings.innerHTML += `
+<div class="card bg-white p-4 rounded-2xl shadow">
+
+<h3 class="font-bold">${item.name}</h3>
+
+<p class="text-sm text-slate-500">${item.location} • ${item.price}</p>
+
+<span class="text-xs px-2 py-1 rounded badge-paid text-white">
+PAID VERIFIED
+</span>
+
+<p class="text-sm mt-2">${item.desc}</p>
+
+<div class="flex gap-2 mt-4">
+
+<button onclick="approveListing(${item.id})"
+class="bg-black text-white px-3 py-2 rounded-xl text-sm">
+Approve
+</button>
+
+<button onclick="rejectListing(${item.id})"
+class="bg-red-500 text-white px-3 py-2 rounded-xl text-sm">
+Reject
+</button>
+
+</div>
+
+</div>
+`;
+});
+
+/* ---------------- LIVE ---------------- */
+data.filter(d => d.status === "approved").forEach(item => {
+
+live.innerHTML += `
+<div class="card bg-white p-4 rounded-2xl shadow">
+
+<h3 class="font-bold">${item.name}</h3>
+
+<p class="text-sm text-slate-500">${item.location} • ${item.price}</p>
+
+<span class="text-xs px-2 py-1 rounded bg-green-600 text-white">
+LIVE
+</span>
+
+<p class="text-sm mt-2">${item.desc}</p>
+
+</div>
+`;
+});
+
+}
+
+/* ---------------- DEMO DATA ---------------- */
+
+function seedDemo(){
+
+data.push({
+id: Date.now(),
+name: "Restaurant Group",
+location: "Johannesburg",
+price: "$850K",
+desc: "High traffic restaurant chain with strong cash flow.",
+paymentStatus: "paid",
+status: "pending"
+});
+
+data.push({
+id: Date.now()+1,
+name: "Logistics Company",
+location: "Nairobi",
+price: "$1.2M",
+desc: "Fleet-based logistics across East Africa.",
+paymentStatus: "unpaid",
+status: "pending"
+});
+
+save();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
