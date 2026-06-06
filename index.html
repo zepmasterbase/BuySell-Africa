@@ -12,12 +12,6 @@
 <meta property="og:description" content="Africa’s marketplace for buying, selling and investing in businesses." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://buysellafrica.com" />
-<meta property="og:image" content="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" />
-
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="BuySell Africa" />
-<meta name="twitter:description" content="Buy, sell & invest in African businesses." />
-<meta name="twitter:image" content="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" />
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -34,7 +28,7 @@ body{font-family:Inter,sans-serif}
 <body class="bg-white text-slate-900">
 
 <!-- NAV -->
-<nav id="nav" class="fixed w-full z-50">
+<nav class="fixed w-full z-50 top-0">
 <div class="glass flex justify-between items-center px-6 py-4">
 
 <div class="font-extrabold">BuySell Africa</div>
@@ -47,9 +41,11 @@ body{font-family:Inter,sans-serif}
 </div>
 
 <div class="flex gap-3">
-<button onclick="goTo('loginregister.html')" class="hover:underline">Login</button>
+<button onclick="goTo('login-register.html')" class="hover:underline">
+Login
+</button>
 
-<button onclick="goTo('listyourbusiness.html')" class="bg-yellow-500 px-4 py-2 rounded-xl text-white">
+<button onclick="handleListBusiness()" class="bg-yellow-500 px-4 py-2 rounded-xl text-white">
 List Business
 </button>
 </div>
@@ -66,18 +62,22 @@ List Business
 <h1 class="text-5xl font-extrabold">Buy, Sell & Invest in African Businesses</h1>
 <p class="mt-4 text-white/80">Discover verified opportunities across the continent.</p>
 
+<!-- ACTION BUTTONS -->
 <div class="flex gap-4 justify-center mt-6">
-<button onclick="goTo('browse.html')" class="bg-yellow-500 px-6 py-3 rounded-xl">
+<button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl">
 Browse Businesses
 </button>
 
-<button onclick="goTo('listyourbusiness.html')" class="bg-white/10 px-6 py-3 rounded-xl">
+<button onclick="handleListBusiness()" class="bg-white/10 px-6 py-3 rounded-xl">
 List Your Business
 </button>
 </div>
 
+<!-- SEARCH BAR -->
 <div class="mt-6 grid md:grid-cols-3 gap-2 bg-white/10 p-4 rounded-xl">
-<input class="p-2 rounded text-black" placeholder="Search businesses..." />
+
+<input id="searchInput" class="p-2 rounded text-black" placeholder="Search businesses..." />
+
 <select class="p-2 rounded text-black">
 <option>Country</option>
 <option>South Africa</option>
@@ -92,9 +92,10 @@ List Your Business
 <option>Logistics</option>
 </select>
 
-<button onclick="goTo('browse.html')" class="bg-[#2563EB] text-white rounded-xl px-4">
+<button onclick="searchRedirect()" class="bg-[#2563EB] text-white rounded-xl px-4">
 Search
 </button>
+
 </div>
 
 </div>
@@ -123,21 +124,27 @@ Search
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee"/>
 <h3 class="font-bold mt-3">Restaurant Chain</h3>
 <p class="text-sm text-slate-500">Johannesburg • $850K</p>
-<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">View Details</button>
+<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">
+View Details
+</button>
 </div>
 
 <div class="card bg-white shadow rounded-2xl p-4">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1581091870622-1e7f3b0c1f8b"/>
 <h3 class="font-bold mt-3">Logistics Company</h3>
 <p class="text-sm text-slate-500">Nairobi • $1.2M</p>
-<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">View Details</button>
+<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">
+View Details
+</button>
 </div>
 
 <div class="card bg-white shadow rounded-2xl p-4">
 <img class="rounded-xl" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"/>
 <h3 class="font-bold mt-3">SaaS Startup</h3>
 <p class="text-sm text-slate-500">Lagos • $450K</p>
-<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">View Details</button>
+<button onclick="goTo('businessdetails.html')" class="mt-3 text-blue-600">
+View Details
+</button>
 </div>
 
 </div>
@@ -178,28 +185,46 @@ Search
 <p class="mt-3 text-white/70">Join Africa’s fastest growing deal marketplace.</p>
 
 <div class="mt-6 flex gap-4 justify-center">
-<button onclick="goTo('browse.html')" class="bg-yellow-500 px-6 py-3 rounded-xl">
+<button onclick="goTo('browsebusinesses.html')" class="bg-yellow-500 px-6 py-3 rounded-xl">
 Browse
 </button>
 
-<button onclick="goTo('listyourbusiness.html')" class="bg-white/10 px-6 py-3 rounded-xl">
+<button onclick="handleListBusiness()" class="bg-white/10 px-6 py-3 rounded-xl">
 List
 </button>
 </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="py-10 text-center text-sm text-slate-500">
 © 2026 BuySell Africa
 </footer>
 
 <script>
-// NAVIGATION FUNCTION (ALL BUTTONS LINKED)
+// SIMPLE AUTH CHECK (demo)
+function isLoggedIn(){
+return localStorage.getItem("bsa_logged_in") === "true";
+}
+
+// NAVIGATION
 function goTo(page){
 window.location.href = page;
 }
 
-// FADE ANIMATION
+// LIST BUSINESS LOGIC
+function handleListBusiness(){
+if(isLoggedIn()){
+window.location.href = "businesslisting.html";
+} else {
+window.location.href = "login-register.html";
+}
+}
+
+// SEARCH REDIRECT
+function searchRedirect(){
+window.location.href = "browsebusinesses.html";
+}
+
+// FADE
 const obs=new IntersectionObserver(e=>e.forEach(x=>{
 if(x.isIntersecting)x.target.classList.add('show')
 }));
@@ -216,7 +241,7 @@ if(i<t){
 i+=step;
 c.innerText=Math.ceil(i);
 setTimeout(fn,20);
-} else {
+}else{
 c.innerText=t;
 }
 };
