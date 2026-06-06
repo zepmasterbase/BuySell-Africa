@@ -4,12 +4,14 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>List Business | Deal OS v5 Lite</title>
+<title>List Your Business | BuySell Africa</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{font-family:Inter,sans-serif}
+body{
+font-family:Inter, sans-serif;
+}
 
 .card{
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
@@ -19,12 +21,6 @@ transition:.2s ease;
 .card:hover{
 transform:translateY(-3px);
 }
-
-.badge{
-font-size:10px;
-padding:4px 8px;
-border-radius:999px;
-}
 </style>
 
 </head>
@@ -33,85 +29,70 @@ border-radius:999px;
 
 <!-- HEADER -->
 <div class="bg-black text-white p-4 font-bold text-center">
-Deal OS v5 Listing System (No Backend Payments)
+List Your Business on BuySell Africa
 </div>
 
-<!-- PRICING -->
+<!-- PRICING SECTION -->
 <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-4 p-4">
 
 <!-- STARTER -->
 <div class="bg-white p-5 rounded-2xl card">
 
-<h2 class="font-bold text-lg">Starter</h2>
-<p class="text-2xl font-bold">$5</p>
+<h2 class="font-bold text-lg">Starter Listing</h2>
+<p class="text-2xl font-bold mt-2">$5</p>
 
 <ul class="text-sm text-slate-600 mt-3 space-y-1">
-<li>✔ 1 Listing</li>
+<li>✔ 1 Business Listing</li>
 <li>✔ 7 Days Visibility</li>
+<li>✔ Basic Approval</li>
 <li>❌ No Boost</li>
 </ul>
 
 <a href="https://www.paypal.me/buysellAfrica"
-target="_blank"
 class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-semibold">
-Pay with PayPal
+Pay & Start
 </a>
-
-<button onclick="markPaid('starter')"
-class="w-full mt-2 bg-green-500 text-black py-2 rounded-xl font-semibold">
-I HAVE PAID
-</button>
 
 </div>
 
 <!-- STANDARD -->
 <div class="bg-white p-5 rounded-2xl card border-2 border-blue-500">
 
-<h2 class="font-bold text-lg">Standard</h2>
-<p class="text-2xl font-bold">$15 / month</p>
+<h2 class="font-bold text-lg">Standard Seller</h2>
+<p class="text-2xl font-bold mt-2">$15 / month</p>
 
 <ul class="text-sm text-slate-600 mt-3 space-y-1">
-<li>✔ 5 Listings</li>
-<li>✔ Analytics</li>
-<li>✔ Eligible for Boost</li>
+<li>✔ Up to 5 Listings</li>
+<li>✔ Basic Analytics (views + leads)</li>
+<li>✔ Eligible for Boost ($10)</li>
+<li>✔ WhatsApp Lead Access</li>
 </ul>
 
 <a href="https://www.paypal.me/buysellAfrica"
-target="_blank"
 class="block bg-blue-500 text-white text-center py-3 rounded-xl mt-4 font-semibold">
-Subscribe with PayPal
+Subscribe Now
 </a>
-
-<button onclick="markPaid('standard')"
-class="w-full mt-2 bg-green-500 text-black py-2 rounded-xl font-semibold">
-I HAVE PAID
-</button>
 
 </div>
 
 <!-- PREMIUM -->
 <div class="bg-white p-5 rounded-2xl card">
 
-<h2 class="font-bold text-lg">Premium</h2>
-<p class="text-2xl font-bold">$30 / month</p>
+<h2 class="font-bold text-lg">Premium Seller</h2>
+<p class="text-2xl font-bold mt-2">$30 / month</p>
 
 <ul class="text-sm text-slate-600 mt-3 space-y-1">
 <li>✔ Unlimited Listings</li>
 <li>✔ Priority Approval</li>
+<li>✔ Featured Placement</li>
 <li>✔ Lead Unlock Included</li>
-<li>✔ Boost Priority</li>
+<li>✔ Full Analytics Dashboard</li>
 </ul>
 
 <a href="https://www.paypal.me/buysellAfrica"
-target="_blank"
 class="block bg-purple-500 text-white text-center py-3 rounded-xl mt-4 font-semibold">
 Go Premium
 </a>
-
-<button onclick="markPaid('premium')"
-class="w-full mt-2 bg-green-500 text-black py-2 rounded-xl font-semibold">
-I HAVE PAID
-</button>
 
 </div>
 
@@ -120,54 +101,29 @@ I HAVE PAID
 <!-- LISTING FORM -->
 <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl card mt-6">
 
-<h2 class="font-bold text-lg mb-4">Submit Business</h2>
+<h2 class="font-bold text-lg mb-4">Submit Your Business Details</h2>
 
 <input id="name" class="w-full p-3 border rounded-xl mb-3" placeholder="Business Name"/>
 
-<input id="location" class="w-full p-3 border rounded-xl mb-3" placeholder="Location"/>
+<input id="location" class="w-full p-3 border rounded-xl mb-3" placeholder="Location (City / Country)"/>
 
-<input id="price" class="w-full p-3 border rounded-xl mb-3" placeholder="Price"/>
+<input id="price" class="w-full p-3 border rounded-xl mb-3" placeholder="Price (e.g $50K)"/>
 
-<textarea id="desc" class="w-full p-3 border rounded-xl mb-3" placeholder="Description"></textarea>
+<textarea id="desc" class="w-full p-3 border rounded-xl mb-3" placeholder="Business Description"></textarea>
 
 <button onclick="submitListing()"
 class="w-full bg-black text-white py-3 rounded-xl font-bold">
 Submit Listing
 </button>
 
-<p id="msg" class="text-center text-sm mt-3"></p>
+<p id="msg" class="text-center text-sm mt-3 text-slate-600"></p>
 
 </div>
 
 <script>
 
 /* -----------------------------
-   PAYMENT STATE SYSTEM
-------------------------------*/
-
-function markPaid(plan){
-
-localStorage.setItem("bsa_payment_status", JSON.stringify({
-paid:true,
-plan:plan,
-time:Date.now()
-}));
-
-alert("Payment marked as complete for " + plan + ". You can now submit listing.");
-}
-
-/* -----------------------------
-   CHECK PAYMENT
-------------------------------*/
-
-function isPaid(){
-
-let status = JSON.parse(localStorage.getItem("bsa_payment_status"));
-return status && status.paid;
-}
-
-/* -----------------------------
-   SUBMIT LISTING
+   SUBMIT LISTING (LOCAL STORAGE)
 ------------------------------*/
 
 function submitListing(){
@@ -184,15 +140,7 @@ msg.innerText = "Please fill all fields";
 return;
 }
 
-/* PAYMENT GATE */
-if(!isPaid()){
-msg.innerText = "Please complete payment first.";
-return;
-}
-
 let data = JSON.parse(localStorage.getItem("bsa_pipeline")) || [];
-
-let payment = JSON.parse(localStorage.getItem("bsa_payment_status"));
 
 data.push({
 id: Date.now(),
@@ -207,16 +155,11 @@ views:0,
 whatsappClicks:0,
 
 boosted:false,
-subscription: payment.plan || "free",
-leadLocked:true,
-
-paid:true
+subscription:"free",
+leadLocked:true
 });
 
 localStorage.setItem("bsa_pipeline", JSON.stringify(data));
-
-/* reset payment flag */
-localStorage.removeItem("bsa_payment_status");
 
 msg.innerText = "Listing submitted successfully! Awaiting approval.";
 
